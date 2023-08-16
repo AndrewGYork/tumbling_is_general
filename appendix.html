@@ -1,0 +1,575 @@
+<!doctype html>
+<!-- 
+This publication template is based on the one created by Andrew G York: https://github.com/AndrewGYork/publication_template . Thanks Andrew!
+
+Based on this theme: https://github.com/broccolini/dinky , which mentioned that attribution is appreciated. Thanks, broccolini!
+-->
+<html lang="en">
+  <head>
+    <base target="_blank">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="citation_title" content="From cameras to confocal to cytometry: measuring tumbling rates is a general way to reveal protein binding">
+    <meta name="citation_author" content="Julia R. Lazzari-Dean">
+    <meta name="citation_author" content="Austin E. Y. T. Lefebvre">
+    <meta name="citation_author" content="Rebecca Frank Hayward">
+    <meta name="citation_author" content="Lachlan Whitehead">
+    <meta name="citation_author" content="Maria Ingaramo">
+    <meta name="citation_author" content="Andrew G. York">
+    <meta name="citation_publication_date" content="TODO">
+    <meta name="citation_journal_title" content="Github.io">
+    <meta name="citation_pdf_url" content="https://andrewgyork.github.io/tumbling_is_general/tumbling_is_general.pdf">
+    <title>Tumbling is general</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/prism.css">
+
+    <script src="javascript/scale-fix/scale.fix.js"></script>
+    <script src="javascript/python-highlighting/prism.js"></script>
+    <script async  src="javascript/Minimal-MathJax/MathJax.js?config=TeX-AMS_CHTML"></script>
+    <script src="javascript/update_figures.js"></script>
+    <script src="javascript/reference_list/reference_list.js"></script>
+    <script src="javascript/google-analytics/analytics.js"></script><!-- AGY analytics tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Tumbling is general</h1>
+        <ul>
+          <li class="download"><a class="buttons" href="TODO">Download ZIP</a></li>
+          <li class="download"><a class="buttons github" href="https://github.com/AndrewGYork/tumbling_is_general">View On GitHub</a></li>
+          <li class="download"><a class="buttons pdf" href="tumbling_is_general_appendix.pdf">Download PDF</a></li>
+        </ul>
+        <p class="header">This project is maintained by <a class="header name" href="https://jlazzaridean.github.io">Julia Lazzari-Dean</a> in the <a class="header name" href="http://andrewgyork.github.io/">York lab</a>, and was funded by <a class="header name" href="https://www.calicolabs.com/">Calico Life Sciences LLC</a></p>
+      </header>
+<!-- 
+##############################################################
+The real text begins here.
+##############################################################
+ -->
+<section>
+<h1>Appendix</h1>
+<h2>From cameras to confocal to cytometry: measuring tumbling rates is a general way to reveal protein binding</h2>
+<p class="author_list">Julia R. Lazzari-Dean (<a href="https://orcid.org/0000-0003-2971-5379">ORCID</a>),<sup>*</sup> Austin E. Y. T. Lefebvre, Rebecca Frank Hayward, Lachlan Whitehead, Maria Ingaramo<sup>&dagger;</sup>, Andrew G. York<sup>&Dagger;</sup></p>
+<p class="author_affiliations">Calico Life Sciences LLC, South San Francisco, CA 94080, USA</p>
+<p class="contact_email"><sup>*</sup>Permanent email: <a href="mailto:julia.lazzaridean+tumbling@gmail.com" target="_self">julia.lazzaridean+tumbling@gmail.com</a></p>
+<p class="contact_email"><sup>&dagger;</sup>Permanent email: <a href="mailto:maria.del.mar.ingaramo+tumbling@gmail.com" target="_self">maria.del.mar.ingaramo+tumbling@gmail.com</a></p>
+<p class="contact_email"><sup>&Dagger;</sup>Permanent email: <a href="mailto:andrew.g.york+tumbling@gmail.com" target="_self">andrew.g.york+tumbling@gmail.com</a></p>
+
+<p></p>
+<p><strong>Pre-print published: TODO</strong></p>
+<p><strong>Please cite as:</strong> TODO</a></p>
+
+<h3>This appendix contains:</h3>
+
+<p>
+<a href="#materials_and_methods" target="_self">Materials and Methods</a><br>
+<a href="#supplementary_text" target="_self">Supplementary Text and Figures</a><br>
+<a href="#sequences" target="_self">Sequences for all constructs used</a>
+</p>
+
+<p>TODO: More hyperlinks in table of contents!</p>
+<p>additional tumbling simulation methods somewhere?</p>
+
+<h3 id="materials_and_methods">Materials and Methods</h3>
+
+<h4 id="protein_purification">Fluorescent Protein Purification</h4>
+
+<p>Fluorescent proteins (FPs) were purified from E. coli T7 express (New England BioLabs) using the pRSET expression vector (Thermo Fisher Scientific). Full construct sequences are available <a href="#sequences" target="_self">here</a>.</p>
+
+<p>Chemically competent E. coli T7 express cells (made in-house) were transformed with pRSET-mScarlet or pRSET-mVenus. 24 hours later, overnight cultures (&approx;14 hours) were started at 30&deg;C in LB containing 100 &mu;g/mL carbenicillin. These overnights were diluted 1:100 the next morning into fresh LB-carbenicillin (0.5-2 L scale) and grown until OD 0.4-0.6. At OD 0.4-0.6, cultures were induced with 200 &mu;M IPTG and allowed to express overnight.</p>
+
+<p>E. coli expressing the FP were then pelleted at 4&deg;C (6,000xg, 30 minutes) and washed once with 1x PBS. For convenience, pellets were sometimes frozen at -80&deg;C after this step and then subsequently thawed on ice before proceeding. The cells were resuspended in lysis buffer (300 mM NaCl, 50 mM sodium phosphate, pH 8) containing 1x BugBuster Protein Extraction Reagent (EMD Millipore Corp.) at a volume of approximately 10x the pellet volume. Lysing cells were incubated at room temperature for 30 minutes with gentle mixing. Following lysis, insoluble components were pelleted (12,000xg, 20 minutes, 4&deg;C) and the FP-containing supernatant was decanted. A 1:1000 dilution of polyethylenimine (PEI) was added to the supernatant to precipitate nucleic acids, and the samples were spun again at 12,000xg for 20 minutes at 4&deg;C.</p>
+
+<p>This supernatant was then added to washed Ni-NTA resin (Qiagen cOmplete His-Tag Purification Resin) in lysis buffer and incubated for 30 minutes at room temperature with gentle mixing. The FP-bound beads were washed three times with lysis buffer, where each wash consisted of a 10 minute room temperature incubation, a 15 minute spin at 1000 RPM (211xg), removal of the supernatant, and addition of fresh lysis buffer.</p>
+
+<p>FPs were eluted in lysis buffer supplemented with 500 mM imidazole and transferred to a spin concentrator. After the total volume was reduced to less than 5 mL, proteins were buffer exchanged into PBS (Corning, pH 7.4, 9 g/L NaCl, 0.144 g/L KH<sub>2</sub>PO<sub>4</sub>, 0.795 g/L Na<sub>2</sub>HPO<sub>4</sub>) with a PD-10 desalting column (Millipore Sigma). Protein concentration was estimated on a NanoDrop 2000C spectrophotometer (Thermo Fisher Scientific) from the published extinction coefficient at the absorption maximum (mVenus: &epsilon;=104,000 at 515 nm; mScarlet &epsilon;=100,000 at 569 nm 
+
+[<a class="citation" href="http://doi.org/10.1038/nmeth.4074" title="mScarlet: a bright monomeric red fluorescent protein for cellular imaging; D. S. Bindels, L. Haarbosch, L. van Weeren, M. Postma, K. E. Wiese, M. Mastop, S. Aumonier, G. Gotthard, A. Royant, M. A. Hink, T. W. J. Gadella Jr; Nature Methods 14, 53-56 (2017)">Bindels 2017</a>,
+<a class="citation" href="http://doi.org/10.1021/bi0516273" title="Cyan and Yellow Super Fluorescent Proteins with Improved Brightness, Protein Folding, and FRET Förster Radius; G.-J. Kremers, J. Goedhart, E. B. van Munster, T. W. J. Gadella; Biochemistry, 45, 21, 6570-6580 (2006)">Kremers 2006</a>]). 
+
+Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for long-term storage.</p>
+
+<h4 id="imaging_settings">Imaging Settings</h4>
+
+<h5 id="general_imaging">General</h5>
+
+<p>We collected fluorescence data with an SP8 point scanning confocal microscope (Leica) equipped with an LSM FLIM/FCS upgrade kit for time-correlated single photon counting (TCSPC, PicoQuant GmbH). Visible (488 or 561 nm) excitation was provided with the system’s white light laser, and 775 nm excitation was provided by the STED laser. A repetition rate of 80 MHz was used. We removed the quarter-wave plate from the beampath to enable polarization measurements, giving us orthogonally linearly polarized visible and 775 nm beams. Because we were repurposing the STED line with the &lambda;/4 plate removed, we anticipate that the point-spread function of the 775 nm spot is substantially larger than the 488 nm spot and non-optimally shaped. The 8 kHz resonant scanner was used to raster scan the image.</p>
+
+<p>Fluorescence emission was collected through a 100x/1.4 NA oil immersion objective (HC PL APO CS2, Leica) and passed through notch filters blocking 488/561/633 and 775 nm laser lines in the primary and secondary dichroic positions. Emitted light passed through a polarizing beam splitter at the back (X1) port to two fiber-coupled SPAD detectors (PicoQuant). Bandpass emission filters (Semrock, mVenus: 531/40 nm; mScarlet 630/92 nm) were placed in front of each SPAD to block any remaining excitation light. Photon timing was performed with a PicoHarp 300 TCSPC module (PicoQuant).</p>
+
+<p>The confocal pinhole was set to 1 AU, and data was collected from a focal plane &approx;2 &mu;m above the coverglass. This plane was selected to minimize spherical aberrations and scattering from the bead sample and to eliminate signal from any beads or protein adsorbed to the coverglass.</p>
+
+<h5 id="time_resolved_anisotropy_imaging">Time-Resolved Fluorescence Anisotropy</h5>
+
+<p>The correction for optical transmission of the two polarization channels ("g factor") was measured daily with a solution of either 10 &mu;M fluorescein in 0.1 M NaOH or 2 &mu;M sulforhodamine 101 in PBS. The g factor was determined as the correction factor that resulted in equal signal in the two detector channels after any initial rapid relaxation in these dye samples (> 1 ns into the recording); it ranged from 0.89 - 0.91 for these experiments.</p>
+
+<p>To record the fluorescence anisotropy of the bead samples from the prompt singlets, we used a 15 second integration time (64 sweeps) over a 5.8 &mu;m x 5.8 &mu;m area. Typical power (488 or 561 nm) for fluorescence anisotropy recordings was approximately 0.3 &mu;W measured at the sample.</p>
+
+<h5 id="triplet_triggering_imaging">Triplet Triggering</h5>
+
+<p>To achieve microsecond control over the laser pulse sequence, we programmed successive line sweeps of the resonant scanner to have different lasers active (or no laser to produce a delay). With an image size of 5.81 &mu;m x 609.71 nm (144x16 pixels) and a zoom factor of 20, this approach allowed us to access each point in the image at 60 &mu;s intervals. (This ‘hack’ was necessary because the instrument hardware did not give us direct access to arbitrary programming of the lasers’ AOTFs.) We set up either 8 or 16 sweeps, with the white light laser (pump) active on the first sweep. One of the subsequent sweeps contained the 775 nm probe pulse, and the other sweeps involved no laser illumination. For the ‘crescent’ selection, we also included 775 nm excitation during the first sweep with the white light laser with a 2 ns delay after every visible light pulse.</p>
+
+<p>Average pump power (visible, 488 or 561 nm) was approximately 5 &mu;W at the sample, and average probe power was approximately 400 &mu;W. Both pump and probe lasers were pulsed at 80 MHz with a 200 ns pixel dwell time for a total of 16 pulses in each position. The crescent selection power for the tumbling traces in <a href="./index.html#sp8_tumbling_figure">Figure 6</a> was 100 &mu;W for mVenus and 400 &mu;W for mScarlet.</p>
+
+<p>We summed this triggered triplet signal across all pixels of this image for 1000 frames to obtain the triggered triplet signal. For most analysis, we also summed the fluorescence lifetime information from each trigger pulse, resulting in a single value for each detector at a given delay. <a href="#SP8_schematic_figure" target="_self">Figure S1</a> shows representative traces obtained with this pulse scheme.</p>
+
+<figure id="SP8_schematic_figure">
+<img src="./figures/SI_pulse_setup_and_ctrls/mScarlet_pulse_setup.png" alt="Schematic of SP8 Instrument and Control Traces" id="SP8_schematic"><table class="figure_controls">
+<table class="figure_controls">
+  <tr>
+  <td>Fluorescent Protein: </td><td><select id="SP8_schematic_selector" onchange="update_SP8_schematic_figure()">
+    <option value="mScarlet" selected="selected">mScarlet</option> 
+    <option value="mVenus">mVenus</option>
+  </select>
+</td>
+</tr>
+</table>
+ <figcaption><strong>Figure S1. Sample Pulse Sequence and Probe Only Control.</strong><br>
+  <strong>(A)</strong> Overview of instrumentation used to collect pump-probe tumbling recordings. PBS: polarizing beam splitter. 
+  <strong>(B)</strong> Sample pulse sequence with a probe delay of 240 &mu;s, as well as the use of the 775 nm ‘crescent’ selection to narrow the initial distribution of fluorophores during the pump pulse. 
+  <strong>(C)</strong> Representative single-trial recordings of mScarlet-labeled 40 nm beads. No signal is generated by the probe laser only, and the pump laser generates a decaying background on the SPAD. The combination of the pump laser followed by the probe laser as shown in (B) generates a triggered fluorescence signal. </figcaption>
+</figure>
+<p></p>
+
+<p>We noticed a time-decaying background on the SPADs following the initial sweep (<a href="#SP8_schematic_figure" target="_self">Figure S1C</a>). We determined this background from the signal at that delay time without the 775 nm trigger pulse. This background signal was subtracted from the triplet signal. We also confirmed that the 775 nm pulse did not directly excite the FP ground state; in other words, there is no triggered signal unless the sample was first illuminated with the pump pulse.</p>
+
+<h4 id="bead_labeling">Adsorption of Fluorescent Protein to Beads</h4>
+
+<p>To accurately assess triggered triplet tumbling, we needed a series of fluorescent objects of known sizes. To this end, we chose to work with known diameter beads with fluorescent protein adsorbed to the surface. When optimizing the sample preparation, we wanted to (1) rigidly affix the fluorescent protein to the bead, (2) avoid homo-FRET among the FPs on the surface, (3) ensure no free protein remained in the sample, and (4) confirm that the bead samples had not aggregated, thus changing their size. We verified (1-3) by analyzing the conventional time-resolved fluorescence anisotropy signal, and we addressed (4) with dynamic light scattering (DLS) and observation on a confocal microscope. These quality control techniques are discussed further below.</p>
+
+<p>Carboxyl-modified latex (CML) beads at 4% solids were purchased from Thermo Fisher Scientific in four diameters (40 nm, 60 nm, 100 nm, and 200 nm). Purified protein was passively adsorbed to the bead surface by mixing and 10 minute incubation. Following adsorption, we found that the adsorbed protein-bead mixture was stable for about an hour at room temperature, with aggregation increasing somewhat after that. Adsorption to the bead appeared irreversible in our hands, with multi-day dialysis not eliminating bead fluorescence (data not shown).</p>
+
+<p>A key parameter to avoid both homo-FRET and free protein is the total amount of protein added to the bead mixture. For simplicity, we avoided washing and instead reduced the label level such that the vast majority of FP was adsorbed. Final protein labeling concentrations were selected to minimize the loss of anisotropy during the 12.5 ns observation window, while retaining sufficient triggered triplet signal. An ideal bead sample would only lose anisotropy from tumbling of the entire bead, which occurs on timescales longer than 12.5 ns. <a href="#singlet_polarization_figure" target="_self">Figure S2</a> shows anisotropy traces for the conditions used for tumbling experiments. Complete immobilization without any homo-FRET and perfectly aligned absorption and emission dipoles would produce a horizontal line at polarization 0.5 for all samples. Calculated final binding densities depended on the combination of the bead and the protein and ranged from 1 protein per 250 nm<sup>2</sup> to 1 protein per 750 nm<sup>2</sup> of bead surface area.<p>
+
+<figure id="singlet_polarization_figure">
+<img src="./figures/SI_bead_QC/singlets_TR-FA/mScarlet_mVenus_singlets_allsizes.png" alt="Time-resolved fluorescence anisotropy data to assess quality of bead labeling" id="singlet_polarization_image">
+ <figcaption><strong>Figure S2. Time-resolved fluorescence anisotropy of FP-bead samples.</strong><br>
+ Traces show the mean of 2-3 recordings for each bead size for (A) mVenus and (B) mScarlet; shaded areas indicate standard deviation. Reduction of the starting polarization below the theoretical maximum of 0.5 is most likely attributable to the high collection NA. 
+ </figcaption>
+</figure>
+<p></p>
+
+<p>We performed a scan of buffers and pH to identify optimal binding conditions, settling on 50 mM MES pH 6.3. To reduce aggregation, 0.025-0.05% Tween was added to each sample. Recipes for the bead solutions are listed in <a href="#bead_recipe_table" target="_self">Table S1</a> below. Samples were mixed and imaged in 384 well glass-bottom plates (Cellvis LLC). Where relevant, stock solutions were diluted to avoid pipetting volumes smaller than 0.5 &mu;L.</p>
+
+<table id="bead_recipe_table">
+  <tr>
+    <th>Ingredient</th>
+    <th>40 nm bead</th>
+    <th>60 nm bead</th>
+    <th>100 nm bead</th>
+    <th>200 nm bead</th>  
+  </tr>
+  <tr>
+    <td>0.1 M MES pH 6.3</td>
+    <td>10</td>
+    <td>10</td>
+    <td>10</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>100 &mu;M protein stock in PBS</td>
+    <td>4.44(mVenus), 2.96(mScarlet)</td>
+    <td>2.91(mVenus), 0.97(mScarlet)</td>
+    <td>1.51(mVenus), 1.01(mScarlet)</td>
+    <td>0.42(mVenus), 0.28(mScarlet)</td>
+  </tr>
+  <tr>
+    <td>1% Tween in 0.1 M MES pH 6.3</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0.5-1</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>Beads (4% solids)</td>
+    <td>10</td>
+    <td>10</td>
+    <td>10</td>
+    <td>10</td>
+  </tr>
+  <caption><strong>Table S1. Composition of bead samples.</strong><br> 
+  The protein, MES buffer, and Tween were mixed thoroughly by pipetting before addition of the beads. All volumes are in &mu;L. Limitations in the accuracy of the protein concentration measurements could account for the apparent differences in loading between mScarlet and mVenus. With any new protein or fresh preparation, we would recommend running a test and using the highest loading values that don’t result in substantial remaining free protein.</caption>
+</table>
+
+<p>The samples were checked for aggregation by dynamic light scattering (Prometheus Panta). A small percentage of the beads in each sample were aggregated (not enough to affect the distribution in DLS); these aggregates were visible as bright fluorescent chunks on the bottom of the well and they were avoided during imaging.</p>
+
+<figure id="dls_figure">
+<img src="./figures/SI_bead_QC/DLS/02_relative_frequency_distributions.png" alt="DLS Size Distributions of FP-labeled beads" id="dls_image">
+ <figcaption><strong>Figure S3. Bead size characterization by DLS.</strong><br>
+  FP-bead mixtures with varying bead diameters were diluted 100x into MilliQ purified water before measurement. Estimated size distributions were generated within the DLS instrument software.
+ </figcaption>
+</figure>
+<p></p>
+
+<h3 id="supplementary_text">Supplementary Text and Figures</h3>
+
+<h4 id="technology_comparison">Tumbling versus other approaches to measuring interaction in situ</h4>
+
+<p>Given the importance of molecular interactions, it is no surprise that an array of techniques has been developed to investigate them. Many of these approaches operate only out of the molecule's native context and/or destroy the sample (e.g. isothermal titration calorimetry, yeast 2-hybrid assays, crosslinking assays, immunoprecipitation). We focus here only on techniques that allow real-time monitoring of protein-protein interactions in their native context. Three principal approaches exist, namely:
+<ul>
+  <li>Forster resonance energy transfer (<strong>FRET</strong>) is often used to determine if two fluorophores are within 10 nm of each other, suggesting that the proteins they label are binding. However, improper label positioning can lead to false negatives where the fluorophores are >10 nm apart even in the bound complex. Correct implementation of this double labeling typically requires detailed structural information and experimental trial-and-error
+
+  [<a class="citation" href="http://doi.org/10.1016/j.tibs.2007.08.003" title="Fluorescent protein FRET: the good, the bad and the ugly; D. W. Piston, G.-J. Kremers; Trends Biochem Sci. 32, 9, 407-414 (2007)">Piston 2007</a>].
+
+  More fundamentally, since both partners must be labeled, FRET primarily serves to confirm suspected interactions rather than discover new ones.</li>
+  <li>Single-particle tracking (<strong>SPT</strong>) 
+
+  [<a class="citation" href="http://doi.org/10.1016/S0006-3495(94)80939-7" title="Automated detection and tracking of individual and clustered cell surface low density lipoprotein receptor molecules; R. N. Ghosh, W. W. Webb; Biophysical Journal 66, 5, 1301-18 (1994)">Ghosh 1994</a>,
+  <a class="citation" href="http://doi.org/10.1073/pnas.0708066104" title="Dynamic clustered distribution of hemagglutinin resolved at 40 nm in living cell membranes discriminates between raft theories; S. T. Hess, T. J. Gould, M. V. Gudheti, J. Zimmerberg; PNAS 104, 4, 17370-17375 (2007)">Hess 2007</a>,
+  <a class="citation" href="http://doi.org/10.1038/nmeth.1176" title="High-density mapping of single-molecule trajectories with photoactivated localization microscopy; S. Manley, J. M. Gillette, G. H. Patterson, H. Shroff, H. F. Hess, E. Betzig, J. Lippincott-Schwartz; Nature Methods 5, 155-157 (2008)">Manley 2008</a>]
+
+  tracks translational diffusion of particles in a field of view to estimate their size. Translational diffusion is proportional to the cube root of particle volume, whereas rotational diffusion rate is linearly dependent on volume, making this technique less sensitive than tumbling. Because SPT requires resolution of single particles, it imposes stringent requirements on label density and/or requires the use of photoactivatable fluorophores. These sparse particles must then be imaged over time, which mandates high spatial resolution, as well as time- and data-intensive imaging protocols. Tumbling, by contrast, is a bulk technique, capable of operating in a regime with many fluorophores in one pixel. Therefore, unlike SPT, tumbling is compatible with diverse instrumentation modalities, equally useful in high resolution imaging and in plate reader measurements. </li>
+  <li>Fluorescence correlation spectroscopy (<strong>FCS</strong>) 
+
+  [<a class="citation" href="http://doi.org/10.1103/PhysRevLett.29.705" title="Thermodynamic Fluctuations in a Reacting System—Measurement by Fluorescence Correlation Spectroscopy; D. Magde, E. Elson, W. W. Webb; Phys. Rev. Lett. 29, 705 (1972)">Magde 1972</a>]
+
+  measures translational diffusion time by brightness fluctuations (single fluorophore dwell times) within a focal volume. FCS suffers from many of the downsides of SPT. It can tolerate up to a few fluorophores in the focal volume at one time, but it produces less information per particle. FCS is conventionally implemented on a point scanning instrument, further decreasing speed.</li>
+</ul></p>
+
+<p> In theory, tumbling outperforms these other technologies. Sensitive measurements of size can be made for a single labeled protein of interest with a modest number of time points. Certainly, much method development remains to be done in tumbling, and gaps between simulation and current tools are discussed throughout this work.</p>
+
+<h4 id="tumbling_time_particle_size">Relationship between tumbling (rotational diffusion) time and particle size</h4>
+
+<p>Throughout this work, we refer to particle size, mass, and volume interchangeably and relate them to the rotational diffusion (tumbling) time. This approach is accurate for spheres of uniform density, which is the simplified case that we address in this work. Even when particles cannot be approximated as spheres, particle size still affects the tumbling time; all other things being equal, larger particles tumble more slowly. However, extracting the absolute particle volume or mass becomes more complicated. For example, an elongated particle may display multiple tumbling times corresponding to rotation about its various axes
+
+[<a class="citation" href="https://doi.org/10.1007/978-0-387-46312-4" title="Principles of Fluorescence Spectroscopy; J. R. Lakowicz; ISBN 978-0-387-31278-1 (2006)">Lakowicz 2006</a>], 
+
+and a particle in a membrane may exhibit hindered tumbling
+
+[<a class="citation" href="https://doi.org/10.1016/S0006-3495(77)85550-1" title="A theory of fluorescence polarization decay in membranes; K. Kinosita Jr, S. Kawato, A. Ikegami, Biophysical Journal, 20, 3, 289-305 (1977)">Kinosita 1977</a>].
+
+The relationships below are all developed for spheres of uniform density.</p>
+
+<p>The simulation code specifies rotational diffusion rates via a tumbling time input parameter (called diffusion_time in the API), which is equal to \(\frac{1}{2D}\), where D is the diffusion constant 
+
+[<a class="citation" href="https://doi.org/10.48550/arXiv.1303.1278" title="A &quot;Gaussian&quot; for diffusion on the sphere; A. Ghosh, J. Samuel, arXiv:1303.1278v1 (2013)">Ghosh 2013</a>].
+
+This diffusion coefficient D can be estimated for spherical particles from the Stokes-Einstein-Debye relation (equation 1) 
+
+[<a class="citation" href="https://users-phys.au.dk/srf/hydro/Landau+Lifschitz.pdf" title="Volume 6 - Fluid Mechanics, 2nd English Edition; L.D. Landau and E.M. Lifshitz, ISBN 0750627670 (1987)">Landau 1987</a>]
+
+, where &eta; is the viscosity, R is the radius, and k<sub>b</sub> is Boltzmann's constant.</p>
+
+<div>
+  $$\begin{equation}D = \frac{k_bT}{8&pi;&eta;R^3}\end{equation}$$
+</div>
+
+<p>To the best of our knowledge, this diffusion coefficient D is the same one that appears on page 367 of 
+
+[<a class="citation" href="https://doi.org/10.1007/978-0-387-46312-4" title="Principles of Fluorescence Spectroscopy; J. R. Lakowicz; ISBN 978-0-387-31278-1 (2006)">Lakowicz 2006</a>]. 
+
+The original work is in French
+
+[<a class="citation" href="https://doi.org/10.1051/jphysrad:01926007012039000" title="Polarisation de la lumière de fluorescence. Vie moyenne des molécules dans l'etat excité; F. Perrin; J. Phys. Radium 7, 12, 390-401 (1926)">Perrin 1926</a>], 
+
+limiting our ability to parse it, and Lakowicz does not provide a definition for D. Instead, we ran our simulation code and found that our calculated anisotropy agrees with the predicted anisotropy in that convention. We also note that Lakowicz parameterizes rotational diffusion with a "rotational correlation time" equal to \(\frac{1}{6D}\), which we believe is equal to our tumbling time divided by 3. Additional context around these two different conventions is provided in 
+
+[<a class="citation" href="https://doi.org/10.1021/cr900267p" title="Fluorescence Polarization/Anisotropy in Diagnostics and Imaging; D. M. Jameson, J. A. Ross; Chem Rev. 110, 5, 2685-2708 (2011)">Jameson 2011</a>].
+</p>
+
+<h4 id="definition_tumbling_terms">Key tumbling terminology</h4>
+
+<p>For ease of visual inspection and to cancel out any brightness-related artifacts, it is sometimes convenient to represent the emission polarization as a reduced quantity that captures the signal difference between the parallel and perpendicular channels. Throughout this work, we use the polarization P (equation 2), where &parallel; and &perp; indicate the signal in those channels.</p>
+
+<div>
+  $$\begin{equation}P = \frac{&parallel;\text{ }- &perp;}{&parallel; \text{ } + &perp;}\end{equation}$$
+</div>
+
+<p>Our simulated detectors are both equally effective at detecting photons, but any two actual lightpaths will contain some differences in transmission efficiency. To correct for this "detector balance," we calculate a g factor equal to \(\frac{&parallel;}{&perp;}\) and a corrected polarization (equation 3).</p>
+
+<div>
+  $$\begin{equation}P = \frac{&parallel;\text{ }- &perp;*g}{&parallel; \text{ } + &perp;*g}\end{equation}$$
+</div>
+
+<h4 id="code_usage_examples">Usage examples for the tumbling simulation code</h4>
+
+<p>To provide a facile on-ramp for new users, we include a simple demonstration of a tumbling simulation below.</p>
+
+<p>To use any of the code functionality, you will first need to download fluorophore_rotational_diffusion.py from <a href='https://github.com/AndrewGYork/tools/blob/master/fluorophore_rotational_diffusion.py'>GitHub</a> (or from any of the figure subfolders in this manuscript) and place it in the same directory as your script. Your script will import this library. We also import numpy and matplotlib to help us out as we go.</p>
+
+<pre><code class="language-python">from fluorophore_rotational_diffusion import Fluorophores, FluorophoreStateInfo
+from numpy.random import uniform
+import numpy as np
+import matplotlib.pyplot as plt 
+</code></pre>
+<p></p>
+
+<p>The simplest use case is (debatably) a steady-state fluorescence anisotropy measurement, in which a population of fluorophores is excited with linearly polarized light and the integrated emission in parallel and perpendicular channels is recorded. To set up and run such an experiment, execute the following code. Note that the intensity is defined in saturation units, where intensity x will excite a fraction of the available fluorophores equal to 1-2<sup>-x</sup>. Time units aren't specified, so be consistent with whatever time units you use for tumbling time and fluorescence lifetime. It is often convenient to think of the base time unit as nanoseconds. The times here are approximately correct for GFP; play with them and see how it affects the polarization! You can also adjust the number of molecules, the intensity of the light, and the excitation polarization.</p>
+
+<pre><code class="language-python"># Set up the fluorophores object and run the simulation
+tumbling_time_ns = 60
+fluorescence_lifetime_ns = 2
+state_info = FluorophoreStateInfo()
+state_info.add('ground') # molecules will default to being in first state you specify
+state_info.add('excited', lifetime=fluorescence_lifetime_ns,
+               final_states='ground')
+a = Fluorophores(number_of_molecules=1e7,
+                 diffusion_time=tumbling_time_ns,
+                 state_info=state_info)
+
+a.phototransition('ground', 'excited',
+                  intensity=0.01, polarization_xyz=(1, 0, 0))
+for i in range(10):
+    print('.', end='')
+    a.delete_fluorophores_in_state('ground')
+    a.time_evolve(fluorescence_lifetime_ns)
+</code></pre>
+<p></p>
+
+<p>We now would like to 'read out' the results from this population of fluorophores. All of the state transition events were being tracked during the simulation, so we call "get_xyzt_at_transitions" to obtain 1D arrays with our X, Y, Z, T coordinates for each particle. For each emission event's orientation, we can probabilistically assign that emission photon to a detector channel in X or Y.</p>
+
+<pre><code class="language-python"># Calculate steady-state anisotropy
+x, y, z, t = a.get_xyzt_at_transitions('excited', 'ground')
+p_x, p_y = x**2, y**2 # Probabilities of landing in channel x or y
+r = uniform(0, 1, size=len(t))
+in_channel_x = (r < p_x)
+in_channel_y = (p_x <= r) & (r < p_x + p_y)
+total_x = sum(in_channel_x)
+total_y = sum(in_channel_y)
+polarization = (total_x - total_y) / (total_x + total_y)
+print('')
+print('Total x (parallel) counts:', total_x)
+print('Total y (parallel) counts:', total_y)
+print('Polarization:', round(polarization, 2))
+</code></pre>
+<p></p>
+
+<p>If we wanted to see when these emission events occurred (i.e. do "time resolved fluorescence anisotropy" instead of "steady-state"), we need to histogram the emissions from the two detectors in time.</p>
+
+<pre><code class="language-python"># Calculate time-resolved anisotropy
+t_x, t_y = t[in_channel_x], t[in_channel_y]
+bins = np.linspace(0, 3, 200)
+bin_centers = (bins[1:] + bins[:-1])/2
+(hist_x, _), (hist_y, _) = np.histogram(t_x, bins),  np.histogram(t_y, bins)
+
+print("Saving results in test_classic_anisotropy_decay.png...", end='')
+plt.figure()
+plt.plot(bin_centers, hist_x, '.-', label=r'$\parallel$ polarization')
+plt.plot(bin_centers, hist_y, '.-', label=r'$\perp$ polarization')
+plt.title(
+    "Simulation of classic time-resolved anisotropy decay\n" +
+    r"$\tau_f$=%0.1f, $\tau_d$=%0.1f"%(a.state_info['excited'].lifetime,
+                                       a.orientations.diffusion_time))
+plt.xlabel(r"Time (t/$\tau_f$)")
+plt.ylabel("Photons per time bin")
+plt.legend(); plt.grid('on')
+plt.savefig("test_classic_anisotropy_decay.png"); plt.close()
+print("done.")
+</code></pre>
+<p></p>
+
+<p>The above example is also available within fluorophore_rotational_diffusion.py in _test_fluorophores_anisotropy_decay_plot(). Further documentation of the fluorophore rotational diffusion API is available in docstrings for each function. The scripts that generate each of the simulation figures are available on GitHub with this manuscript (TODO: LINK).</p>
+
+<h4 id="polarization_ratio_reduction">Dynamic range of polarization ratios: theory and experiment</h4>
+
+<p>A fully orientationally scrambled but immobile population of fluorophores has a theoretical polarization of 0.5 when excited with linearly polarized light, equivalent to a 3:1 ratio of signal in the parallel and perpendicular channels. However, this is rarely observed. Experimentally determined polarization values often show reduced dynamic ranges relative to those in theory and in simulation. A combination of factors contribute to this
+
+[<a class="citation" href="http://doi.org/10.1201/9781420078916" title="Chapter 10: Time Resolved Fluorescence Anisotropy, in FLIM Microscopy in Biology and Medicine; S. S. Vogel, C. Thaler, P. S. Blank, S. V. Koushik; FLIM Microscopy in Biology and Medicine (2009)">Vogel 2009</a>]
+
+, namely: </p>
+<ol type="1">
+  <li>Numerical aperture (NA) of the collection objective
+
+    [<a class="citation" href="http://doi.org/10.1016/S0006-3495(79)85271-6" title="Carbocyanine dye orientation in red cell membrane studied by microscopic fluorescence polarization.; D. Axelrod; Biophys. J., 26, 3, 557-573 (1979)">Axelrod 1979</a>]. 
+
+    The data in this paper were collected with a 100x 1.4 NA oil immersion objective lens, which corresponds to a collection angle of 67 degrees. When high angle light comes to a focus, the polarization is scrambled, reducing the maximum measured polarization ratio. Indeed, when we look at the time-resolved polarization decays of the prompt singlets (<a href="#singlet_polarization_figure" target="_self">Figure S2</a>), we find that the maximum polarization corresponds to a ~2:1 parallel:perpendicular ratio. Of course, the benefit of using a higher NA objective is collection of a higher percentage of the emitted light, which is particularly valuable for dim signals like that of the triggered triplets. </li>
+  <li>Saturation in any of the linearly polarized laser pulses will cause deviation from the theoretical excitation photoselection. Once the parallel channel is saturating, increased excitation power will disproportionately excite molecules in the perpendicular channel. However, working in a somewhat saturating regime may be advantageous to obtain higher total photon counts.</li>
+  <li>Fast depolarization in the sample (i.e. rotation other than that due to rotational diffusion). Some possible sources of this include:<ul> 
+    <li>homo FRET between FPs on the bead surface</li>
+    <li>free fluorophore that is not conjugated to the target of interest</li>
+    <li>rotational motion of the protein on the bead surface</li>
+    <li>angular disagreement between the fluorescence emission and excitation dipoles</li>
+  </ul></li>
+</ol>
+
+<h4 id="photophysics_comparison">Comparison of rsFPs and triggered triplets</h4>
+
+<p> Reversibly switchable fluorescent proteins (rsFPs) and triggered triplets have different strengths and weaknesses as tumbling reporters. For <strong>rsFPs</strong>:
+<ul style="list-style-type:none">
+  <li>(+) rsFPs can provide many photons per molecule and can be switched many times, allowing for higher signal levels
+
+    [<a class="citation" href="https://doi.org/10.7554/eLife.00248" title="OrsEGFP2 enables fast RESOLFT nanoscopy of living cells; T. Grotjohann, I. Testa, M. Reuss, T. Brakemann, C. Eggeling, S.W. Hell, S. Jakobs; eLife 1:e00248 (2012)">Grotjohann 2012</a>].</li>
+  <li>(-) rsEGFP2
+
+  [<a class="citation" href="https://doi.org/10.7554/eLife.00248" title="OrsEGFP2 enables fast RESOLFT nanoscopy of living cells; T. Grotjohann, I. Testa, M. Reuss, T. Brakemann, C. Eggeling, S.W. Hell, S. Jakobs; eLife 1:e00248 (2012)">Grotjohann 2012</a>], 
+
+  and likely other rsFPs, do not switch immediately, residing in at least one microsecond-scale intermediate dark state
+
+  [<a class="citation" href="https://doi.org/10.1038/s41467-020-14537-0" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; J. Woodhouse, G.N. Kovacs, N. Coquelle, L.M. Uriarte, V. Adam, T. R. M. Barends, M. Byrdin, E. de la Mora, R. B. Doak, M. Feliks, M. Field, F. Fieschi, V. Guillon, S. Jakobs, Y. Joti, P. Macheboeuf, K. Motomura, K. Nass, S. Owada, C. M. Roome, C. Ruckebusch, G. Schirò, R. L. Shoeman, M. Thepaut, T. Togashi, K. Tono, M. Yabashi, M. Cammarata, L. Foucar, D. Bourgeois, M. Sliwa, J.-P. Colletier, I. Schlichting, M. Weik; Nature Communications, 11, 741, (2020)">Woodhouse 2020</a>,
+
+  <a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>]. 
+
+  As a result, their active states are largely unavailable during some of the most relevant tumbling times for cellular proteins.</li>
+  <li>(-) The absorption dipole of the photoswitching transition and the fluorescence excitation of the active form are rotated by approximately 30 degrees for the rsFP Dronpa
+
+  [<a class="citation" href="https://doi.org/10.1021/jp507094f" title="Real-Time Monitoring of Chromophore Isomerization and Deprotonation during the Photoactivation of the Fluorescent Protein Dronpa; D. Yadav, F. Lacombat, N. Dozova, F. Rappaport, P. Plaza, A. Espagne; J. Phys. Chem. B, 119, 6, 2404-2414 (2015)">Yadav 2015</a>], 
+
+  reducing the accessible dynamic range of polarization.</li>
+  <li>(-) Many rsFPs remain on for hours after switching unless they are actively switched off, producing accumulating background. Full off-switching requires additional light doses and time, and it is hampered by molecular rotation out of plane.</li>
+</ul></p>
+
+<p><strong>Triggered triplets</strong>, also known as optically activated delayed fluorescence, exhibit a nearly orthogonal set of pros and cons, with distinct advantages in biologically-relevant size scales:
+<ul style="list-style-type:none">
+  <li>(+) Triplets should be available as soon as the fluorescent excited state has fully decayed (5-10 fluorescence lifetimes).</li>
+  <li>(+) Even if the triplet absorption dipole is rotated with respect to the initial excitation, emission appears to be from the excited singlet
+
+  [<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>]; 
+
+  this rotation back to the initial state should negate any absorption dipole rotation between the singlet and triplet. We therefore (optimistically) expect a similar amount of dipole rotation here as time-resolved fluorescence anisotropy.</li>
+  <li>(+) Triplets "clean up after themselves;" they return to the ground state on their own in milliseconds, obviating the need for subsequent illumination to reduce background.</li>
+  <li>(+) Triplet triggering back to an emissive singlet state has been observed in commonly used fluorophores
+
+  [<a class="citation" href="https://doi.org/10.1021/acs.jpca.9b11040" title="Triplet Shelving in Fluorescein and Its Derivatives Provides Delayed, Background-Free Fluorescence Detection; A. A. Demissie, R. M. Dickson; J Phys Chem A 124, 7, 1437-1443 (2020)">Demissie 2020</a>,
+
+  <a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>], 
+
+  so re-tagging a given target protein may not be required.</li>
+  <li>(-) Critically, the signal for triplets with current fluorophores is very low. Intersystem crossing rates are &approx;1% for common fluorophores, so 100 initial excitation events are required for each triplet generation.</li>
+  <li>(-) Even with optimized fluorophores, triplet triggering would produce at most one photon per two input photons (triplet generation and trigger).</li>
+</ul></p>
+
+<h4 id="triplet_lifetimes">Triggerable state lifetimes in FPs</h4>
+
+<p>Triplet state lifetimes typically range from microseconds to milliseconds, with recent evidence for &approx;1 ms triplet lifetimes in certain fluorescent proteins
+
+[<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>].
+
+Encapsulation of the chromophore putatively enables these long-lived triplets by protecting them from solvent and dissolved oxygen.</p>
+
+<p>The lifetime of the triggerable fluorescence is interesting for two reasons. Mechanistically, it can provide evidence in support of the triplet hypothesis. More practically, the lifetime determines the maximum possible particle size that can be resolved with tumbling. From a technological standpoint, we’d like a very long-lived state that we can trigger to emit whenever is relevant for the size scale we are working with.</p>
+
+<p>We estimated the lifetime of the triplet state by measuring how the total triggered signal (parallel + perpendicular channels) decays over time (<a href="#triplet_lifetimes_figure" target="_self">Figure S4</a>). To deconvolve the effects of translational diffusion and triplet state decay, we analyzed results from 40, 60, 100, and 200 nm diameter beads. All samples give roughly the same lifetime, suggesting that most of the signal loss is independent of translational diffusion. We find that the half-life of the triplet signal in mScarlet and mVenus is on the order of 1 ms, with mVenus’s lifetime slightly exceeding mScarlet’s. This >1 millisecond time window allowed us to record the tumbling of beads at least 200 nm in diameter (<a href="./index.html#sp8_tumbling_figure">Figure 6</a>), which is roughly the size of a small lysosome. Therefore, FPs as triggered emitters should be able to report on sizes corresponding to most of the proteome.</p>
+
+<figure id="triplet_lifetimes_figure">
+<img src="./figures/SI_triplet_lifetime/experiment_triplet_lifetime.png" alt="Decay of triggered triplet signal over time" id="triplet_lifetime_image">
+ <figcaption><strong>Figure S4. Lifetime of triggerable signal in mScarlet and mVenus.</strong><br>
+  The decay of the normalized total counts summed across both detectors over time was evaluated for (A) mScarlet and (B) mVenus adsorbed to 40, 60, 100, and 200 nm beads. Total counts provide a proxy for the number of triggerable emitters (i.e. still in the putative triplet state) available within the focal volume of the probe laser. These data are from the same experiment as <a href="./index.html#sp8_tumbling_figure">Figure 6C</a>.
+ </figcaption>
+</figure>
+
+<h4 id="tcspc_analysis">Nanosecond-time decay of prompt and triggered FP fluorescence</h4>
+
+<p>The fluorescence lifetime of the triggered emission signal from triplet states was previously reported 
+
+[<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>]
+
+to match the lifetime of the prompt singlet emission, consistent with a model where the triggering beam regenerates an excited singlet state, which then emits.</p>
+
+<p>To corroborate this, we analyzed the fluorescence lifetimes of the prompt and triggered photons in our triplet data (<a href="#triplet_tcspc_figure" target="_self">Figure S5</a>, <a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S6</a>). We find similar but not identical lifetimes for the two, with the triggered lifetime (~0.5 ns) longer than the prompt lifetime. Furthermore, the triggered lifetime is well-described by a single exponential fit, whereas the prompt fluorescence lifetime for both mScarlet and mVenus requires a sum of at least two exponential components to describe it. Code to perform these fits can be found with figure generation code on GitHub (TODO). We note that the slightly acidic conditions of the measurement (pH 6.3) likely adds some biexponential character and decreases the lifetime of these FPs from their reported values of 3.9 and 2.7 ns for mScarlet and mVenus respectively 
+
+[<a class="citation" href="http://doi.org/10.1038/nmeth.4074" title="mScarlet: a bright monomeric red fluorescent protein for cellular imaging; D. S. Bindels, L. Haarbosch, L. van Weeren, M. Postma, K. E. Wiese, M. Mastop, S. Aumonier, G. Gotthard, A. Royant, M. A. Hink, T. W. J. Gadella Jr; Nature Methods 14, 53-56 (2017)">Bindels 2017</a>,
+<a class="citation" href="http://doi.org/10.1021/bi0516273" title="Cyan and Yellow Super Fluorescent Proteins with Improved Brightness, Protein Folding, and FRET Förster Radius; G.-J. Kremers, J. Goedhart, E. B. van Munster, T. W. J. Gadella; Biochemistry, 45, 21, 6570-6580 (2006)">Kremers 2006</a>].</p>
+
+<p>It’s plausible that the lifetimes of the triggered signal would be slightly longer than the prompt signal, since they are hypothesized to go through some intermediate state with a finite lifetime. Zooming out from the nuances of the fit, a nanosecond-lived emission is far more consistent with emission from a singlet state (i.e. fluorescence) than emission from a triplet state (i.e. phosphorescence), supporting previous reports of the OADF phenomenon 
+
+[<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>].</p>
+
+<figure id="triplet_tcspc_figure">
+<img src="./figures/SI_tcspc_of_OADF_signal/mScarlet_triplet_tcspc/08_prompt_triggered_decays_with_fits.png" alt="mScarlet TCSPC triggered and prompt" id="tcspc_fit">
+<table class="figure_controls">
+  <tr>
+  <td>Fluorescent protein: </td><td><select id="FP_tcspc_selector" onchange="update_tcspc_figure()">
+    <option value="mScarlet" selected="selected">mScarlet</option> 
+    <option value="mVenus">mVenus</option>
+  </select>
+</td>
+</tr>
+</table>
+ <figcaption><strong>Figure S5. Time-resolved fluorescence decays of prompt and triggered emission of mScarlet and mVenus.</strong><br>
+  Data were aggregated from the 3 replicates of 40 nm diameter beads measured for the tumbling curves (<a href="./index.html#sp8_tumbling_figure">Figure 6</a>). Tail-fitting the results yields a lifetime (mean &plusmn; standard deviation from fit, not experimental replicates) of 3.034 &plusmn; 0.002 ns for triggered mScarlet and a prompt lifetime of 2.34 ns (weighted average of t1: 1.67 &plusmn; 0.01 ns, t2: 3.970 &plusmn; 0.006 ns). For mVenus, we obtain a triggered lifetime of 2.879 &plusmn; 0.002 ns and a prompt lifetime of 1.80 ns (weighted average of t1: 1.10 &plusmn; 0.02 ns, t2: 2.895 &plusmn; 0.003 ns).
+ </figcaption>
+</figure>
+
+<p></p><p></p>
+
+<figure id="triplet_tcspc_overlaid_figure">
+<img src="./figures/SI_tcspc_of_OADF_signal/mScarlet_triplet_tcspc/07_prompt_triggered_tcspc_overlaid.png" alt="mScarlet TCSPC triggered and prompt overlaid" id="tcspc_overlaid">
+<table class="figure_controls">
+  <tr>
+  <td>Fluorescent protein: </td><td><select id="FP_tcspc_overlaid_selector" onchange="update_tcspc_overlay_figure()">
+    <option value="mScarlet" selected="selected">mScarlet</option> 
+    <option value="mVenus">mVenus</option>
+  </select>
+</td>
+</tr>
+</table>
+ <figcaption><strong>Figure S6. Overlay of normalized time-resolved fluorescence decays for prompt and triggered emission.</strong><br>
+  The triggered signal is shifted in time such that it peaked at the same bin as the prompt signal, despite being 2 ns delayed in the experiment. These data are replotted from <a href="#triplet_tcspc_figure" target="_self">Figure S5</a>.
+ </figcaption>
+</figure>
+
+<h4 id="crescent_selection">Narrowing the orientation distribution with ‘crescent’ selection</h4>
+
+<p>If we can narrow the angular distribution of the photoselected molecules, we can increase the dynamic range of polarization change observed. Some of the authors here previously patented this approach
+
+[<a class="citation" href="https://patents.google.com/patent/US20210247315A1/en?oq=WO2019245946A1" title="System and Method for Inferring Protein Binding; A. G. York, M. del Mar Ingaramo; US Patent US20210247315A1 (2019)">York 2019</a>], 
+
+in which an orthogonally polarized STED beam immediately follows the initial linearly polarized pump beam to deplete off-angle molecules. We refer to this second beam carving the population as ‘crescent’ selection.</p>
+
+<p>With triplets specifically, we predicted that a saturating triplet triggering beam immediately after the initial pump could be used to similarly narrow the angular distribution and increase the dynamic range. We simulated the effects of such a beam on the measured polarization ratio of an ideal triggered emitter (<a href="#crescent_simulation_figure" target="_self">Figure S7</a>). In this simulation, we observe that a saturating crescent beam can skew the initial population to much lower polarization ratios, thereby increasing the total change in polarization observed during tumbling.</p>
+
+<figure id="crescent_simulation_figure">
+<img src="./figures/SI_orthogonal_depletion_beam/simulation_crescent_power_v2.png" alt="Simulated results from increasing crescent intensity" id="crescent_simulation_image">
+ <figcaption><strong>Figure S7. Simulated increases in dynamic range from an orthogonal ‘crescent’ selection beam.</strong><br>
+  The polarization of the triggered emission was recorded at different intensities of crescent power. Each simulation included 1e6 molecules, a pump (16 pulses of intensity 2), and a probe (16 pulses of intensity 0.25) illumination, matching the 200 ns dwell time and 80 MHz repetition rate of the experimentally available laser.
+ </figcaption>
+</figure>
+<p></p>
+
+<p>We then investigated whether mScarlet or mVenus can be crescent selected as above in the presence of a crescent selection (<a href="#crescent_experiment_figure" target="_self">Figure S8</a>). We observe a small increase in the dynamic range that increases with the power of the crescent beam and is accompanied by a loss in triplet signal. Experimentally, we observe less gain from the crescent selection than the simulation predicts. One possible explanation for this would be mis-alignment of the absorption dipoles of the ground and excited triplet states.</p>
+
+<figure id="crescent_experiment_figure">
+<img src="./figures/SI_orthogonal_depletion_beam/expt_crescent_power.png" alt="Experimental results from increasing crescent intensity with triplets" id="crescent_experiment_image">
+ <figcaption><strong>Figure S8. Experimentally determined effects of crescent selection on polarization dynamic range.</strong><br>
+  Tumbling of 100 nm beads labeled with (A) mScarlet or (B) mVenus was examined with varying powers of ‘crescent’ selection, using the pulse scheme in <a href="#sp8_schematic_figure" target="_self">Figure S1</a>. Because the crescent beam here was fired 2 ns after the pump beam, excited singlets were still present and some contribution from STED is possible, especially in mScarlet. For mVenus, the spectral separation is such that the 775 nm triggering beam should primarily interact with the triplet state rather than the excited singlet state.
+ </figcaption>
+</figure>
+<p></p>
+
+<p>To relate the pump probe simulations more directly to the collected bead data, we needed to estimate the intensity of the experimental crescent selection in saturation units. We compared the total signal loss resulting from experimental and simulated crescent selection (<a href="#crescent_expt_vs_sim_figure">Figure S9</a>), assuming that mScarlet and mVenus are behaving as ideal triggered emitters. The key caveat in this approach is that any potential rotation of the triplet absorption dipole with respect to the singlet will lead to excess signal loss in the experiment versus the simulation, which assumes parallel dipoles.</p>
+
+<p>Because the initial pump beam and the crescent selection beam are orthogonally polarized, we see less than the 50% loss of signal that one would expect from intensity 1 illumination. In mVenus, 0.5% power crescent selection and a simulated intensity of 2 both produce a ~30% loss in the total counts. In mScarlet, 2% power crescent selection and a simulated intensity of 4 both produce a ~50% loss in total counts. Based on this, we selected these two conditions for side-by-side comparison in <a href="./index.html#sp8_tumbling_figure">Figure 6</a>.</p>
+
+<figure id="crescent_expt_vs_sim_figure">
+<img src="./figures/SI_orthogonal_depletion_beam/total_cts_expt_vs_simulation.png" alt="Relating crescent experiment and simulation" id="crescent_expt_vs_sim_image">
+ <figcaption><strong>Figure S9. Change in total triggered triplets resulting from crescent selection.</strong><br>
+  (A) Simulation of total counts (parallel + perpendicular channels) at 360 &mu;s using a ‘crescent’ selection pulse scheme as described in <a href="#sp8_schematic_figure" target="_self">Figure S1</a>. (B) Experimental results for 100 nm beads coated with mScarlet and interrogated with a crescent pulse scheme. (C) Experimental results for 100 nm beads coated with mVenus and interrogated with a crescent pulse scheme.
+ </figcaption>
+</figure>
+
+<h3 id="sequences">Sequences of Fluorescent Proteins Used</h3>
+
+<p>6xHis-mScarlet Protein Sequence</p>
+
+<p>MRGSHHHHHHGMASMVSKGEAVIKEFMRFKVHMEGSMNGHEFEIEGEGEGRPYEGTQTAKLKVTKGG
+PLPFSWDILSPQFMYGSRAFTKHPADIPDYYKQSFPEGFKWERVMNFEDGGAVTVTQDTSLEDGTLIYKV
+KLRGTNFPPDGPVMQKKTMGWEASTERLYPEDGVLKGDIKMALRLKDGGRYLADFKTTYKAKKPVQMPGA
+YNVDRKLDITSHNEDYTVVEQYERSEGRHSTGGMDELYK*</p>
+
+<p>6xHis-mVenus (also known as Venus A206K) Protein Sequence</p>
+
+<p>MRGSHHHHHHGMASMVSKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLKLICTTGK
+LPVPWPTLVTTLGYGLQCFARYPDHMKQHDFFKSAMPEGYVQERTIFFKDDGNYKTRAEVKFEGDTLVNR
+IELKGIDFKEDGNILGHKLEYNYNSHNVYITADKQKNGIKANFKIRHNIEDGGVQLADHYQQNTPIGDGP
+VLLPDNHYLSYQSKLSKDPNEKRDHMVLLEFVTAAGITLGMDELYK*</p>
+
+<p><strong>pRSET_6xHis-mScarlet plasmid for E. coli expression:</strong> <a href="./sequences/pRSET_6xHis-mScarlet.dna">SnapGene file</a> and <a href="./sequences/pRSET_6xHis-mScarlet.gb">GenBank file</a></p>
+
+<p><strong>pRSET_6xHis-mVenus plasmid for E. coli expression:</strong> <a href="./sequences/pRSETB_6xHis-mVenusA206K.dna">SnapGene file</a> and <a href="./sequences/pRSETB_6xHis-mVenusA206K.gb">GenBank file</a></p>
+
+<noscript>
+<h3>Your browser doesn't seem to support Javascript. This document uses Javascript to generate a reference list, which would normally be displayed here. Either activate Javascript, or use the "Download PDF" link above if you want to see the reference list.</h3></noscript>
+
+</section>
+<footer>
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="./images/cc_by_4p0.png"></a>
+
+  <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a></small></p>
+</footer>
+</div>
+ <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+</body>
+</html>
+ 

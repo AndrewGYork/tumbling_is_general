@@ -1,0 +1,3 @@
+This folder contains scripts to plot the results of experiment and simulation of triplets on the SP8 point scanning confocal.
+
+The experimental data is in the source_data folder. The simulation results used here are from the same simulations that generated the main text figure. The output files can be found in the 06_triplets_SP8_confocal folder. The scripts here read the output directly out of that folder.

@@ -1,0 +1,168 @@
+LOCUS       Exported                3527 bp DNA     circular SYN 07-JAN-2022
+DEFINITION  Bacterial vector for high-level expression of proteins with a 
+            cleavable 6xHis tag. For other reading frames, use pRSET A or pRSET 
+            C.
+ACCESSION   .
+VERSION     .
+KEYWORDS    pRSET B
+SOURCE      synthetic DNA construct
+  ORGANISM  synthetic DNA construct
+REFERENCE   1  (bases 1 to 3527)
+  AUTHORS   Invitrogen (Life Technologies)
+  TITLE     Direct Submission
+  JOURNAL   Exported Mar 7, 2022 from SnapGene 6.0.2
+            https://www.snapgene.com
+FEATURES             Location/Qualifiers
+     source          1..3527
+                     /lab_host="Escherichia coli"
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     promoter        20..38
+                     /label=T7 promoter
+                     /note="promoter for bacteriophage T7 RNA polymerase"
+     misc_feature    84..90
+                     /label=RBS
+                     /note="ribosome binding site"
+     CDS             100..840
+                     /codon_start=1
+                     /label=6xHis-mScarlet_fullORF
+                     /translation="MRGSHHHHHHGMASMVSKGEAVIKEFMRFKVHMEGSMNGHEFEIE
+                     GEGEGRPYEGTQTAKLKVTKGGPLPFSWDILSPQFMYGSRAFTKHPADIPDYYKQSFPE
+                     GFKWERVMNFEDGGAVTVTQDTSLEDGTLIYKVKLRGTNFPPDGPVMQKKTMGWEASTE
+                     RLYPEDGVLKGDIKMALRLKDGGRYLADFKTTYKAKKPVQMPGAYNVDRKLDITSHNED
+                     YTVVEQYERSEGRHSTGGMDELYK"
+     CDS             100..102
+                     /codon_start=1
+                     /product="start codon"
+                     /label=ATG
+                     /translation="M"
+     CDS             112..129
+                     /codon_start=1
+                     /product="6xHis affinity tag"
+                     /label=6xHis
+                     /translation="HHHHHH"
+     primer_bind     127..163
+                     /label=001_scarlet_F
+     CDS             133..141
+                     /codon_start=1
+                     /product="leader peptide from bacteriophage T7 gene 10"
+                     /label=T7 tag (gene 10 leader)
+                     /note="promotes efficient translation in E. coli"
+                     /translation="MAS"
+     CDS             142..840
+                     /codon_start=1
+                     /label=IDTyomScarlet
+                     /translation="MVSKGEAVIKEFMRFKVHMEGSMNGHEFEIEGEGEGRPYEGTQTA
+                     KLKVTKGGPLPFSWDILSPQFMYGSRAFTKHPADIPDYYKQSFPEGFKWERVMNFEDGG
+                     AVTVTQDTSLEDGTLIYKVKLRGTNFPPDGPVMQKKTMGWEASTERLYPEDGVLKGDIK
+                     MALRLKDGGRYLADFKTTYKAKKPVQMPGAYNVDRKLDITSHNEDYTVVEQYERSEGRH
+                     STGGMDELYK"
+     primer_bind     142..166
+                     /label=scrlt13LkF
+     misc_feature    571..585
+                     /label=strand2
+     CDS             625..633
+                     /label=strand1
+     misc_feature    730..742
+                     /label=strand3
+     CDS             787..789
+                     /label=strand4
+     primer_bind     complement(812..838)
+                     /label=002_scarlet_R
+                     /note="For generating pTwist_Scarlet_LAMP1"
+     primer_bind     complement(812..837)
+                     /label=scrltLk13r
+     misc_feature    841..878
+                     /label=MCS
+                     /note="multiple cloning site"
+     terminator      942..989
+                     /label=T7 terminator
+                     /note="transcription terminator for bacteriophage T7 RNA 
+                     polymerase"
+     rep_origin      1086..1541
+                     /direction=RIGHT
+                     /label=f1 ori
+                     /note="f1 bacteriophage origin of replication; arrow 
+                     indicates direction of (+) strand synthesis"
+     promoter        1567..1671
+                     /gene="bla"
+                     /label=AmpR promoter
+     CDS             1672..2532
+                     /codon_start=1
+                     /gene="bla"
+                     /product="beta-lactamase"
+                     /label=AmpR
+                     /note="confers resistance to ampicillin, carbenicillin, and
+                     related antibiotics"
+                     /translation="MSIQHFRVALIPFFAAFCLPVFAHPETLVKVKDAEDQLGARVGYI
+                     ELDLNSGKILESFRPEERFPMMSTFKVLLCGAVLSRIDAGQEQLGRRIHYSQNDLVEYS
+                     PVTEKHLTDGMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRW
+                     EPELNEAIPNDERDTTMPVAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSA
+                     LPAGWFIADKSGAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGAS
+                     LIKHW"
+     rep_origin      2703..3291
+                     /direction=RIGHT
+                     /label=ori
+                     /note="high-copy-number ColE1/pMB1/pBR322/pUC origin of 
+                     replication"
+ORIGIN
+        1 gatctcgatc ccgcgaaatt aatacgactc actataggga gaccacaacg gtttccctct
+       61 agaaataatt ttgtttaact ttaagaagga gatatacata tgcggggttc tcatcatcat
+      121 catcatcatg gtatggctag catggtctct aagggtgaag ccgtaattaa ggagttcatg
+      181 agattcaaag tccacatgga aggttcaatg aacggacatg agttcgagat agaaggagag
+      241 ggggagggga gaccttatga ggggacccag acggccaagt tgaaagtgac gaagggaggt
+      301 ccattgccct tttcctggga catactgagt ccccaattca tgtatggaag ccgtgcgttt
+      361 acaaaacacc ccgctgatat ccctgactac tataaacaat ctttcccgga aggcttcaag
+      421 tgggaaagag tgatgaattt cgaggacggc ggggcggtta cggtgactca ggacacttcc
+      481 cttgaagacg ggaccttaat ttataaagta aaattgaggg ggacgaactt tccccccgac
+      541 ggtccagtaa tgcaaaaaaa aacaatgggc tgggaagcct ctactgaaag gttgtatccc
+      601 gaagacggcg tgttaaaggg agatattaag atggctttaa ggctaaagga cggggggagg
+      661 tatctggcgg attttaaaac cacatacaag gccaagaaac cggtccaaat gccgggcgct
+      721 tacaatgtcg acaggaaact tgatataaca agtcataatg aagactatac cgttgtcgag
+      781 caatatgaaa ggtcagaagg gaggcactct acagggggaa tggacgagct atataagtaa
+      841 ctcgagatct gcagctggta ccatggaatt cgaagcttga tccggctgct aacaaagccc
+      901 gaaaggaagc tgagttggct gctgccaccg ctgagcaata actagcataa ccccttgggg
+      961 cctctaaacg ggtcttgagg ggttttttgc tgaaaggagg aactatatcc ggatctggcg
+     1021 taatagcgaa gaggcccgca ccgatcgccc ttcccaacag ttgcgcagcc tgaatggcga
+     1081 atgggacgcg ccctgtagcg gcgcattaag cgcggcgggt gtggtggtta cgcgcagcgt
+     1141 gaccgctaca cttgccagcg ccctagcgcc cgctcctttc gctttcttcc cttcctttct
+     1201 cgccacgttc gccggctttc cccgtcaagc tctaaatcgg gggctccctt tagggttccg
+     1261 atttagtgct ttacggcacc tcgaccccaa aaaacttgat tagggtgatg gttcacgtag
+     1321 tgggccatcg ccctgataga cggtttttcg ccctttgacg ttggagtcca cgttctttaa
+     1381 tagtggactc ttgttccaaa ctggaacaac actcaaccct atctcggtct attcttttga
+     1441 tttataaggg attttgccga tttcggccta ttggttaaaa aatgagctga tttaacaaaa
+     1501 atttaacgcg aattttaaca aaatattaac gcttacaatt taggtggcac ttttcgggga
+     1561 aatgtgcgcg gaacccctat ttgtttattt ttctaaatac attcaaatat gtatccgctc
+     1621 atgagacaat aaccctgata aatgcttcaa taatattgaa aaaggaagag tatgagtatt
+     1681 caacatttcc gtgtcgccct tattcccttt tttgcggcat tttgccttcc tgtttttgct
+     1741 cacccagaaa cgctggtgaa agtaaaagat gctgaagatc agttgggtgc acgagtgggt
+     1801 tacatcgaac tggatctcaa cagcggtaag atccttgaga gttttcgccc cgaagaacgt
+     1861 tttccaatga tgagcacttt taaagttctg ctatgtggcg cggtattatc ccgtattgac
+     1921 gccgggcaag agcaactcgg tcgccgcata cactattctc agaatgactt ggttgagtac
+     1981 tcaccagtca cagaaaagca tcttacggat ggcatgacag taagagaatt atgcagtgct
+     2041 gccataacca tgagtgataa cactgcggcc aacttacttc tgacaacgat cggaggaccg
+     2101 aaggagctaa ccgctttttt gcacaacatg ggggatcatg taactcgcct tgatcgttgg
+     2161 gaaccggagc tgaatgaagc cataccaaac gacgagcgtg acaccacgat gcctgtagca
+     2221 atggcaacaa cgttgcgcaa actattaact ggcgaactac ttactctagc ttcccggcaa
+     2281 caattaatag actggatgga ggcggataaa gttgcaggac cacttctgcg ctcggccctt
+     2341 ccggctggct ggtttattgc tgataaatct ggagccggtg agcgtgggtc tcgcggtatc
+     2401 attgcagcac tggggccaga tggtaagccc tcccgtatcg tagttatcta cacgacgggg
+     2461 agtcaggcaa ctatggatga acgaaataga cagatcgctg agataggtgc ctcactgatt
+     2521 aagcattggt aactgtcaga ccaagtttac tcatatatac tttagattga tttaaaactt
+     2581 catttttaat ttaaaaggat ctaggtgaag atcctttttg ataatctcat gaccaaaatc
+     2641 ccttaacgtg agttttcgtt ccactgagcg tcagaccccg tagaaaagat caaaggatct
+     2701 tcttgagatc ctttttttct gcgcgtaatc tgctgcttgc aaacaaaaaa accaccgcta
+     2761 ccagcggtgg tttgtttgcc ggatcaagag ctaccaactc tttttccgaa ggtaactggc
+     2821 ttcagcagag cgcagatacc aaatactgtt cttctagtgt agccgtagtt aggccaccac
+     2881 ttcaagaact ctgtagcacc gcctacatac ctcgctctgc taatcctgtt accagtggct
+     2941 gctgccagtg gcgataagtc gtgtcttacc gggttggact caagacgata gttaccggat
+     3001 aaggcgcagc ggtcgggctg aacggggggt tcgtgcacac agcccagctt ggagcgaacg
+     3061 acctacaccg aactgagata cctacagcgt gagctatgag aaagcgccac gcttcccgaa
+     3121 gggagaaagg cggacaggta tccggtaagc ggcagggtcg gaacaggaga gcgcacgagg
+     3181 gagcttccag ggggaaacgc ctggtatctt tatagtcctg tcgggtttcg ccacctctga
+     3241 cttgagcgtc gatttttgtg atgctcgtca ggggggcgga gcctatggaa aaacgccagc
+     3301 aacgcggcct ttttacggtt cctggccttt tgctggcctt ttgctcacat gttctttcct
+     3361 gcgttatccc ctgattctgt ggataaccgt attaccgcct ttgagtgagc tgataccgct
+     3421 cgccgcagcc gaacgaccga gcgcagcgag tcagtgagcg aggaagcgga agagcgccca
+     3481 atacgcaaac cgcctctccc cgcgcgttgg ccgattcatt aatgcag
+//

@@ -1,0 +1,26 @@
+font.family: sans-serif
+font.sans-serif: Arial
+font.size: 8
+mathtext.default: regular
+
+figure.dpi: 300
+figure.figsize: 6, 4
+
+axes.edgecolor: black
+axes.labelsize: 8
+axes.titlesize: 10
+axes.linewidth: 0.75
+
+grid.linewidth: 0.75
+grid.alpha: 0.3
+
+xtick.color: black
+xtick.labelsize: 8
+xtick.major.width: 0.75
+ytick.color: black
+ytick.labelsize: 8
+ytick.major.width: 0.75
+
+legend.fontsize: 8
+legend.frameon: True
+legend.framealpha: 1
