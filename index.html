@@ -66,12 +66,11 @@ The real text begins here.
 <p class="abstract">Molecular interactions are central to understanding any biological system, but they are labor-intensive to measure with most microscopy approaches. Tracking "tumbling" (rotational diffusion) is a generalizable strategy for determining particle <a href="./appendix.html#tumbling_time_particle_size">size</a>, from which the presence and size of binding partners in a complex can be inferred. However, fluorescence-based tumbling measurements have historically been limited to small targets (<30 kDa) due to the short (nanosecond) lifetime of typical fluorophores. This size cap leaves most of the proteome inaccessible, severely limiting the usefulness of the approach. To reveal larger complexes and realize the full potential of optical tumbling measurements, several groups have explored longer-lived states, such as <a href="https://doi.org/10.1016/S0006-3495(71)86250-1">photobleached molecules</a>, <a href="https://doi.org/10.1038/s41587-022-01489-7">reversibly photoswitched proteins</a>, or <a href="https://doi.org/10.1021/acs.jpcb.3c01236">triggerable triplets</a>. Here, we describe four combinations of photophysics and hardware for tumbling with longer-lived states, gearing each to a candidate biological use case. We explore these four measurement schemes with simulations and, in one case, experimentally validate the approach. Our work suggests that, with minor reconfiguring, most fluorescence approaches to detect the presence of proteins could also reveal their binding state.</p>
 
 <figure id="tumbling_animation">
-<video controls muted id="tumbling_animation_video"> 
-  <source src="./figures/01_overview_animation/20230827_full_draft.mp4" type=video/mp4>
+<video controls muted preload autoplay id="tumbling_animation_video"> 
+  <source src="./figures/01_overview_animation/20230827_full_lower_res.m4v" type=video/mp4>
     Your browser doesn't support HTML5 MP4 video.
 </video>
- <figcaption><strong>Figure 1: Optical tumbling measurements report size.</strong>
- This video teaches the fundamental principles behind tumbling-based measurements of size.
+ <figcaption><strong>Figure 1: Introduction to optical measurements of protein binding with tumbling.</strong>
  <ol>
   <li><button type="button" onclick="jump_to_009()">0:09</button> Particle size affects the rate of tumbling, with larger particles tumbling more slowly. Binding of another protein increases a protein's effective size.</li>
   <li><button type="button" onclick="jump_to_067()">1:07</button> The probability of absorption of polarized light depends on fluorophore orientation. Fluorophores with aligned dipoles are more likely to absorb polarized light.</li>
@@ -79,7 +78,7 @@ The real text begins here.
   <li><button type="button" onclick="jump_to_162()">2:42</button> Differences in the tumbling rate can indicate addition of a new binding partner to a protein complex. Each chemical species present will have its own characteristic tumbling rate; binding or dissociation will change the relative abundance of these tumbling rates.</li>
 </ol>
 
- Please note: motion in this conceptual animation is ballistic rather than diffusive. While strictly inaccurate, we have found that this greatly facilitates communication. Please refer to <a href="#general_tumbling_figure" target="_self">Figure 2</a> for more physically representative diffusive motion.
+ Note: motion in this conceptual animation is ballistic rather than diffusive. Although this is inaccurate, we find it improves communication. Please refer to <a href="#general_tumbling_figure" target="_self">Figure 2</a> for more physically representative diffusive motion.
  </figcaption>
 </figure><p></p>
 
@@ -99,7 +98,7 @@ Note that this is a limited PDF or print version; animated and interactive figur
 
 Location is a clue about function, but it's only part of the picture. To better understand function, we'd like to monitor the interactions (binding) of our protein of interest in real time in its native context. Unfortunately, fluorescence microscopy is blind to binding information without complicated add-ons, each with considerable downsides (e.g. FRET, FCS, or SPT, discussed in the <a href="./appendix.html#technology_comparison">Appendix</a>).</p>
 
-<p>How might we extract binding information from a generalizable optical readout? Binding changes a molecule's effective size, and different binding partners yield complexes of different overall sizes. Conveniently, the rate of “tumbling” (rotational diffusion), depends on a protein complex’s <a href="./appendix.html#tumbling_time_particle_size">size</a>, with larger complexes tumbling more slowly than smaller complexes (<a href="#general_tumbling_figure" target="_self">Figure 2</a>). Therefore, if we can measure tumbling rate, we can reveal molecular interactions.</p>
+<p>How might we extract binding information from a generalizable optical readout? Binding changes a molecule's effective size, and different binding partners yield complexes of different overall sizes. Conveniently, the rate of “tumbling” (rotational diffusion), depends on a protein complex’s <a href="./appendix.html#tumbling_time_particle_size">size</a>, with larger complexes tumbling more slowly than smaller complexes (<a href="#tumbling_animation" target="_self">Figure 1</a>, <a href="#general_tumbling_figure" target="_self">Figure 2</a>). Therefore, if we can measure tumbling rate, we can reveal molecular interactions.</p>
 
 <figure id="general_tumbling_figure">
 <img src="./figures/02_generic_tumbling/north_pole_relaxation/05_tumbling.gif" alt="Scrambling of a population of molecules from different initial distributions" id="general_tumbling">
@@ -124,47 +123,35 @@ Location is a clue about function, but it's only part of the picture. To better 
 
 [<a class="citation" href="https://doi.org/10.1042/bj0510145" title="Polarization of the fluorescence of macromolecules. 1. Theory and experimental method; G. Weber; Biochem J., 51, 2, 145–155 (1952)">Weber 1952</a>], 
 
-which reports how much and how fast the <a href="./appendix.html#definition_tumbling_terms">alignment</a> of a population of fluorophores scrambles during its fluorescence lifetime. Excitation with polarized light generates an initial, partially aligned subpopulation. (The more aligned a ground state fluorophore's absorption dipole is with the incoming light polarization, the more likely it is to absorb that light (Figure 1- TODO LINK).) Following absorption, fluorescence emission typically occurs over a few nanoseconds (the fluorescence lifetime), during which tumbling scrambles alignment. Fluorescence from each molecule is parallel to its emission dipole. The <a href="./appendix.html#definition_tumbling_terms">polarization</a> of the population's emission therefore reflects the alignment of all of the individual emission dipoles. All other things being equal, populations of faster-rotating (smaller) particles will have less aligned dipoles and will emit less polarized fluorescence.</p>
+which reports how much and how fast the <a href="./appendix.html#definition_tumbling_terms">alignment</a> of a population of fluorophores scrambles during its fluorescence lifetime. Excitation with polarized light generates an initial, partially aligned subpopulation. (The more aligned a ground state fluorophore's absorption dipole is with the incoming light polarization, the more likely it is to absorb that light (<a href="#tumbling_animation" target="_self">Figure 1</a>).) Following absorption, fluorescence emission typically occurs over a few nanoseconds (the fluorescence lifetime), during which tumbling scrambles alignment. Fluorescence from each molecule is parallel to its emission dipole. The <a href="./appendix.html#definition_tumbling_terms">polarization</a> of the population's emission therefore reflects the alignment of all of the individual emission dipoles. All other things being equal, populations of faster-rotating (smaller) particles will have less aligned dipoles and will emit less polarized fluorescence.</p>
 
 <p>Fluorescence anisotropy allows real-time monitoring of fluorescent small molecule binding. Unfortunately, fluorescence anisotropy only works when the target is small enough (\(\lessapprox\)30 kDa) that it tumbles detectably during the few-nanosecond fluorescence lifetime. The median size of a eukaryotic protein is 50 kDa 
 
 [<a class="citation" href="https://doi.org/10.1016/S0968-0004(97)01171-7" title="Protein folding in the cytosol: chaperonin-dependent and -independent mechanisms; W. J. Netzer, F. U. Hartl; Trends in Biochemical Sciences, 23, 2, 68-73 (1998)">Netzer 1998</a>],
 
-so <strong>almost all protein complexes tumble too slowly to be interrogated with fluorescence anisotropy.</strong></p>
+so <em>almost all protein complexes tumble too slowly to be interrogated with fluorescence anisotropy.</em></p>
 
-<p>How long does it take protein complexes to tumble? We can estimate the relevant timescales using the <a href="./appendix.html#tumbling_time_particle_size">tumbling time</a> of GFP in a cell as a conversion factor (27 kDa&approx;90 ns, 
-
-[<a class="citation" href="https://doi.org/10.1016/S0006-3495(97)78835-0" title="Photobleaching Recovery and Anisotropy Decay of Green Fluorescent Protein GFP-S65T in Solution and Cells: Cytoplasmic Viscosity Probed by Green Fluorescent Protein Translational and Rotational Diffusion; R. Swaminathan, C. P. Hoang, A. S. Verkman; Biophys J., 72, 4, 1900-7 (1997)">Swaminathan 1997</a>]). 
-
-Consider a common cellular event such as transcription factor binding to DNA. We would expect the 154 kDa <a href="https://en.wikipedia.org/w/index.php?title=Lac_repressor&oldid=1157930134">lac repressor's</a> tumbling time to increase from &approx;300 ns to >10 &mu;s when it binds to DNA and becomes immobilized. In another example, consider the assembly of a large protein complex such as the <a href="https://en.wikipedia.org/w/index.php?title=V-ATPase&oldid=1170092815">lysosomal V-ATPase</a>. When a small protein component (&approx;45 kDa) becomes a part of the soluble V1 subunit, we can expect its tumbling time to rise from &approx;100 ns to &approx;1 &mu;s
-
-[<a class="citation" href="https://doi.org/10.1016/S0014-5793(98)01425-2" title="Structure, function and regulation of the vacuolar (H+)-ATPases; M. Forgac; FEBS Letters, 440, 3, 258-263 (1998)">Forgac 1998</a>]. 
-
-Its tumbling time would further increase to >10 &mu;s when the V1 subunit associates with the much larger lysosome to form an active pump. At the extreme end of the scale, very large structures, like viral capsids&mdash;or beads as in <a href="#general_tumbling_figure" target="_self">Figure 2</a>&mdash;exhibit tumbling times of 10<sup>-5</sup>-10<sup>-4</sup> seconds 
-
-[<a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>].</p>
-
-<p>The time over which we observe tumbling determines which mass range we can access. If we optically generate a much longer-lived state, we can reveal protein-protein interactions. In 1970s, it was recognized that polarized photobleaching can provide information about rotational diffusion and binding
-
-[<a class="citation" href="https://doi.org/10.1016/S0006-3495(71)86250-1" title="Rotational diffusion of rhodopsin-digitonin micelles studied by transient photodichroism; L. Strackee; Biophys. J., 11, 9, 728-38 (1971)">Strackee 1971</a>,
-
-<a class="citation" href="https://doi.org/10.1038/newbio236039a0" title="Rotational Diffusion of Rhodopsin in the Visual Receptor Membrane; R. A. Cone; Nature New Biology, 236, 39–43 (1972)">Cone 1972</a>,
-
-<a class="citation" href="https://doi.org/10.1073/pnas.77.8.4702" title="Anchorage of a band 3 population at the erythrocyte cytoplasmic membrane surface: Protein rotational diffusion measurements; E. A. Nigg, R. J. Cherry; Proc. Natl. Acad. Sci. USA, 77, 8, 4702-6 (1980)">Nigg 1980</a>].
-
-Around the same time, phosphorescence emission was used to record tumbling on the millisecond time scale 
+<p>With tumbling, the observation time window determines the accessible mass range. If we generate a longer-lived state than the fluorescent excited state, we can measure sizes of larger particles and thereby reveal protein-protein interactions. Recognizing the value of this approach, experimenters have tried to use various long-lived states for tumbling. For example, phosphorescence emission can reveal tumbling on the millisecond time scale
 
 [<a class="citation" href="https://doi.org/10.1073/pnas.76.11.5650" title="Rotational diffusion of cell surface components by time-resolved phosphorescence anisotropy; R. H. Austin, S. S. Chan, T. M. Jovin; Proceedings of the National Academy of Sciences, 76, 11, 5660-5654 (1979)">Austin 1979</a>,
 
 <a class="citation" href="https://doi.org/10.1016/0014-5793(79)81200-4" title="Phosphorescence depolarization and the measurement of rotational motion of proteins in membranes; C. Moore, D. Boxer, P. Garland; FEBS Letters, 108, 1, 161-166 (1979)">Moore 1979</a>].
 
-Nevertheless, these techniques were not widely adopted by biologists. Phosphorescence is limited by low signal in the relevant time window (<5 &mu;s), and photobleaching was implemented with millisecond initial bleaching pulses, making it too slow to measure the microsecond-scale dynamics of protein-protein interactions in cells.</p>
+Alternatively, polarized photobleaching produces an infinitely-long-lived bleached state; the remaining unbleached ground state molecules can reveal tumbling occurring in a few microseconds or up to seconds
 
-<p>Recently, the discovery of long-lived states with triggerable emission in fluorescent proteins has opened up exciting possibilities in protein-protein interaction measurements.
+[<a class="citation" href="https://doi.org/10.1016/S0006-3495(81)84717-0" title="Measurement of rotational motion in membranes using fluorescence recovery after photobleaching; L.M. Smith, R.M. Weis, H.M. McConnell; Biophysical Journal, 36, 1, 73-91 (1981)">Smith 1981</a>,
+
+<a class="citation" href="https://doi.org/10.1016/S0006-3495(88)83137-0" title="Polarized fluorescence photobleaching recovery for measuring rotational diffusion in solutions and membranes; M. Velez, D. Axelrod; Biophysical Journal, 53, 4, 575-591 (1988)">Velez 1988</a>].
+
+Despite having been around for decades, these techniques are not widely used. Phosphorescence is limited by very low signal in the <a href="./appendix.html#cellular_tumbling_times">relevant time window</a> (<10 &mu;s) for soluble protein-protein interactions. The damage caused to samples by photobleaching is unappealing for live imaging, and typical measurement schemes rely on deep bleaching from a single pulse, which is difficult to achieve in practice within a 10 &mu;s time window
+
+[<a class="citation" href="https://doi.org/10.1016/S0006-3495(88)83137-0" title="Polarized fluorescence photobleaching recovery for measuring rotational diffusion in solutions and membranes; M. Velez, D. Axelrod; Biophysical Journal, 53, 4, 575-591 (1988)">Velez 1988</a>].</p>
+
+<p>Recently, the discovery of long-lived states with triggerable emission in fluorescent proteins has opened up exciting new possibilities for tumbling measurements on protein complexes.
 
 [<a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>] 
 
-used the active state of a reversible photoswitchable protein to monitor tumbling over long timescales. Building on this work,
+used the active state of a reversible photoswitchable protein (rsFP) to monitor tumbling over long timescales. Building on this work,
 
 [<a class="citation" href="https://doi.org/10.1021/acs.jpcb.3c01236" title="Sequential Two-Photon Delayed Fluorescence Anisotropy for Macromolecular Size Determination; Y.-H. Lu, M. C. Jenkins, K. G. Richardson, S. Palui, M. S. Islam, J. Tripathy, M. G. Finn, R. M. Dickson; J. Phys. Chem. B, 127, 17, 3861–3869 (2023)">Lu 2023</a>]
 
@@ -178,7 +165,7 @@ and
 
 [<a class="citation" href="https://doi.org/10.1021/acs.jpcb.3c01236" title="Sequential Two-Photon Delayed Fluorescence Anisotropy for Macromolecular Size Determination; Y.-H. Lu, M. C. Jenkins, K. G. Richardson, S. Palui, M. S. Islam, J. Tripathy, M. G. Finn, R. M. Dickson; J. Phys. Chem. B, 127, 17, 3861–3869 (2023)">Lu 2023</a>]
 
-enable new pulse schemes and hardware configurations ranging far beyond the point-scanning confocal approach typically used for fluorescence anisotropy. This array of possibilities brings its own challenge: identifying the most synergistic combinations of photophysics and hardware. In this work, we explore tumbling with three different photophysics (photobleaching, rsFPs, triggered triplets) and four hardware configurations (<a href="#power_variation_section" target="_self">a plate reader</a>, <a href="#camera_section" target="_self">a high throughput imaging system</a>, <a href="#flow_section" target="_self">a cell sorter</a>, and <a href="#experimental_section" target="_self">a confocal microscope</a>). To facilitate these investigations, we first develop and then apply open-source simulation code. We put particular emphasis on pump-probe pulse schemes with triggerable triplets, and we demonstrate the feasibility and accessibility of this approach with data from a commercial confocal microscope. In the future, we envision that tumbling measurements will be possible on most imaging hardware, as available as red and green color channels are today.</p>
+enable new pulse schemes and hardware configurations ranging far beyond the point-scanning confocal approach typically used for fluorescence anisotropy. In this work, we explore tumbling with three different photophysics (photobleaching, rsFPs, triggered triplets) and four hardware configurations (<a href="#power_variation_section" target="_self">a plate reader</a>, <a href="#camera_section" target="_self">a high throughput imaging system</a>, <a href="#flow_section" target="_self">a cell sorter</a>, and <a href="#experimental_section" target="_self">a confocal microscope</a>). To facilitate these investigations, we first develop and then apply open-source simulation code. We put particular emphasis on pump-probe measurement schemes with triggerable triplets, and we demonstrate the feasibility and accessibility of this approach with data from a commercial confocal microscope. In the future, we envision that tumbling measurements will be possible on most imaging hardware, as available as red and green color channels are today.</p>
 
 <h3>Results and Discussion</h3>
 
@@ -198,19 +185,17 @@ All of the particles in our simulations are spherical with uniform density, and 
 
 Fluorophores that rotate much faster than the emission fluoresce with polarization&approx;0. Rates of rotation that are similar to the rate of emission result in polarization between 0 and 0.5.</p>
 
-<p>We suspect that much of the benefit of the simulation code lies in empowering others to use it. In that spirit, we include a <a href="./appendix.html#code_usage_examples">short tutorial</a> that simulates fluorescence anisotropy. Furthermore, all of the code to generate the simulations in this work is available on GitHub (TODO: LINK). For faster performance, a <a href="https://github.com/aelefebv/Rotational_diffusion-AELxJLD/tree/main">GPU-accelerated version</a> is also available.</p>
+<p>We suspect that much of the benefit of the simulation code lies in empowering others to use it. In that spirit, we include a <a href="./appendix.html#code_usage_examples">short tutorial</a> that simulates fluorescence anisotropy. Furthermore, all of the code to generate the simulations in this work is available on <a href="https://github.com/AndrewGYork/tumbling_is_general">GitHub</a>. For faster performance, a <a href="https://github.com/aelefebv/Rotational_diffusion-AELxJLD/tree/main">GPU-accelerated version</a> is also available.</p>
 
 <h4 id="power_variation_section">Simulation 1: Power variation on a plate reader</h4>
 
-<p>We first simulate a tumbling measurement with minimal photophysics and hardware. We model a fluorophore that is capable of two photophysical processes: fluorescence emission and photobleaching. When tumbling with photobleaching has been explored in the past, a very fast, very intense polarized light pulse was used to bleach out a subset of the ground state orientations
+<p>We first simulate a tumbling measurement with minimal photophysics and hardware, geared towards in vitro measurements in a bulk solution. We model a fluorophore that is capable of two photophysical processes: fluorescence emission and photobleaching. Previous implementations of tumbling with photobleaching used an intense polarized light pulse to bleach out a subset of the ground state orientations
 
-[e.g. <a class="citation" href="https://doi.org/10.1016/S0006-3495(71)86250-1" title="Rotational diffusion of rhodopsin-digitonin micelles studied by transient photodichroism; L. Strackee; Biophys. J., 11, 9, 728-38 (1971)">Strackee 1971</a>,
+[e.g. <a class="citation" href="https://doi.org/10.1016/S0006-3495(81)84717-0" title="Measurement of rotational motion in membranes using fluorescence recovery after photobleaching; L.M. Smith, R.M. Weis, H.M. McConnell; Biophysical Journal, 36, 1, 73-91 (1981)">Smith 1981</a>,
 
-<a class="citation" href="https://doi.org/10.1038/newbio236039a0" title="Rotational Diffusion of Rhodopsin in the Visual Receptor Membrane; R. A. Cone; Nature New Biology, 236, 39–43 (1972)">Cone 1972</a>,
+<a class="citation" href="https://doi.org/10.1016/S0006-3495(88)83137-0" title="Polarized fluorescence photobleaching recovery for measuring rotational diffusion in solutions and membranes; M. Velez, D. Axelrod; Biophysical Journal, 53, 4, 575-591 (1988)">Velez 1988</a>]. 
 
-<a class="citation" href="https://doi.org/10.1073/pnas.77.8.4702" title="Anchorage of a band 3 population at the erythrocyte cytoplasmic membrane surface: Protein rotational diffusion measurements; E. A. Nigg, R. J. Cherry; Proc. Natl. Acad. Sci. USA, 77, 8, 4702-6 (1980)">Nigg 1980</a>]. 
-
-The experimenters then used lower intensity illumination to track the scrambling of this "etched" ground state distribution. This technique requires rapid photobleaching kinetics, high powers, and sub-microsecond detector time resolution, which would be difficult to achieve with low-cost hardware. Here, we take a more minimal, plate-reader compatible approach. We use a single, linearly polarized beam, which continuously illuminates a sample while two detectors integrate <a href="./appendix.html#definition_tumbling_terms">polarization</a> of the output fluorescence (<a href="#power_variation_figure" target="_self">Figure 3</a> with <code>Photobleaching</code> selected).</p>
+The experimenters then used lower intensity illumination to track the scrambling of this "etched" ground state distribution. To access timescales relevant for protein-protein interactions, previous approaches require rapid photobleaching kinetics, high powers, and sub-microsecond detector time resolution, which would be difficult to achieve with low-cost hardware. Here, we take a more minimal, plate-reader compatible approach. We use a single, linearly polarized beam, which continuously illuminates a sample while two detectors integrate <a href="./appendix.html#definition_tumbling_terms">polarization</a> of the output fluorescence (<a href="#power_variation_figure" target="_self">Figure 3</a> with <code>Photobleaching</code> selected).</p>
 
 <figure id="power_variation_figure">
 <img src="./figures/03_photobleaching_photoswitching/photobleaching_minimal_hardware/04_photobleaching.gif" alt="Scrambling of a population of molecules from different initial distributions" id="power_variation">
@@ -223,7 +208,7 @@ The experimenters then used lower intensity illumination to track the scrambling
 </td>
 </tr>
 </table>
- <figcaption><strong>Figure 3: Power variations in a photobleaching or off-switching beam reveal size.</strong>
+ <figcaption><strong>Figure 3: Power variations in a photobleaching or off-switching reveal size.</strong>
   <strong>(A)</strong> Cartoon of the simulated experiment, with a laser (light blue) illuminating a bulk solution (e.g. in a cuvette). Two detectors record polarization of the fluorescence emission (green) after a polarizing beam splitter (PBS). For option <code>Reversible Photoswitching</code>, an intensity 0.01 on-switching laser (dark blue) was fired concurrently with the off-switching laser (light blue). 
   <strong>(B)</strong> Polarization of the integrated emission signal from the parallel (Y) and perpendicular (X) emission channels as it varies with illumination (Option <code>Photobleaching</code>) or off-switching (Option <code>Reversible Photoswitching</code>) intensity. Points are means of 3 replicates, with shaded areas indicating &plusmn; standard deviation. 
   <strong>(C)</strong> Time course of a measurement with intensity 1.25. Points on a sphere indicate molecular orientations, with the illumination beam polarized in the up/down direction. Bar graphs indicate accumulating signal on the detectors. The slower rotation of the large aggregate increases etching of the ground state orientation distribution (gray) and reduces the polarization.
@@ -294,7 +279,7 @@ Here, we focus on triplets rather than rsFPs because of their superior time flex
 </td>
 </tr>
 </table>
- <figcaption><strong>Figure 4. Pump-probe measurements with triggered emitters elucidate spatially resolved binding states.</strong>
+ <figcaption><strong>Figure 4. Pump-probe measurements with triggered emitters reveal binding with spatial resolution.</strong>
   <strong>(A)</strong> Schematic of a pump-probe measurement with triggered triplets. The pump pulse (blue) generates fluorescence (green) in the sample. Some of these fluorescent molecules convert to triplets (faint pink), which, after a variable delay, are triggered to fluoresce (green) by the probe beam (pink). A fast shutter separates signal from the pump and probe pulses. A polarizing beamsplitter followed by two cameras records the polarized fluorescence at all points in the image. A sequence of delays is captured by successive images. Inset from sample shows a cartoon representation of how tumbling times could correspond to spatially compartmentalized binding events within a cell. 
   <strong>(B)</strong> Simulation results for spheres with tumbling times of 450 ("unbound"), 900 ("small complex"), and 3000 ns ("large complex"), as well as an equal part mixture of spheres with 450 and 3000 ns tumbling times. 50 ns pump and probe pulses were simulated as 10 discrete phototransitions of intensity 0.25, each 5 ns apart. Because of the saturating intensity used in these simulations, polarization values deviate from the ideal of 0.5 for fully equilibrated samples. Points indicate means of 6 replicates, with shaded areas indicating &plusmn; standard deviation.
  </figcaption>
@@ -377,7 +362,7 @@ Our experimental results also qualitatively match simulations, with similar time
 </td>
 </tr>
 </table>
- <figcaption><strong>Figure 6. Tumbling spectroscopy of nanometer-scale beads can be measured on a commercially available microscope with triplet triggering.</strong>
+ <figcaption><strong>Figure 6. Tumbling of nanometer-scale beads can be measured on a commercially available microscope with triplet triggering.</strong>
   <strong>(A)</strong> Cartoon representation of bead samples used in this experiment and simulation. Sample generation is described in the <a href="./appendix.html#bead_labeling">Appendix</a>. 
   <strong>(B)</strong> Photograph of microscope used. Instrumentation scheme is described further in <a href="./appendix.html#SP8_schematic_figure">Figure S1</a>.
   <strong>(C)</strong> Experimental tumbling data acquired on fluorescent-protein labeled beads. Drop-down menu toggles between mScarlet and mVenus recordings.
@@ -401,7 +386,7 @@ have dramatically expanded the accessible size range and possible signal-to-nois
 
 [<a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>].
 
-Beyond the fluorophore itself, movement of the label independently from the target (i.e. linker flexibility) can scramble polarization information 
+Beyond the fluorophore itself, movement of the label independently from the target (i.e. linker flexibility) scrambles polarization information 
 
 [<a class="citation" href="https://doi.org/10.1016/j.bpc.2007.06.013" title="Measuring Rotational Diffusion of MHC Class I on Live Cells by Polarized FPR; D. R. Fooksman, M. Edidin, B. G. Barisas; Biophys Chem, 130, 1-2, 10-16 (2007)">Fooksman 2007</a>,
 

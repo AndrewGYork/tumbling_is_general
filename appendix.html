@@ -268,6 +268,20 @@ limiting our ability to parse it, and Lakowicz does not provide a definition for
 [<a class="citation" href="https://doi.org/10.1021/cr900267p" title="Fluorescence Polarization/Anisotropy in Diagnostics and Imaging; D. M. Jameson, J. A. Ross; Chem Rev. 110, 5, 2685-2708 (2011)">Jameson 2011</a>].
 </p>
 
+<h4 id="cellular_tumbling_times">Expected tumbling times in the cell</h4>
+
+<p>How long does it take protein complexes to tumble? We can estimate the relevant timescales using the <a href="./appendix.html#tumbling_time_particle_size">tumbling time</a> of GFP in a cell as a conversion factor (27 kDa&approx;90 ns, 
+
+[<a class="citation" href="https://doi.org/10.1016/S0006-3495(97)78835-0" title="Photobleaching Recovery and Anisotropy Decay of Green Fluorescent Protein GFP-S65T in Solution and Cells: Cytoplasmic Viscosity Probed by Green Fluorescent Protein Translational and Rotational Diffusion; R. Swaminathan, C. P. Hoang, A. S. Verkman; Biophys J., 72, 4, 1900-7 (1997)">Swaminathan 1997</a>]). 
+
+Consider a common cellular event such as transcription factor binding to DNA. We would expect the 154 kDa <a href="https://en.wikipedia.org/w/index.php?title=Lac_repressor&oldid=1157930134">lac repressor's</a> tumbling time to increase from &approx;300 ns to >10 &mu;s when it binds to DNA and becomes immobilized. In another example, consider the assembly of a large protein complex such as the <a href="https://en.wikipedia.org/w/index.php?title=V-ATPase&oldid=1170092815">lysosomal V-ATPase</a>. When a small protein component (&approx;45 kDa) becomes a part of the soluble V1 subunit, we can expect its tumbling time to rise from &approx;100 ns to &approx;1 &mu;s
+
+[<a class="citation" href="https://doi.org/10.1016/S0014-5793(98)01425-2" title="Structure, function and regulation of the vacuolar (H+)-ATPases; M. Forgac; FEBS Letters, 440, 3, 258-263 (1998)">Forgac 1998</a>]. 
+
+Its tumbling time would further increase to >10 &mu;s when the V1 subunit associates with the much larger lysosome to form an active pump. At the extreme end of the scale, very large structures, like viral capsids&mdash;or beads as in <a href="./index.html#general_tumbling_figure">Figure 2</a>&mdash;exhibit tumbling times of 10<sup>-5</sup>-10<sup>-4</sup> seconds 
+
+[<a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>].</p>
+
 <h4 id="definition_tumbling_terms">Quantifying alignment of a population of particles</h4>
 
 <p>Colloquially, <strong>alignment</strong> assesses how "lined up" a population of molecules is. Formally, for an individual molecule, we chose to define alignment as the absolute value of the cosine of the angle between the external reference (e.g. polarization of the input beam) and the dipole of the molecule. (From an absorption standpoint, pointing straight up is the same as pointing straight down, hence the absolute value.) By taking the mean of this value over many particles, we determine the alignment of a population (equation 2). An alignment of 1 indicates all dipoles are parallel to the reference; an alignment of 0 indicates random dipole directions. Most real-world optical tumbling measurements involve partially aligned populations, with an alignment between 0 and 1.  </p>
