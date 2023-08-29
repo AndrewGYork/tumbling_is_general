@@ -70,7 +70,6 @@ The real text begins here.
 </p>
 
 <p>TODO: More hyperlinks in table of contents!</p>
-<p>additional tumbling simulation methods somewhere?</p>
 
 <h3 id="materials_and_methods">Materials and Methods</h3>
 
@@ -230,33 +229,33 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
 
 <p> In theory, tumbling outperforms these other technologies. Sensitive measurements of size can be made for a single labeled protein of interest with a modest number of time points. Certainly, much method development remains to be done in tumbling, and gaps between simulation and current tools are discussed throughout this work.</p>
 
-<h4 id="tumbling_time_particle_size">Relationship between tumbling (rotational diffusion) time and particle size</h4>
+<h4 id="tumbling_time_particle_size">Relationship between tumbling time and particle size</h4>
 
-<p>Throughout this work, we refer to particle size, mass, and volume interchangeably and relate them to the rotational diffusion (tumbling) time. This approach is accurate for spheres of uniform density, which is the simplified case that we address in this work. Even when particles cannot be approximated as spheres, particle size still affects the tumbling time; all other things being equal, larger particles tumble more slowly. However, extracting the absolute particle volume or mass becomes more complicated. For example, an elongated particle may display multiple tumbling times corresponding to rotation about its various axes
+<p>Throughout this work, we refer to particle size, mass, and volume interchangeably and relate them to the tumbling (rotational diffusion) time. This approach is accurate for spheres of uniform density, which is the simplified case that we address in this work. Even when particles cannot be approximated as spheres, particle size still affects the tumbling time; all other things being equal, larger particles tumble more slowly. However, extracting the absolute particle volume or mass becomes more complicated. For example, an elongated particle will display multiple tumbling times corresponding to rotation about its various axes
 
 [<a class="citation" href="https://doi.org/10.1007/978-0-387-46312-4" title="Principles of Fluorescence Spectroscopy; J. R. Lakowicz; ISBN 978-0-387-31278-1 (2006)">Lakowicz 2006</a>], 
 
-and a particle in a membrane may exhibit hindered tumbling
+and a particle in a membrane will exhibit hindered tumbling
 
 [<a class="citation" href="https://doi.org/10.1016/S0006-3495(77)85550-1" title="A theory of fluorescence polarization decay in membranes; K. Kinosita Jr, S. Kawato, A. Ikegami, Biophysical Journal, 20, 3, 289-305 (1977)">Kinosita 1977</a>].
 
 The relationships below are all developed for spheres of uniform density.</p>
 
-<p>The simulation code specifies rotational diffusion rates via a tumbling time input parameter (called diffusion_time in the API), which is equal to \(\frac{1}{2D}\), where D is the diffusion constant 
+<p>The simulation code specifies rotational diffusion rates via a tumbling time input parameter (called <code>diffusion_time</code> in the API), which is equal to \(\frac{1}{2D}\), where \(D\) is the diffusion constant 
 
 [<a class="citation" href="https://doi.org/10.48550/arXiv.1303.1278" title="A &quot;Gaussian&quot; for diffusion on the sphere; A. Ghosh, J. Samuel, arXiv:1303.1278v1 (2013)">Ghosh 2013</a>].
 
-This diffusion coefficient D can be estimated for spherical particles from the Stokes-Einstein-Debye relation (equation 1) 
+\(D\) can be estimated for spherical particles from the Stokes-Einstein-Debye relation (equation 1) 
 
 [<a class="citation" href="https://users-phys.au.dk/srf/hydro/Landau+Lifschitz.pdf" title="Volume 6 - Fluid Mechanics, 2nd English Edition; L.D. Landau and E.M. Lifshitz, ISBN 0750627670 (1987)">Landau 1987</a>]
 
-, where &eta; is the viscosity, R is the radius, and k<sub>b</sub> is Boltzmann's constant.</p>
+, where \(&eta;\) is the viscosity, \(R\) is the radius, and \(k_{b}\) is Boltzmann's constant.</p>
 
 <div>
   $$\begin{equation}D = \frac{k_bT}{8&pi;&eta;R^3}\end{equation}$$
 </div>
 
-<p>To the best of our knowledge, this diffusion coefficient D is the same one that appears on page 367 of 
+<p>To the best of our knowledge, this diffusion coefficient \(D\) is the same one that appears on page 367 of 
 
 [<a class="citation" href="https://doi.org/10.1007/978-0-387-46312-4" title="Principles of Fluorescence Spectroscopy; J. R. Lakowicz; ISBN 978-0-387-31278-1 (2006)">Lakowicz 2006</a>]. 
 
@@ -264,20 +263,26 @@ The original work is in French
 
 [<a class="citation" href="https://doi.org/10.1051/jphysrad:01926007012039000" title="Polarisation de la lumière de fluorescence. Vie moyenne des molécules dans l'etat excité; F. Perrin; J. Phys. Radium 7, 12, 390-401 (1926)">Perrin 1926</a>], 
 
-limiting our ability to parse it, and Lakowicz does not provide a definition for D. Instead, we ran our simulation code and found that our calculated anisotropy agrees with the predicted anisotropy in that convention. We also note that Lakowicz parameterizes rotational diffusion with a "rotational correlation time" equal to \(\frac{1}{6D}\), which we believe is equal to our tumbling time divided by 3. Additional context around these two different conventions is provided in 
+limiting our ability to parse it, and Lakowicz does not provide a definition for \(D\). Instead, we ran our simulation code and found that our calculated anisotropy agrees with the predicted anisotropy in that convention. We also note that Lakowicz parameterizes rotational diffusion with a "rotational correlation time" equal to \(\frac{1}{6D}\), which we believe is equal to <code>diffusion_time</code> divided by 3. Additional context around these two different conventions is provided in 
 
 [<a class="citation" href="https://doi.org/10.1021/cr900267p" title="Fluorescence Polarization/Anisotropy in Diagnostics and Imaging; D. M. Jameson, J. A. Ross; Chem Rev. 110, 5, 2685-2708 (2011)">Jameson 2011</a>].
 </p>
 
-<h4 id="definition_tumbling_terms">Key tumbling terminology</h4>
+<h4 id="definition_tumbling_terms">Quantifying alignment of a population of particles</h4>
 
-<p>For ease of visual inspection and to cancel out any brightness-related artifacts, it is sometimes convenient to represent the emission polarization as a reduced quantity that captures the signal difference between the parallel and perpendicular channels. Throughout this work, we use the polarization P (equation 2), where &parallel; and &perp; indicate the signal in those channels.</p>
+<p>Colloquially, <strong>alignment</strong> assesses how "lined up" a population of molecules is. Formally, for an individual molecule, we chose to define alignment as the absolute value of the cosine of the angle between the external reference (e.g. polarization of the input beam) and the dipole of the molecule. (From an absorption standpoint, pointing straight up is the same as pointing straight down, hence the absolute value.) By taking the mean of this value over many particles, we determine the alignment of a population (equation 2). An alignment of 1 indicates all dipoles are parallel to the reference; an alignment of 0 indicates random dipole directions. Most real-world optical tumbling measurements involve partially aligned populations, with an alignment between 0 and 1.  </p>
+
+<div>
+  $$\begin{equation}Alignment = \left\langle|cos(&theta;)|\right\rangle\end{equation}$$
+</div>
+
+<p>Experimentally, the alignment of the fluorophores' emission dipoles is assessed by collecting the emitted fluorescence in parallel and perpendicularly polarized channels (relative to the input beam). For ease of visual inspection, it is sometimes convenient to condense the two detectors' output to a single quantity that captures the enrichment of parallel over perpendicular signal. Throughout this work, we use the <strong>polarization</strong> \(P\) (equation 3), where &parallel; and &perp; indicate the signal in those channels.</p>
 
 <div>
   $$\begin{equation}P = \frac{&parallel;\text{ }- &perp;}{&parallel; \text{ } + &perp;}\end{equation}$$
 </div>
 
-<p>Our simulated detectors are both equally effective at detecting photons, but any two actual lightpaths will contain some differences in transmission efficiency. To correct for this "detector balance," we calculate a g factor equal to \(\frac{&parallel;}{&perp;}\) and a corrected polarization (equation 3).</p>
+<p>Our simulated detectors are both equally effective at detecting photons, but any two actual lightpaths will contain some differences in transmission efficiency. To correct for these transmission differences in experimental data, we include a g factor (equal to \(\frac{&parallel;}{&perp;}\) for a fully unpolarized sample), giving us a corrected polarization (equation 4).</p>
 
 <div>
   $$\begin{equation}P = \frac{&parallel;\text{ }- &perp;*g}{&parallel; \text{ } + &perp;*g}\end{equation}$$
@@ -318,7 +323,7 @@ for i in range(10):
 </code></pre>
 <p></p>
 
-<p>We now would like to 'read out' the results from this population of fluorophores. All of the state transition events were being tracked during the simulation, so we call "get_xyzt_at_transitions" to obtain 1D arrays with our X, Y, Z, T coordinates for each particle. For each emission event's orientation, we can probabilistically assign that emission photon to a detector channel in X or Y.</p>
+<p>We now would like to read out the results from this population of fluorophores. All of the state transition events were being tracked during the simulation, so we call <code>get_xyzt_at_transitions</code> to obtain 1D arrays with X, Y, Z, T coordinates corresponding to each transition. Note that X, Y, and Z here are orientations, not positions; T is time. If we assume each transition results in emission, we can then probabilistically assign that emission photon to a detector channel (X or Y), weighted by the particle's orientation.</p>
 
 <pre><code class="language-python"># Calculate steady-state anisotropy
 x, y, z, t = a.get_xyzt_at_transitions('excited', 'ground')
@@ -360,11 +365,11 @@ print("done.")
 </code></pre>
 <p></p>
 
-<p>The above example is also available within fluorophore_rotational_diffusion.py in _test_fluorophores_anisotropy_decay_plot(). Further documentation of the fluorophore rotational diffusion API is available in docstrings for each function. The scripts that generate each of the simulation figures are available on GitHub with this manuscript (TODO: LINK).</p>
+<p>The above example is also available within fluorophore_rotational_diffusion.py in <code>_test_fluorophores_anisotropy_decay_plot()</code>. Further documentation of the fluorophore rotational diffusion API is available in docstrings for each function. The scripts that generate each of the simulation figures are available on <a href="https://github.com/AndrewGYork/tumbling_is_general">GitHub</a> with this manuscript.</p>
 
 <h4 id="polarization_ratio_reduction">Dynamic range of polarization ratios: theory and experiment</h4>
 
-<p>A fully orientationally scrambled but immobile population of fluorophores has a theoretical polarization of 0.5 when excited with linearly polarized light, equivalent to a 3:1 ratio of signal in the parallel and perpendicular channels. However, this is rarely observed. Experimentally determined polarization values often show reduced dynamic ranges relative to those in theory and in simulation. A combination of factors contribute to this
+<p>An unaligned but immobile population of fluorophores has a theoretical polarization of 0.5 when excited with linearly polarized light, equivalent to a 3:1 ratio of signal in the parallel and perpendicular channels. However, this is rarely observed. Experimentally determined polarization values often show reduced dynamic ranges relative to those in theory and in simulation. A combination of factors contribute to this
 
 [<a class="citation" href="http://doi.org/10.1201/9781420078916" title="Chapter 10: Time Resolved Fluorescence Anisotropy, in FLIM Microscopy in Biology and Medicine; S. S. Vogel, C. Thaler, P. S. Blank, S. V. Koushik; FLIM Microscopy in Biology and Medicine (2009)">Vogel 2009</a>]
 
@@ -457,7 +462,7 @@ Encapsulation of the chromophore putatively enables these long-lived triplets by
 
 to match the lifetime of the prompt singlet emission, consistent with a model where the triggering beam regenerates an excited singlet state, which then emits.</p>
 
-<p>To corroborate this, we analyzed the fluorescence lifetimes of the prompt and triggered photons in our triplet data (<a href="#triplet_tcspc_figure" target="_self">Figure S5</a>, <a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S6</a>). We find similar but not identical lifetimes for the two, with the triggered lifetime (~0.5 ns) longer than the prompt lifetime. Furthermore, the triggered lifetime is well-described by a single exponential fit, whereas the prompt fluorescence lifetime for both mScarlet and mVenus requires a sum of at least two exponential components to describe it. Code to perform these fits can be found with figure generation code on GitHub (TODO). We note that the slightly acidic conditions of the measurement (pH 6.3) likely adds some biexponential character and decreases the lifetime of these FPs from their reported values of 3.9 and 2.7 ns for mScarlet and mVenus respectively 
+<p>To corroborate this, we analyzed the fluorescence lifetimes of the prompt and triggered photons in our triplet data (<a href="#triplet_tcspc_figure" target="_self">Figure S5</a>, <a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S6</a>). We find similar but not identical lifetimes for the two, with the triggered lifetime (~0.5 ns) longer than the prompt lifetime. Furthermore, the triggered lifetime is well-described by a single exponential fit, whereas the prompt fluorescence lifetime for both mScarlet and mVenus requires a sum of at least two exponential components to describe it. Code to perform these fits can be found with <a href="https://github.com/AndrewGYork/tumbling_is_general">figure generation code</a>. We note that the slightly acidic conditions of the measurement (pH 6.3) likely adds some biexponential character and decreases the lifetime of these FPs from their reported values of 3.9 and 2.7 ns for mScarlet and mVenus respectively 
 
 [<a class="citation" href="http://doi.org/10.1038/nmeth.4074" title="mScarlet: a bright monomeric red fluorescent protein for cellular imaging; D. S. Bindels, L. Haarbosch, L. van Weeren, M. Postma, K. E. Wiese, M. Mastop, S. Aumonier, G. Gotthard, A. Royant, M. A. Hink, T. W. J. Gadella Jr; Nature Methods 14, 53-56 (2017)">Bindels 2017</a>,
 <a class="citation" href="http://doi.org/10.1021/bi0516273" title="Cyan and Yellow Super Fluorescent Proteins with Improved Brightness, Protein Folding, and FRET Förster Radius; G.-J. Kremers, J. Goedhart, E. B. van Munster, T. W. J. Gadella; Biochemistry, 45, 21, 6570-6580 (2006)">Kremers 2006</a>].</p>
@@ -500,15 +505,15 @@ to match the lifetime of the prompt singlet emission, consistent with a model wh
  </figcaption>
 </figure>
 
-<h4 id="crescent_selection">Narrowing the orientation distribution with ‘crescent’ selection</h4>
+<h4 id="crescent_selection">Increasing initial alignment with ‘crescent’ selection</h4>
 
-<p>If we can narrow the angular distribution of the photoselected molecules, we can increase the dynamic range of polarization change observed. Some of the authors here previously patented this approach
+<p>If we can increase the alignment of the initial distribution of photoselected molecules, we can increase the dynamic range of polarization change observed. Some of the authors here previously patented this approach
 
-[<a class="citation" href="https://patents.google.com/patent/US20210247315A1/en?oq=WO2019245946A1" title="System and Method for Inferring Protein Binding; A. G. York, M. del Mar Ingaramo; US Patent US20210247315A1 (2019)">York 2019</a>], 
+[<a class="citation" href="https://patents.google.com/patent/US20210247315A1" title="System and Method for Inferring Protein Binding; A. G. York, M. del Mar Ingaramo; US Patent US20210247315A1 (2019)">York 2019</a>], 
 
-in which an orthogonally polarized STED beam immediately follows the initial linearly polarized pump beam to deplete off-angle molecules. We refer to this second beam carving the population as ‘crescent’ selection.</p>
+in which an orthogonally polarized STED beam immediately follows a linearly polarized pump beam to deplete off-angle molecules. We refer to this second beam carving the population as ‘crescent’ selection.</p>
 
-<p>With triplets specifically, we predicted that a saturating triplet triggering beam immediately after the initial pump could be used to similarly narrow the angular distribution and increase the dynamic range. We simulated the effects of such a beam on the measured polarization ratio of an ideal triggered emitter (<a href="#crescent_simulation_figure" target="_self">Figure S7</a>). In this simulation, we observe that a saturating crescent beam can skew the initial population to much lower polarization ratios, thereby increasing the total change in polarization observed during tumbling.</p>
+<p>With triplets specifically, we predicted that a saturating triplet triggering beam immediately after the initial pump could be used to similarly narrow the angular distribution and increase the dynamic range. We simulated the effects of such a beam on the measured polarization of an ideal triggered emitter (<a href="#crescent_simulation_figure" target="_self">Figure S7</a>). This simulation predicts that a saturating crescent beam can indeed increase the total change in polarization observed during tumbling.</p>
 
 <figure id="crescent_simulation_figure">
 <img src="./figures/SI_orthogonal_depletion_beam/simulation_crescent_power_v2.png" alt="Simulated results from increasing crescent intensity" id="crescent_simulation_image">
@@ -518,7 +523,7 @@ in which an orthogonally polarized STED beam immediately follows the initial lin
 </figure>
 <p></p>
 
-<p>We then investigated whether mScarlet or mVenus can be crescent selected as above in the presence of a crescent selection (<a href="#crescent_experiment_figure" target="_self">Figure S8</a>). We observe a small increase in the dynamic range that increases with the power of the crescent beam and is accompanied by a loss in triplet signal. Experimentally, we observe less gain from the crescent selection than the simulation predicts. One possible explanation for this would be mis-alignment of the absorption dipoles of the ground and excited triplet states.</p>
+<p>We then investigated how well crescent selection of mScarlet or mVenus experimentally matches these simulations (<a href="#crescent_experiment_figure" target="_self">Figure S8</a>). With the inclusion of crescent selection, we observe a very small (perhaps negligible) increase in the dynamic range that increases with the power of the crescent beam and is accompanied by a loss in triplet signal. Experimentally, we observe less gain from the crescent selection than the simulation predicts. One possible explanation for this would be mis-alignment of the absorption dipoles of the ground and excited triplet states.</p>
 
 <figure id="crescent_experiment_figure">
 <img src="./figures/SI_orthogonal_depletion_beam/expt_crescent_power.png" alt="Experimental results from increasing crescent intensity with triplets" id="crescent_experiment_image">

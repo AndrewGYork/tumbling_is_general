@@ -1,3 +1,23 @@
+function jump_to_009() {
+  var video = document.getElementById("tumbling_animation_video");
+  video.currentTime = 9;
+}
+
+function jump_to_067() {
+  var video = document.getElementById("tumbling_animation_video");
+  video.currentTime = 67;
+}
+
+function jump_to_101() {
+  var video = document.getElementById("tumbling_animation_video");
+  video.currentTime = 101;
+}
+
+function jump_to_162() {
+  var video = document.getElementById("tumbling_animation_video");
+  video.currentTime = 162;
+}
+
 function update_general_tumbling_figure() {
   var filename = "./figures/02_generic_tumbling/" + document.getElementById("general_tumbling_selector").value + "_relaxation/05_tumbling.gif";
   var image = document.getElementById("general_tumbling");

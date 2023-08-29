@@ -199,6 +199,16 @@ p img {
   border: none;
 }
 
+video {
+  position: relative;
+  margin: 0 auto;
+  height: auto;
+  max-width: 100%;
+  padding: 0px;
+  margin: 0px 0 0px 0;
+  border: 0px solid #ccc;
+}
+
 figure {
   border: 1px solid #ccc;
   background: #FFFFFF;

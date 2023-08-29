@@ -58,7 +58,7 @@ for x in range(201): # number of frames that were previously generated
                  group['avg_z_coord'], label=diff2diam[name],
                  linewidth=1, color=diff2color[name])
     ax5.axvline(x*us_per_x, color='#808080')
-    ax5.set_ylabel('Shared Orientation') 
+    ax5.set_ylabel('Alignment') 
     ax5.set_xlabel(r'Time ($\mu$s)')
     ax5.legend(loc=(0.64, 0.45), title='Diam. (nm)')
     plt.savefig(out_path / fname, bbox_inches='tight')
