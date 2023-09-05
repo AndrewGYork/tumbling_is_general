@@ -40,7 +40,7 @@ def make_animation_frame(my_fluorophores, output_name, output_dir, frame_number,
     plt.close(fig)
 
 # Beginning of the simulation code
-print("Generic Decay of an Oriented Population from a Cap Selection")
+print("Generic Decay of an Oriented Population from the North Pole")
 output_dir = Path(__file__).parents[4]/'tumbling_temp'/'north_pole_relaxation'/'individ'
 output_dir.mkdir(exist_ok=True, parents=True)
 diff2diam = {21746: 40, 73394: 60, 339789: 100, 2718318: 200}
@@ -74,10 +74,8 @@ for diff in diff2diam.keys():
                      state_info=state_info,
                      initial_orientations='polar') # start at north pole
     x, y, z = a.get_xyz_for_state('ground') # won't bother exciting here
-    avg_x = np.mean(abs(x)); avg_y = np.mean(abs(y)); avg_z = np.mean(abs(z))
-    x_coord_list = [avg_x]
-    y_coord_list = [avg_y]
-    z_coord_list = [avg_z]
+    x_sq = np.mean(x**2); y_sq = np.mean(y**2); z_sq = np.mean(z**2)
+    x_sq_list = [x_sq]; y_sq_list = [y_sq]; z_sq_list = [z_sq]
     time_ns_list = [0]
     my_cmap = lsc('my_cmap', diff2cdict[diff])
     make_animation_frame(a, 'diff'+str(diff), output_dir, 0, cmap=my_cmap,
@@ -87,28 +85,28 @@ for diff in diff2diam.keys():
         time_step_ns = 200
         a.time_evolve(time_step_ns)
         x, y, z = a.get_xyz_for_state('ground')
-        avg_x = np.mean(abs(x)); avg_y = np.mean(abs(y)); avg_z = np.mean(abs(z))
-        x_coord_list.append(avg_x)
-        y_coord_list.append(avg_y)
-        z_coord_list.append(avg_z)
+        x_sq = np.mean(x**2); y_sq = np.mean(y**2); z_sq = np.mean(z**2)
+        x_sq_list.append(x_sq)
+        y_sq_list.append(y_sq)
+        z_sq_list.append(z_sq)
         time_ns_list.append((i+1) * time_step_ns)
         make_animation_frame(a, 'diff'+str(diff), output_dir, i+1, cmap=my_cmap,
                              state='ground', view_angle=(0,-90))
         print('.', end='')
-    assert len(x_coord_list) == len(y_coord_list) == len(time_ns_list)
+    assert len(x_sq_list) == len(y_sq_list) == len(time_ns_list)
     result = pd.DataFrame({'time_ns': time_ns_list,
-                           'avg_x_coord': x_coord_list,
-                           'avg_y_coord': y_coord_list,
-                           'avg_z_coord': z_coord_list,
+                           'avg_x_squared': x_sq_list,
+                           'avg_y_squared': y_sq_list,
+                           'avg_z_squared': z_sq_list,
                            'diff_time_ns': diff},
-                          index = range(len(x_coord_list)))
+                          index = range(len(x_sq_list)))
     output_dfs.append(result)
 results = pd.concat(output_dfs, ignore_index=True)
 results.to_csv('01_north_pole_relaxation.csv')
         
 plt.figure()
 for name, group in results.groupby('diff_time_ns'):
-    plt.plot(group['time_ns'], group['avg_z_coord'],
+    plt.plot(group['time_ns'], group['avg_z_squared'],
              color=diff2color[name], label=name)
 plt.legend()
 plt.savefig('02_north_pole_relaxation.png')

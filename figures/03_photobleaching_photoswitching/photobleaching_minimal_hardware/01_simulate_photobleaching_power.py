@@ -110,8 +110,11 @@ for dtime in diffusion_times:
             state_info = FluorophoreStateInfo()
             state_info.add('ground')
             state_info.add('bleached')
-            state_info.add('excited_singlet', lifetime=1,
+            state_info.add('excited_triplet', lifetime=10000,
                            final_states=['ground', 'bleached'],
+                           probabilities=[0.5, 0.5])
+            state_info.add('excited_singlet', lifetime=1,
+                           final_states=['ground', 'excited_triplet'],
                            probabilities=[0.95, 0.05])
             a = Fluorophores(1e4,
                              diffusion_time=dtime,
@@ -158,6 +161,6 @@ for dtime in diffusion_times:
                                    index=range(len(x_cdf)))
                 cdf_list.append(df1)
 results = pd.concat(results_list, ignore_index=True)
-results.to_csv('photobleaching_summed_counts_1e4.csv')
+results.to_csv('photobleaching_withIntermediate_summed_counts_1e4.csv')
 cdfs = pd.concat(cdf_list, ignore_index=True)
-cdfs.to_csv('photobleaching_cdfs_1e4.csv')
+cdfs.to_csv('photobleaching_withIntermediate_cdfs_1e4.csv')

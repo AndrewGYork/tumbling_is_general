@@ -22,8 +22,8 @@ adir = cwd.parents[3] / 'tumbling_temp' / 'photobleaching' / 'dots_on_a_sphere'
 out_path = cwd.parents[3] / 'tumbling_temp' / 'photobleaching' / 'sequence'
 out_path.mkdir(exist_ok=True, parents=True)
 plt.style.use(cwd.parents[1] / 'default.mplstyle')
-results = pd.read_csv('photobleaching_summed_counts_1e4.csv')
-cdfs = pd.read_csv('photobleaching_cdfs_1e4.csv')
+results = pd.read_csv('photobleaching_withIntermediate_summed_counts_1e4.csv')
+cdfs = pd.read_csv('photobleaching_withIntermediate_cdfs_1e4.csv')
 diff2label = {750: '750: monomer', 1200: '1200: small',
               3000: '3000: medium', 6000: '6000: large'}
 diff2color = {750: plt.cm.tab10(0), 1200: plt.cm.tab10(1),
@@ -46,7 +46,7 @@ s2 = results.loc[(results['diffusion_time_ns'] == 6000) &
                  (results['saturation'] == 1.25)]
 y2 = s2['polarization'].mean()
 
-for i in range(100): # first 10 us only
+for i in range(150): # first 15 us
     print('.', end='')
     # positioning of axes
     fig = plt.figure(figsize=(6, 4))
@@ -151,9 +151,9 @@ for i in range(100): # first 10 us only
     ax7.set_xticklabels(['Y', 'X'])
     ax7.set_position([0.84, 0.61, 0.13, 0.25*2/3]) 
     ax7.ticklabel_format(axis="y", style='sci', scilimits=(0,0))
-    ax7.set_ylim(0, 1.1e5)
+    ax7.set_ylim(0, 1.6e5)
     ax7.set_ylabel('Counts')
-    ax7.text(0.5, -5.5e4, 'Y / X = {:0.2f}'.format(
+    ax7.text(0.5, -8e4, 'Y / X = {:0.2f}'.format(
         c750['y_cdf'].values[-1] / c750['x_cdf'].values[-1]), clip_on=False,
              ha='center')
     # Make a bar chart that displays the counts as they are increasing
@@ -166,9 +166,9 @@ for i in range(100): # first 10 us only
     ax9.set_xticklabels(['Y', 'X'])
     ax9.set_position([0.84, 0.15, 0.13, 0.25*2/3])
     ax9.ticklabel_format(axis="y", style='sci', scilimits=(0,0))
-    ax9.set_ylim(0, 1.1e5)
+    ax9.set_ylim(0, 1.6e5)
     ax9.set_ylabel('Counts')
-    ax9.text(0.5, -5.5e4, 'Y / X = {:0.2f}'.format(
+    ax9.text(0.5, -8e4, 'Y / X = {:0.2f}'.format(
         c6000['y_cdf'].values[-1] / c6000['x_cdf'].values[-1]), clip_on=False,
              ha='center')
     # save the frame for later gif rendering    

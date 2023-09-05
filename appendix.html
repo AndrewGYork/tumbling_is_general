@@ -208,7 +208,7 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
 
 <p>Given the importance of molecular interactions, it is no surprise that an array of techniques has been developed to investigate them. Many of these approaches operate only out of the molecule's native context and/or destroy the sample (e.g. isothermal titration calorimetry, yeast 2-hybrid assays, crosslinking assays, immunoprecipitation). We focus here only on techniques that allow real-time monitoring of protein-protein interactions in their native context. Three principal approaches exist, namely:
 <ul>
-  <li>Forster resonance energy transfer (<strong>FRET</strong>) is often used to determine if two fluorophores are within 10 nm of each other, suggesting that the proteins they label are binding. However, improper label positioning can lead to false negatives where the fluorophores are >10 nm apart even in the bound complex. Correct implementation of this double labeling typically requires detailed structural information and experimental trial-and-error
+  <li>F&ouml;rster resonance energy transfer (<strong>FRET</strong>) is often used to determine if two fluorophores are within 10 nm of each other, suggesting that the proteins they label are binding. However, improper label positioning can lead to false negatives where the fluorophores are >10 nm apart even in the bound complex. Correct implementation of this double labeling typically requires detailed structural information and experimental trial-and-error
 
   [<a class="citation" href="http://doi.org/10.1016/j.tibs.2007.08.003" title="Fluorescent protein FRET: the good, the bad and the ugly; D. W. Piston, G.-J. Kremers; Trends Biochem Sci. 32, 9, 407-414 (2007)">Piston 2007</a>].
 
@@ -219,27 +219,38 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
   <a class="citation" href="http://doi.org/10.1073/pnas.0708066104" title="Dynamic clustered distribution of hemagglutinin resolved at 40 nm in living cell membranes discriminates between raft theories; S. T. Hess, T. J. Gould, M. V. Gudheti, J. Zimmerberg; PNAS 104, 4, 17370-17375 (2007)">Hess 2007</a>,
   <a class="citation" href="http://doi.org/10.1038/nmeth.1176" title="High-density mapping of single-molecule trajectories with photoactivated localization microscopy; S. Manley, J. M. Gillette, G. H. Patterson, H. Shroff, H. F. Hess, E. Betzig, J. Lippincott-Schwartz; Nature Methods 5, 155-157 (2008)">Manley 2008</a>]
 
-  tracks translational diffusion of particles in a field of view to estimate their size. Translational diffusion is proportional to the cube root of particle volume, whereas rotational diffusion rate is linearly dependent on volume, making this technique less sensitive than tumbling. Because SPT requires resolution of single particles, it imposes stringent requirements on label density and/or requires the use of photoactivatable fluorophores. These sparse particles must then be imaged over time, which mandates high spatial resolution, as well as time- and data-intensive imaging protocols. Tumbling, by contrast, is a bulk technique, capable of operating in a regime with many fluorophores in one pixel. Therefore, unlike SPT, tumbling is compatible with diverse instrumentation modalities, equally useful in high resolution imaging and in plate reader measurements. </li>
+  tracks translational diffusion to estimate particle size. Translational diffusion rate is proportional to the cube root of particle volume, whereas rotational diffusion rate is proportional to volume, making SPT dramatically less sensitive to size than tumbling measurements are. Furthermore, because SPT requires resolution of single particles, it imposes stringent requirements on label density and/or requires the use of photoactivatable fluorophores. In addition, SPT is very time- and data-intensive: (1) spatial resolution must be high enough to resolve individual particles, (2) the time course must be long enough to capture at least millisecond-scale trajectories, and (3) multiple acquisitions are required to build up an interpretable distribution, as each field of view can only include a small number of particles. Tumbling, by contrast, can be measured in bulk with many fluorophores in one pixel; tumbling is also much faster than translational diffusion, shortening the required observation time by &approx;3 orders of magnitude. Therefore, relative to SPT, tumbling measurements reveal size information with orders of magnitude less data and time, and they are far more flexible in their sample and hardware requirements. </li>
   <li>Fluorescence correlation spectroscopy (<strong>FCS</strong>) 
 
   [<a class="citation" href="http://doi.org/10.1103/PhysRevLett.29.705" title="Thermodynamic Fluctuations in a Reacting System—Measurement by Fluorescence Correlation Spectroscopy; D. Magde, E. Elson, W. W. Webb; Phys. Rev. Lett. 29, 705 (1972)">Magde 1972</a>]
 
-  measures translational diffusion time by brightness fluctuations (single fluorophore dwell times) within a focal volume. FCS suffers from many of the downsides of SPT. It can tolerate up to a few fluorophores in the focal volume at one time, but it produces less information per particle. FCS is conventionally implemented on a point scanning instrument, further decreasing speed.</li>
+  measures translational diffusion time by brightness fluctuations as fluorophores pass through a focal volume. Because it is also measuring translational diffusion, FCS suffers from many of the downsides of SPT. Although it can tolerate up to a few fluorophores in the focal volume at one time, it produces less information per particle. FCS is implemented on a point scanning instrument, interrogating only one point at a time. Building an image requires raster scanning of the point through the sample, further decreasing speed.</li>
 </ul></p>
 
-<p> In theory, tumbling outperforms these other technologies. Sensitive measurements of size can be made for a single labeled protein of interest with a modest number of time points. Certainly, much method development remains to be done in tumbling, and gaps between simulation and current tools are discussed throughout this work.</p>
+<p> In principle, tumbling measurements outperform these other technologies. Sensitive measurements of size can be made for a single labeled protein of interest with a modest number of time points. Historically, the key downside to tumbling measurements was the size limit of approximately 30 kDa, which is eliminated by the recent incorporation of longer-lived states
+
+[<a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>, 
+
+<a class="citation" href="https://doi.org/10.1021/acs.jpcb.3c01236" title="Sequential Two-Photon Delayed Fluorescence Anisotropy for Macromolecular Size Determination; Y.-H. Lu, M. C. Jenkins, K. G. Richardson, S. Palui, M. S. Islam, J. Tripathy, M. G. Finn, R. M. Dickson; J. Phys. Chem. B, 127, 17, 3861–3869 (2023)">Lu 2023</a>].
+
+We believe it is a particularly fruitful time for development of tumbling-based measurements that take advantage of this expanded size range.</p>
 
 <h4 id="tumbling_time_particle_size">Relationship between tumbling time and particle size</h4>
 
-<p>Throughout this work, we refer to particle size, mass, and volume interchangeably and relate them to the tumbling (rotational diffusion) time. This approach is accurate for spheres of uniform density, which is the simplified case that we address in this work. Even when particles cannot be approximated as spheres, particle size still affects the tumbling time; all other things being equal, larger particles tumble more slowly. However, extracting the absolute particle volume or mass becomes more complicated. For example, an elongated particle will display multiple tumbling times corresponding to rotation about its various axes
+<p>Throughout this work, we refer to particle size, mass, and volume interchangeably and relate them to the tumbling (rotational diffusion) time. This approach is accurate for spheres of uniform density, which is the simplified case that we address in this work. Even when particles cannot be approximated as spheres, particle size still affects the tumbling time; all other things being equal, larger particles tumble more slowly. However, extracting the absolute particle volume or mass becomes more complicated. For example, a very elongated particle may display multiple tumbling times corresponding to rotation about its various axes
 
-[<a class="citation" href="https://doi.org/10.1007/978-0-387-46312-4" title="Principles of Fluorescence Spectroscopy; J. R. Lakowicz; ISBN 978-0-387-31278-1 (2006)">Lakowicz 2006</a>], 
+[<a class="citation" href="https://doi.org/10.1007/978-0-387-46312-4" title="Principles of Fluorescence Spectroscopy; J. R. Lakowicz; ISBN 978-0-387-31278-1 (2006)">Lakowicz 2006</a>]. Even for moderate deviations from spherical, this effect is small; for example, the fluorescence anisotropy of a GFP monomer (a cylinder 4.2 nm high with a diameter of 2.4 nm, PDB ID <a href="https://doi.org/10.2210/pdb1gfl/pdb">1GFL</a>) is well-described by a single tumbling time
 
-and a particle in a membrane will exhibit hindered tumbling
+[<a class="citation" href="https://doi.org/10.1016/S0006-3495(97)78835-0" title="Photobleaching Recovery and Anisotropy Decay of Green Fluorescent Protein GFP-S65T in Solution and Cells: Cytoplasmic Viscosity Probed by Green Fluorescent Protein Translational and Rotational Diffusion; R. Swaminathan, C. P. Hoang, A. S. Verkman; Biophys J., 72, 4, 1900-7 (1997)">Swaminathan 1997</a>,
 
-[<a class="citation" href="https://doi.org/10.1016/S0006-3495(77)85550-1" title="A theory of fluorescence polarization decay in membranes; K. Kinosita Jr, S. Kawato, A. Ikegami, Biophysical Journal, 20, 3, 289-305 (1977)">Kinosita 1977</a>].
+<a class="citation" href="https://doi.org/10.1023/A:1015323606154" title="The Influence of Solvent Viscosity on the Fluorescence Decay and Time-Resolved Anisotropy of Green Fluorescent Protein; K. Suhling, D.M. Davis, D. Phillips; Journal of Fluorescence, 12, 91-95 (2002)">Suhling 2002</a>,
+].
 
-The relationships below are all developed for spheres of uniform density, which we believe is an acceptable model for soluble protein complexes as long as the fluorescent tag can be rigidly attached to the target.</p>
+Much more noticeable deviations occur for particles in membranes, which exhibit hindered tumbling
+
+[<a class="citation" href="https://doi.org/10.1016/S0006-3495(77)85550-1" title="A theory of fluorescence polarization decay in membranes; K. Kinosita Jr, S. Kawato, A. Ikegami, Biophysical Journal, 20, 3, 289-305 (1977)">Kinosita 1977</a>];
+
+although tumbling measurements still reveal sizes of these complexes, the results will not match the models used in this work. The relationships below are all developed for spheres of uniform density, which we believe is an acceptable model for soluble protein complexes as long as the fluorescent tag can be rigidly attached to the target.</p>
 
 <p>The simulation code specifies rotational diffusion rates via a tumbling time input parameter (called <code>diffusion_time</code> in the API), which is equal to \(\frac{1}{2D}\), where \(D\) is the diffusion constant 
 
@@ -270,24 +281,24 @@ limiting our ability to parse it, and Lakowicz does not provide a definition for
 
 <h4 id="cellular_tumbling_times">Expected tumbling times in the cell</h4>
 
-<p>How long does it take protein complexes to tumble? We can estimate the relevant timescales using the <a href="./appendix.html#tumbling_time_particle_size">tumbling time</a> of GFP in a cell as a conversion factor (27 kDa&approx;90 ns, 
+<p>How long does it take protein complexes to tumble? We can estimate the relevant timescales using the <a href="#tumbling_time_particle_size" target="_self">tumbling time</a> of GFP in a cell as a conversion factor (27 kDa &approx; 90 ns, 
 
 [<a class="citation" href="https://doi.org/10.1016/S0006-3495(97)78835-0" title="Photobleaching Recovery and Anisotropy Decay of Green Fluorescent Protein GFP-S65T in Solution and Cells: Cytoplasmic Viscosity Probed by Green Fluorescent Protein Translational and Rotational Diffusion; R. Swaminathan, C. P. Hoang, A. S. Verkman; Biophys J., 72, 4, 1900-7 (1997)">Swaminathan 1997</a>]). 
 
-Consider a common cellular event such as transcription factor binding to DNA. We would expect the 154 kDa <a href="https://en.wikipedia.org/w/index.php?title=Lac_repressor&oldid=1157930134">lac repressor's</a> tumbling time to increase from &approx;300 ns to >10 &mu;s when it binds to DNA and becomes immobilized. In another example, consider the assembly of a large protein complex such as the <a href="https://en.wikipedia.org/w/index.php?title=V-ATPase&oldid=1170092815">lysosomal V-ATPase</a>. When a small protein component (&approx;45 kDa) becomes a part of the soluble V1 subunit, we can expect its tumbling time to rise from &approx;100 ns to &approx;1 &mu;s
+Consider a common cellular event such as transcription factor binding to DNA. We would expect the 154 kDa <a href="https://en.wikipedia.org/w/index.php?title=Lac_repressor&oldid=1157930134">lac repressor's</a> tumbling time to increase from &approx;300 ns to >10 &mu;s when it binds to DNA and becomes immobilized. In another example, consider the assembly of a large protein complex such as the <a href="https://en.wikipedia.org/w/index.php?title=V-ATPase&oldid=1170092815">lysosomal V-ATPase</a>. If a small protein component (&approx;45 kDa) becomes a part of the V1 subunit, we can expect its tumbling time to rise from &approx;100 ns to &approx;1 &mu;s
 
 [<a class="citation" href="https://doi.org/10.1016/S0014-5793(98)01425-2" title="Structure, function and regulation of the vacuolar (H+)-ATPases; M. Forgac; FEBS Letters, 440, 3, 258-263 (1998)">Forgac 1998</a>]. 
 
-Its tumbling time would further increase to >10 &mu;s when the V1 subunit associates with the much larger lysosome to form an active pump. At the extreme end of the scale, very large structures, like viral capsids&mdash;or beads as in <a href="./index.html#general_tumbling_figure">Figure 2</a>&mdash;exhibit tumbling times of 10<sup>-5</sup>-10<sup>-4</sup> seconds 
+Its tumbling time would further increase to >10 &mu;s when the V1 subunit associates with the membrane-bound V0 subunit to form an active pump. At the extreme end of the scale, very large structures, like viral capsids&mdash;or beads as in <a href="./index.html#general_tumbling_figure">Figure 2</a>&mdash;exhibit tumbling times of 10<sup>-5</sup>-10<sup>-3</sup> seconds 
 
 [<a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>].</p>
 
 <h4 id="definition_tumbling_terms">Quantifying alignment of a population of particles</h4>
 
-<p>Colloquially, <strong>alignment</strong> assesses how "lined up" a population of molecules is. Formally, for an individual molecule, we chose to define alignment as the absolute value of the cosine of the angle between the external reference (e.g. polarization of the input beam) and the dipole of the molecule. (From an absorption standpoint, pointing straight up is the same as pointing straight down, hence the absolute value.) By taking the mean of this value over many particles, we determine the alignment of a population (equation 2). An alignment of 1 indicates all dipoles are parallel to the reference; an alignment of 0 indicates random dipole directions. Most real-world optical tumbling measurements involve partially aligned populations, with an alignment between 0 and 1.  </p>
+<p>Colloquially, <strong>alignment</strong> assesses how "lined up" a population of molecules is. Formally, for an individual molecule, we define alignment as the square of the cosine of the angle between the external reference (e.g. polarization of the input beam) and the dipole of the molecule. From an absorption standpoint, and for alignment, pointing straight up is the same as pointing straight down. By taking the mean of this value over many particles, we determine the alignment of a population (equation 2). An alignment of 1 indicates all dipoles are parallel to the reference; an alignment of 0 indicates all dipoles are perpendicular to the reference. Randomly oriented dipoles have an alignment of \(\frac{1}{3}\). Most real-world optical tumbling measurements involve partially aligned populations, with an alignment between \(\frac{1}{3}\) and 1.</p>
 
 <div>
-  $$\begin{equation}Alignment = \left\langle|cos(&theta;)|\right\rangle\end{equation}$$
+  $$\begin{equation}\text{Alignment} = \left\langle\cos^{2}(&theta;)\right\rangle\end{equation}$$
 </div>
 
 <p>Experimentally, the alignment of the fluorophores' emission dipoles is assessed by collecting the emitted fluorescence in parallel and perpendicularly polarized channels (relative to the input beam). For ease of visual inspection, it is sometimes convenient to condense the two detectors' output to a single quantity that captures the enrichment of parallel over perpendicular signal. Throughout this work, we use the <strong>polarization</strong> \(P\) (equation 3), where &parallel; and &perp; indicate the signal in those channels.</p>
@@ -296,7 +307,7 @@ Its tumbling time would further increase to >10 &mu;s when the V1 subunit associ
   $$\begin{equation}P = \frac{&parallel;\text{ }- &perp;}{&parallel; \text{ } + &perp;}\end{equation}$$
 </div>
 
-<p>Our simulated detectors are both equally effective at detecting photons, but any two actual lightpaths will contain some differences in transmission efficiency. To correct for these transmission differences in experimental data, we include a g factor (equal to \(\frac{&parallel;}{&perp;}\) for a fully unpolarized sample), giving us a corrected polarization (equation 4).</p>
+<p>Our simulated detectors are both equally effective at detecting photons, but any two actual lightpaths will contain some differences in transmission efficiency. To correct for these transmission differences in experimental data, we include a \(g \)factor (equal to \(\frac{&parallel;}{&perp;}\) for a fully unpolarized sample), giving us a corrected polarization (equation 4).</p>
 
 <div>
   $$\begin{equation}P = \frac{&parallel;\text{ }- &perp;*g}{&parallel; \text{ } + &perp;*g}\end{equation}$$
@@ -306,25 +317,25 @@ Its tumbling time would further increase to >10 &mu;s when the V1 subunit associ
 
 <p>To provide a facile on-ramp for new users, we include a simple demonstration of a tumbling simulation below.</p>
 
-<p>To use any of the code functionality, you will first need to download fluorophore_rotational_diffusion.py from <a href='https://github.com/AndrewGYork/tools/blob/master/fluorophore_rotational_diffusion.py'>GitHub</a> (or from any of the figure subfolders in this manuscript) and place it in the same directory as your script. Your script will import this library. We also import numpy and matplotlib to help us out as we go.</p>
+<p>To use any of the code functionality, you will first need to download <code>fluorophore_rotational_diffusion.py</code> from <a href='https://github.com/AndrewGYork/tools/blob/master/fluorophore_rotational_diffusion.py'>GitHub</a> and place it in the same directory as your script. Your script should import this library. We also import numpy and matplotlib.</p>
 
-<pre><code class="language-python">from fluorophore_rotational_diffusion import Fluorophores, FluorophoreStateInfo
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
 from numpy.random import uniform
-import numpy as np
-import matplotlib.pyplot as plt 
+from fluorophore_rotational_diffusion import Fluorophores, FluorophoreStateInfo 
 </code></pre>
 <p></p>
 
-<p>The simplest use case is (debatably) a steady-state fluorescence anisotropy measurement, in which a population of fluorophores is excited with linearly polarized light and the integrated emission in parallel and perpendicular channels is recorded. To set up and run such an experiment, execute the following code. Note that the intensity is defined in saturation units, where intensity x will excite a fraction of the available fluorophores equal to 1-2<sup>-x</sup>. Time units aren't specified, so be consistent with whatever time units you use for tumbling time and fluorescence lifetime. It is often convenient to think of the base time unit as nanoseconds. The times here are approximately correct for GFP; play with them and see how it affects the polarization! You can also adjust the number of molecules, the intensity of the light, and the excitation polarization.</p>
+<p>The simplest use case is (debatably) a steady-state fluorescence anisotropy measurement, in which a population of fluorophores is excited with linearly polarized light and the integrated emission in parallel and perpendicular channels is recorded. To set up and run such an experiment, execute the following code. Note that the intensity is defined in saturation units, where intensity \(x\) will excite a fraction of the available fluorophores equal to \(1-2^{-x}\). Time units aren't specified, so be consistent with whatever time units you use for tumbling time and fluorescence lifetime. For example, you may choose to think of the base time unit as nanoseconds. The times here are approximately correct for GFP in a cell; play with them and see how it affects the polarization! You can also adjust the number of molecules, the intensity of the light, and the excitation polarization.</p>
 
 <pre><code class="language-python"># Set up the fluorophores object and run the simulation
-tumbling_time_ns = 60
+tumbling_time_ns = 90
 fluorescence_lifetime_ns = 2
 state_info = FluorophoreStateInfo()
-state_info.add('ground') # molecules will default to being in first state you specify
+state_info.add('ground') # molecules default to being in the first state you specify
 state_info.add('excited', lifetime=fluorescence_lifetime_ns,
                final_states='ground')
-a = Fluorophores(number_of_molecules=1e7,
+a = Fluorophores(number_of_molecules=5e7,
                  diffusion_time=tumbling_time_ns,
                  state_info=state_info)
 
@@ -337,7 +348,7 @@ for i in range(10):
 </code></pre>
 <p></p>
 
-<p>We now would like to read out the results from this population of fluorophores. All of the state transition events were being tracked during the simulation, so we call <code>get_xyzt_at_transitions</code> to obtain 1D arrays with X, Y, Z, T coordinates corresponding to each transition. Note that X, Y, and Z here are orientations, not positions; T is time. If we assume each transition results in emission, we can then probabilistically assign that emission photon to a detector channel (X or Y), weighted by the particle's orientation.</p>
+<p>We now would like to read out the results from this population of fluorophores. All of the state transition events were being tracked during the simulation, so we call <code>get_xyzt_at_transitions</code> to obtain 1D arrays with <code>x</code>, <code>y</code>, <code>z</code>, <code>t</code> coordinates corresponding to each transition. Note that <code>x</code>, <code>y</code>, and <code>z</code> here are components of the orientation vector, not positions; <code>t</code> is time. If we assume each transition results in emission, we can then probabilistically assign that emission photon to a detector channel (X or Y), weighted by the particle's orientation.</p>
 
 <pre><code class="language-python"># Calculate steady-state anisotropy
 x, y, z, t = a.get_xyzt_at_transitions('excited', 'ground')
@@ -350,16 +361,20 @@ total_y = sum(in_channel_y)
 polarization = (total_x - total_y) / (total_x + total_y)
 print('')
 print('Total x (parallel) counts:', total_x)
-print('Total y (parallel) counts:', total_y)
-print('Polarization:', round(polarization, 2))
+print('Total y (perpendicular) counts:', total_y)
+print('Polarization: {:0.2f}'.format(polarization))
+# Sample output from this code (your results will vary slightly)
+# Total x (parallel) counts: 67139
+# Total y (perpendicular) counts: 24167
+# Polarization: 0.47
 </code></pre>
 <p></p>
 
-<p>If we wanted to see when these emission events occurred (i.e. do "time resolved fluorescence anisotropy" instead of "steady-state"), we need to histogram the emissions from the two detectors in time.</p>
+<p>If we want to see when these emission events occurred (i.e. do "time resolved fluorescence anisotropy" instead of "steady-state"), we need to histogram the emissions from the two detectors in time.</p>
 
 <pre><code class="language-python"># Calculate time-resolved anisotropy
 t_x, t_y = t[in_channel_x], t[in_channel_y]
-bins = np.linspace(0, 3, 200)
+bins = np.linspace(0, 5*fluorescence_lifetime_ns, 200)
 bin_centers = (bins[1:] + bins[:-1])/2
 (hist_x, _), (hist_y, _) = np.histogram(t_x, bins),  np.histogram(t_y, bins)
 
@@ -371,15 +386,20 @@ plt.title(
     "Simulation of classic time-resolved anisotropy decay\n" +
     r"$\tau_f$=%0.1f, $\tau_d$=%0.1f"%(a.state_info['excited'].lifetime,
                                        a.orientations.diffusion_time))
-plt.xlabel(r"Time (t/$\tau_f$)")
+plt.xlabel("Time (ns)")
 plt.ylabel("Photons per time bin")
 plt.legend(); plt.grid('on')
 plt.savefig("test_classic_anisotropy_decay.png"); plt.close()
 print("done.")
+# Result will be a file on disk with the graph similar to the graph below.
 </code></pre>
 <p></p>
 
-<p>The above example is also available within fluorophore_rotational_diffusion.py in <code>_test_fluorophores_anisotropy_decay_plot()</code>. Further documentation of the fluorophore rotational diffusion API is available in docstrings for each function. The scripts that generate each of the simulation figures are available on <a href="https://github.com/AndrewGYork/tumbling_is_general">GitHub</a> with this manuscript.</p>
+<figure id="tutorial_output">
+<img src="./figures/SI_tutorial/test_classic_anisotropy_decay.png" alt="Output of tutorial showing fluorescence anisotropy" id="triplet_lifetime_image">
+</figure>
+
+<p>The above example is also available within <code>fluorophore_rotational_diffusion.py</code> in <code>_test_fluorophores_anisotropy_decay_plot()</code>. Further documentation of the fluorophore rotational diffusion API is available in docstrings for each function. The scripts that generate each of the simulation figures are available on <a href="https://github.com/AndrewGYork/tumbling_is_general">GitHub</a> with this manuscript.</p>
 
 <h4 id="polarization_ratio_reduction">Dynamic range of polarization ratios: theory and experiment</h4>
 

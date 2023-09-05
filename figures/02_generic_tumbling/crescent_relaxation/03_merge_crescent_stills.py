@@ -17,7 +17,7 @@ Path.mkdir(out_path, exist_ok=True)
 mpl.rcParams['mathtext.default'] = 'regular'
 
 # also import the quantification so we can provide a graph
-path_csv = cur / '01_crescent_orientation_relaxation.csv'
+path_csv = cur / '01_crescent_alignment_relaxation.csv'
 results = pd.read_csv(path_csv)
 diff2diam = {21746: 40, 73394: 60, 339789: 100, 2718318: 200}
 diff2color = {21746: '#0072b2', 73394: '#009e73', 339789: '#e69f00',
@@ -55,11 +55,12 @@ for x in range(201): # number of frames that were previously generated
     # make the plot of the quantification in axis 5
     for name, group in results.groupby('diff_time_ns'):
         ax5.plot(group['time_ns'] / 1000,
-                 group['avg_y_coord'], label=str(diff2diam[name]) + ' nm',
+                 group['avg_y_squared'], label=str(diff2diam[name]) + ' nm',
                  linewidth=1, color=diff2color[name])
     ax5.axvline(x*us_per_x, color='#808080')
     ax5.set_ylabel('Alignment')
     ax5.set_xlabel(r'Time ($\mu$s)')
-    ax5.legend(loc=(0.62, 0.45), title='Diam. (nm)')
+    ax5.set_ylim(0.3, 1.03)
+    ax5.legend(loc='upper right', title='Diam. (nm)')
     plt.savefig(out_path / fname, bbox_inches='tight')
     plt.close()
