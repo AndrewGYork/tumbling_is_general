@@ -132,7 +132,7 @@ for i in range(120):
         ax.spines[:].set_linewidth(1)
     ax2.set_ylabel(r'X Counts ($\parallel$ to probe)', labelpad=1)
     ax3.set_ylabel(r'Y Counts ($\perp$ to probe)', labelpad=1)
-    ax4.set_ylabel('Polarization, (X-Y) / (X+Y)', labelpad=1)
+    ax4.set_ylabel(r'Polarization, (I$_X$ - I$_Y$) / (I$_X$ + I$_Y$)', labelpad=1)
     ax2.ticklabel_format(axis="y", style='sci', scilimits=(0,0))
     ax4.set_yticks(np.linspace(0, 0.5, 6))
     ax4.set_ylim(0, 0.5)
@@ -182,8 +182,7 @@ for i in range(120):
         pump = plt.Rectangle((541, 330-y), 30, 30, facecolor='#00aeef')
         ax1.add_artist(pump)
     elif i < 36:
-        obj = plt.Polygon(np.array([[556, 115], [536, 156], [576, 156]]),
-                          facecolor='#00aeef')
+        obj = plt.Rectangle((541, 125), 30 , 32, facecolor='#00aeef')
         ax1.add_artist(obj)
     # pump emission
     elif i < 46:
@@ -207,8 +206,7 @@ for i in range(120):
         pump = plt.Rectangle((541, 330-y), 30, 30, facecolor='#ec008c')
         ax1.add_artist(pump)
     elif 91 <= i < 94:
-        obj = plt.Polygon(np.array([[556, 115], [536, 156], [576, 156]]),
-                          facecolor='#ec008c')
+        obj = plt.Rectangle((541, 125), 30 , 32, facecolor='#ec008c')
         ax1.add_artist(obj)
     # probe emission
     elif 94 <= i < 109:

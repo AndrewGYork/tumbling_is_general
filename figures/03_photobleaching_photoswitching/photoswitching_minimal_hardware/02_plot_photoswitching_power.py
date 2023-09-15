@@ -72,7 +72,7 @@ for i in range(210): # 100 us every 0.5 us, with 10 static frames at the end - 2
     ax1.text(-100, 0, 'A', fontsize=12, weight='bold')
     ax1.text(-100, 300, 'B', fontsize=12, weight='bold')
     ax1.text(900, 0, 'C', fontsize=12, weight='bold')
-    ax1.text(50, -25, 'Photoswitching, 1e2 Fluorophores', fontsize=8)
+    ax1.text(50, -25, 'Shelving & Unshelving with 100 Fluorophores', fontsize=8)
     # import the images for two different sizes
     for ax, diff in zip([ax3, ax4], ['7p5e+02', '6p0e+03']):
         fstem = 'photoswitching_dt'+diff +'_sat1p250_100_frame{:04d}'.format(j+1)
@@ -122,8 +122,8 @@ for i in range(210): # 100 us every 0.5 us, with 10 static frames at the end - 2
                          color=diff2color[name], alpha=0.3)
     ax2.legend(title='Tumbling Time (ns)', fontsize=8,
                handlelength=1.5)
-    ax2.set_xlabel('Off-Switching Intensity', fontsize=10)
-    ax2.set_ylabel('Polarization, (Y-X) / (Y+X)', fontsize=10)
+    ax2.set_xlabel('Shelving Intensity (Sat. Units)', fontsize=10)
+    ax2.set_ylabel(r'Polarization, (I$_Y$ - I$_X$) / (I$_Y$ + I$_X$)', fontsize=10)
     ax2.set_ylim(-0.05, 0.55)
     ax2.set_yticks(np.linspace(0, 0.5, 6))
     ax2.tick_params(axis='both', which='major', width=1, labelsize=8)
@@ -161,7 +161,7 @@ for i in range(210): # 100 us every 0.5 us, with 10 static frames at the end - 2
     ax7.ticklabel_format(axis="y", style='sci', scilimits=(0,0))
     ax7.set_ylim(0, 4e4)
     ax7.set_ylabel('Counts')
-    ax7.text(0.5, -2e4, 'Y / X = {:0.2f}'.format(
+    ax7.text(0.5, -2e4, r'I$_Y$ / I$_X$ = {:0.2f}'.format(
         c750['y_cdf'].values[-1] / c750['x_cdf'].values[-1]), clip_on=False,
              ha='center')
     # Make a bar chart that displays the counts as they are increasing
@@ -176,7 +176,7 @@ for i in range(210): # 100 us every 0.5 us, with 10 static frames at the end - 2
     ax9.ticklabel_format(axis="y", style='sci', scilimits=(0,0))
     ax9.set_ylim(0, 4e4)
     ax9.set_ylabel('Counts')
-    ax9.text(0.5, -2e4, 'Y / X = {:0.2f}'.format(
+    ax9.text(0.5, -2e4, r'I$_Y$ / I$_X$ = {:0.2f}'.format(
         c6000['y_cdf'].values[-1] / c6000['x_cdf'].values[-1]), clip_on=False,
              ha='center')
     # save the frame for later gif rendering    
