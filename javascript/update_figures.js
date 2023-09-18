@@ -1,32 +1,32 @@
-function jump_to_009() {
+function jump_to_003() {
   var video = document.getElementById("tumbling_animation_video");
   video.play()
   video.pause()
-  video.currentTime = 9;
+  video.currentTime = 3;
   video.play()
 }
 
-function jump_to_067() {
+function jump_to_029() {
   var video = document.getElementById("tumbling_animation_video");
   video.play()
   video.pause()
-  video.currentTime = 67;
+  video.currentTime = 29;
   video.play()
 }
 
-function jump_to_101() {
+function jump_to_050() {
   var video = document.getElementById("tumbling_animation_video");
   video.play()
   video.pause()
-  video.currentTime = 101;
+  video.currentTime = 50;
   video.play()
 }
 
-function jump_to_162() {
+function jump_to_076() {
   var video = document.getElementById("tumbling_animation_video");
   video.play()
   video.pause()
-  video.currentTime = 162;
+  video.currentTime = 76;
   video.play()
 }
 
