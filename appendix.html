@@ -102,7 +102,7 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
 
 <h5 id="time_resolved_anisotropy_imaging">Time-Resolved Fluorescence Anisotropy</h5>
 
-<p>The correction for optical transmission of the two polarization channels ("g factor") was measured daily with a solution of either 10 &mu;M fluorescein in 0.1 M NaOH or 2 &mu;M sulforhodamine 101 in PBS. The g factor was determined as the correction factor that resulted in equal signal in the two detector channels after any initial rapid relaxation in these dye samples (> 1 ns into the recording); it ranged from 0.89 - 0.91 for these experiments. We incorporate this g factor into the <a href="#definition_tumbling_terms" target="_self">polarization calculation</a>.</p>
+<p>The correction for optical transmission of the two polarization channels ("g factor") was measured daily with a solution of either 10 &mu;M fluorescein in 0.1 M NaOH or 2 &mu;M sulforhodamine 101 in PBS. The g factor was determined as the correction factor that resulted in equal signal in the two detector channels after any initial rapid relaxation in these dye samples (> 1 ns into the recording); it ranged from 0.89 - 0.91 for these experiments. We incorporate this g factor into the polarization calculation for all experimental data.</p>
 
 <p>To record the fluorescence anisotropy of the bead samples from the prompt singlets, we used a 15 second integration time (64 sweeps) over a 5.8 &mu;m x 5.8 &mu;m area. Typical power (488 or 561 nm) for fluorescence anisotropy recordings was approximately 0.3 &mu;W measured at the sample.</p>
 
@@ -295,7 +295,7 @@ Its tumbling time would further increase to >10 &mu;s when the V1 subunit associ
 
 <h4 id="definition_tumbling_terms">Quantifying alignment of a population of particles</h4>
 
-<p>Colloquially, <strong>alignment</strong> assesses how "lined up" a population of molecules is. Formally, for an individual molecule, we define alignment as the square of the cosine of the angle between the external reference (e.g. polarization of the input beam) and the dipole of the molecule. From an absorption standpoint, and for alignment, pointing straight up is the same as pointing straight down. By taking the mean of this value over many particles, we determine the alignment of a population (equation 2). An alignment of 1 indicates all dipoles are parallel to the reference ("perfectly aligned"); an alignment of 0 indicates all dipoles are perpendicular to the reference ("perfectly anti-aligned"). Randomly oriented dipoles have an alignment of \(\frac{1}{3}\). Most real-world optical tumbling measurements involve partially aligned populations, with an alignment between \(\frac{1}{3}\) and 1.</p>
+<p>Colloquially, <strong>alignment</strong> assesses how "lined up" a population of molecules is. Formally, for an individual molecule, we define alignment as the square of the cosine of the angle between the external reference (e.g. polarization of the input beam) and the dipole of the molecule. From an absorption standpoint, and for alignment, pointing straight up is the same as pointing straight down. By taking the mean of this value over many particles, we determine the alignment of a population (equation 2). An alignment of 1 indicates all dipoles are parallel to the reference ("perfectly aligned"); an alignment of 0 indicates all dipoles are perpendicular to the reference ("perfectly anti-aligned"). Randomly oriented dipoles have an alignment of \(\frac{1}{3}\). Most optical tumbling measurements involve partially aligned populations, with an alignment between \(\frac{1}{3}\) and 1.</p>
 
 <div>
   $$\begin{equation}\text{Alignment} = \left\langle\cos^{2}(&theta;)\right\rangle\end{equation}$$
@@ -305,12 +305,6 @@ Its tumbling time would further increase to >10 &mu;s when the V1 subunit associ
 
 <div>
   $$\begin{equation}P = \frac{&parallel;\text{ }- &perp;}{&parallel; \text{ } + &perp;}\end{equation}$$
-</div>
-
-<p>Our simulated detectors are both equally effective at detecting photons, but any two actual lightpaths will contain some differences in transmission efficiency. To correct for these transmission differences in experimental data, we include a \(g \) factor (equal to \(\frac{&parallel;}{&perp;}\) for a fully unpolarized sample), giving us a corrected polarization (equation 4).</p>
-
-<div>
-  $$\begin{equation}P = \frac{&parallel;\text{ }- &perp;*g}{&parallel; \text{ } + &perp;*g}\end{equation}$$
 </div>
 
 <h4 id="code_usage_examples">Usage examples for the tumbling simulation code</h4>
@@ -547,36 +541,37 @@ to match the lifetime of the prompt singlet emission, consistent with a model wh
 
 in which an orthogonally polarized STED beam immediately follows a linearly polarized pump beam to deplete off-angle molecules. We refer to this second beam carving the population as ‘crescent’ selection.</p>
 
-<p>With triplets specifically, we predicted that a saturating triplet triggering beam immediately after the initial pump could be used to similarly narrow the angular distribution and increase the dynamic range. We simulated the effects of such a beam on the measured polarization of an ideal triggered emitter (<a href="#crescent_simulation_figure" target="_self">Figure S7</a>). This simulation predicts that a saturating crescent beam can indeed increase the total change in polarization observed during tumbling.</p>
+<p>We predicted that a saturating triplet-triggering beam immediately after the initial pump could be used to similarly narrow the angular distribution and increase the dynamic range. We simulated the effects of such a beam on the measured polarization of an ideal triggered emitter (<a href="#crescent_simulation_figure" target="_self">Figure S7</a>). This simulation predicts that a saturating crescent beam can indeed increase the total change in polarization observed during tumbling.</p>
 
 <figure id="crescent_simulation_figure">
 <img src="./figures/SI_orthogonal_depletion_beam/simulation_crescent_power_v2.png" alt="Simulated results from increasing crescent intensity" id="crescent_simulation_image">
  <figcaption><strong>Figure S7. Simulated increases in dynamic range from an orthogonal ‘crescent’ selection beam.</strong><br>
-  The polarization of the triggered emission was recorded at different intensities of crescent power. Each simulation included 1e6 molecules, a pump (16 pulses of intensity 2), and a probe (16 pulses of intensity 0.25) illumination, matching the 200 ns dwell time and 80 MHz repetition rate of the experimentally available laser.
+  The polarization of the triggered emission was recorded at different intensities of crescent power. Each simulation included 10<sup>6</sup> molecules, a pump (16 pulses of intensity 2), and a probe (16 pulses of intensity 0.25) illumination, matching the 200 ns dwell time and 80 MHz repetition rate of the experimentally available laser.
  </figcaption>
 </figure>
 <p></p>
 
-<p>We then investigated how well crescent selection of mScarlet or mVenus experimentally matches these simulations (<a href="#crescent_experiment_figure" target="_self">Figure S8</a>). With the inclusion of crescent selection, we observe a very small (perhaps negligible) increase in the dynamic range that increases with the power of the crescent beam and is accompanied by a loss in triplet signal. Experimentally, we observe less gain from the crescent selection than the simulation predicts. One possible explanation for this would be mis-alignment of the absorption dipoles of the ground and excited triplet states.</p>
+<p>We then investigated how well crescent selection of mScarlet or mVenus experimentally matches these simulations (<a href="#crescent_experiment_figure" target="_self">Figure S8</a>). With the inclusion of crescent selection, we observe a very small (perhaps negligible) increase in the dynamic range that increases with the power of the crescent beam and is accompanied by a loss in triplet signal. Experimentally, we observe less gain from the crescent selection than the simulation predicts.</p>
 
 <figure id="crescent_experiment_figure">
 <img src="./figures/SI_orthogonal_depletion_beam/expt_crescent_power.png" alt="Experimental results from increasing crescent intensity with triplets" id="crescent_experiment_image">
  <figcaption><strong>Figure S8. Experimentally determined effects of crescent selection on polarization dynamic range.</strong><br>
-  Tumbling of 100 nm beads labeled with (A) mScarlet or (B) mVenus was examined with varying powers of ‘crescent’ selection, using the pulse scheme in <a href="#sp8_schematic_figure" target="_self">Figure S1</a>. Because the crescent beam here was fired 2 ns after the pump beam, excited singlets were still present and some contribution from STED is possible, especially in mScarlet. For mVenus, the spectral separation is such that the 775 nm triggering beam should primarily interact with the triplet state rather than the excited singlet state.
+  Tumbling of 100 nm beads labeled with (A) mScarlet or (B) mVenus was examined with varying powers of ‘crescent’ selection, using the pulse scheme in <a href="#sp8_schematic_figure" target="_self">Figure S1</a>. Because the crescent beam here was fired 2 ns after the pump beam, excited singlets were still present and some contribution from STED is possible, especially in mScarlet. For mVenus, the spectral separation is such that the 775 nm triggering beam should primarily interact with the triplet state rather than the excited singlet state. Laser powers are provided in percent of the total power in the microscope software. 0.5% power is approximately 100 &mu;W and 2% power is approximately 400 &mu;W average power at the sample.
  </figcaption>
 </figure>
 <p></p>
 
-<p>To relate the pump probe simulations more directly to the collected bead data, we needed to estimate the intensity of the experimental crescent selection in saturation units. We compared the total signal loss resulting from experimental and simulated crescent selection (<a href="#crescent_expt_vs_sim_figure">Figure S9</a>), assuming that mScarlet and mVenus are behaving as ideal triggered emitters. The key caveat in this approach is that any potential rotation of the triplet absorption dipole with respect to the singlet will lead to excess signal loss in the experiment versus the simulation, which assumes parallel dipoles.</p>
-
-<p>Because the initial pump beam and the crescent selection beam are orthogonally polarized, we see less than the 50% loss of signal that one would expect from intensity 1 illumination. In mVenus, 0.5% power crescent selection and a simulated intensity of 2 both produce a ~30% loss in the total counts. In mScarlet, 2% power crescent selection and a simulated intensity of 4 both produce a ~50% loss in total counts. Based on this, we selected these two conditions for side-by-side comparison in <a href="./index.html#sp8_tumbling_figure">Figure 6</a>.</p>
+<p>A trivial explanation for this discrepancy between simulation and experiment would be that we are not saturating the triplet triggering enough to change the distribution of triplet orientations. To evaluate this, we need to calibrate our experimental intensity with respect to the saturation units used in the simulation. We estimate saturation of the crescent beam based on the loss of triggered triplet counts when the crescent beam is introduced (<a href="#crescent_expt_vs_sim_figure">Figure S9</a>). In mVenus, 0.5% nominal laser power (&approx;100 &mu;W average power at the sample) in the crescent beam and a simulated intensity of 2 saturation units both produce a &approx;30% loss in the total counts. In mScarlet, 2% nominal power (&approx;400 &mu;W) crescent selection and a simulated intensity of 4 both produce an &approx;50% loss in total counts. We selected these two conditions for side-by-side comparison here and in <a href="./index.html#sp8_tumbling_figure">Figure 6</a>. Based on this loss in signal, we believe that we are using a sufficiently powerful crescent beam that we would expect to see some enhancement of polarization dynamic range.</p>
 
 <figure id="crescent_expt_vs_sim_figure">
 <img src="./figures/SI_orthogonal_depletion_beam/total_cts_expt_vs_simulation.png" alt="Relating crescent experiment and simulation" id="crescent_expt_vs_sim_image">
  <figcaption><strong>Figure S9. Change in total triggered triplets resulting from crescent selection.</strong><br>
-  (A) Simulation of total counts (parallel + perpendicular channels) at 360 &mu;s using a ‘crescent’ selection pulse scheme as described in <a href="#sp8_schematic_figure" target="_self">Figure S1</a>. (B) Experimental results for 100 nm beads coated with mScarlet and interrogated with a crescent pulse scheme. (C) Experimental results for 100 nm beads coated with mVenus and interrogated with a crescent pulse scheme.
+  (A) Simulation of total counts (parallel + perpendicular channels) at 360 &mu;s using a ‘crescent’ selection pulse scheme as described in <a href="#sp8_schematic_figure" target="_self">Figure S1</a>. (B) Experimental results for 100 nm beads coated with mScarlet and interrogated with a crescent pulse scheme. (C) Experimental results for 100 nm beads coated with mVenus and interrogated with a crescent pulse scheme. Units of laser power in (B) and (C) are nominal power in the instrument software (2% &approx; 400 &mu;W average power at the sample).
  </figcaption>
 </figure>
+<p></p>
+
+<p>Our current best guess is that the relative orientation of the singlet and triplet absorption dipoles is responsible for this discrepancy between the simulated and experimental crescent selection. Our simulation assumes that the singlet and triplet absorption dipoles are parallel. If this assumption is violated by mVenus and mScarlet, using a crescent beam to confine the <em>triplet</em> population will not effectively confine the orientations of the <em>singlet</em> dipoles that are regenerated upon triggering. Therefore, we suspect that the singlet and triplet absorption dipoles of mVenus and mScarlet are not parallel; further investigation into their relative orientation would aid in interpretation of our results.</p>
 
 <h3 id="sequences">Sequences of Fluorescent Proteins Used</h3>
 

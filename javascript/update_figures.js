@@ -6,27 +6,27 @@ function jump_to_003() {
   video.play()
 }
 
-function jump_to_029() {
+function jump_to_020() {
   var video = document.getElementById("tumbling_animation_video");
   video.play()
   video.pause()
-  video.currentTime = 29;
+  video.currentTime = 19.5;
   video.play()
 }
 
-function jump_to_050() {
+function jump_to_042() {
   var video = document.getElementById("tumbling_animation_video");
   video.play()
   video.pause()
-  video.currentTime = 50;
+  video.currentTime = 42;
   video.play()
 }
 
-function jump_to_076() {
+function jump_to_067() {
   var video = document.getElementById("tumbling_animation_video");
   video.play()
   video.pause()
-  video.currentTime = 76;
+  video.currentTime = 67;
   video.play()
 }
 
