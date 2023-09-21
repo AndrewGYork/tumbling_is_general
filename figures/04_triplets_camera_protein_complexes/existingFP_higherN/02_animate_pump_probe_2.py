@@ -29,7 +29,7 @@ out_dir.mkdir(exist_ok=True, parents=True)
 plt.style.use(cwd.parents[1] / 'default.mplstyle')
 
 diff2color = {'450': plt.cm.tab10(0), '900': plt.cm.tab10(1),
-              '3000': plt.cm.tab10(3), '450-3000': plt.cm.tab10(4)}
+              '3000': plt.cm.tab10(3), '450+3000': plt.cm.tab10(4)}
 # read in simulation output & process replicates to make mixtures
 results = pd.read_csv('01_pump_probe_n1p0e+06_tqy0p0_9reps_2pulses.csv')
 mixed_list = []
@@ -64,6 +64,8 @@ for ds, rs, label in zip(diff_list, replicate_list, label_list):
         mixed_list.append(df)
 mixed = pd.concat(mixed_list, ignore_index=True)
 mixed['polarization'] = (mixed['x']-mixed['y']) / (mixed['x'] + mixed['y'])
+# cosmetic - change to a + instead of a dash
+mixed.loc[mixed['diff_time_ns'] == '450-3000', 'diff_time_ns'] = '450+3000'
 mixed.to_csv('03_simulated_mixtures.csv')
 # read in background images
 im_list = []
@@ -130,8 +132,8 @@ for i in range(120):
         ax.set_xlabel('Pump-Probe Delay (ns)', labelpad=1)
         ax.tick_params(axis='both', which='major', width=1)
         ax.spines[:].set_linewidth(1)
-    ax2.set_ylabel(r'X Counts ($\parallel$ to probe)', labelpad=1)
-    ax3.set_ylabel(r'Y Counts ($\perp$ to probe)', labelpad=1)
+    ax2.set_ylabel(r'I$_X$ ($\parallel$ to probe)', labelpad=1)
+    ax3.set_ylabel(r'I$_Y$ ($\perp$ to probe)', labelpad=1)
     ax4.set_ylabel(r'Polarization, (I$_X$ - I$_Y$) / (I$_X$ + I$_Y$)', labelpad=1)
     ax2.ticklabel_format(axis="y", style='sci', scilimits=(0,0))
     ax4.set_yticks(np.linspace(0, 0.5, 6))
@@ -142,8 +144,10 @@ for i in range(120):
     # indicate which simulation this is
     n = results['n_fluorophores'].values[0]*2 # should be the same for all
     tqy = results['triplet_QY'].values[0] # should be the same for all
+    n_millions = n / 10**6
     ax3.set_title(
-        r'{:01.1e} fluorophores, $\Phi_{{triplet}}$ {:0.2f}'.format(n, tqy))
+        r'{:0.0f} x 10$^6$ fluorophores, $\Phi_{{triplet}}$ {:0.2f}'.format(
+            n_millions, tqy))
 
     # choose which background image to show
     if 32 < i < 36: # pump excitation hits sample

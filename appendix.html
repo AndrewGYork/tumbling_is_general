@@ -252,7 +252,7 @@ We believe it is a particularly fruitful time for development of tumbling-based 
 
 but we do not address it here.</p>
 
-<p>Our simulation code specifies rotational diffusion rates via a tumbling time input parameter (called <code>diffusion_time</code> in the API), which is equal to \(\frac{1}{2D}\), where \(D\) is the diffusion constant 
+<p>Our simulation code specifies rotational diffusion rates via a tumbling time \(&tau;\) (called <code>diffusion_time</code> in the API), which is equal to \(\frac{1}{2D}\), where \(D\) is the diffusion constant 
 
 [<a class="citation" href="https://doi.org/10.48550/arXiv.1303.1278" title="A &quot;Gaussian&quot; for diffusion on the sphere; A. Ghosh, J. Samuel, arXiv:1303.1278v1 (2013)">Ghosh 2013</a>].
 
@@ -310,6 +310,8 @@ Its tumbling time would further increase to >10 &mu;s when the V1 subunit associ
 <h4 id="intensity_vs_fluence">Intensity versus fluence</h4>
 
 <p>We refer to light <a href="https://en.wikipedia.org/w/index.php?title=Intensity_(physics)&oldid=1167639973">intensity</a> throughout the text (power per unit area). Because our code simulates infinitely short pulses, it would be more strictly accurate to refer to <a href="https://en.wikipedia.org/w/index.php?title=Radiant_exposure&oldid=1059046183">fluence</a> (energy per unit area), as doubling the pulse duration while halving the energy would not change the result. Nevertheless, intensity and fluence are proportional for a constant pulse duration, and because intensity is a more familiar term, we use it throughout in the interest of communication.</p>
+
+<p>Using these infinitely short pulses, we can simulate illumination of longer duration with a succession of pulses over a time interval. Saturation intensities provided throughout the text are the per-pulse intensities.</p>
 
 <h4 id="code_usage_examples">Usage examples for the tumbling simulation code</h4>
 
@@ -417,15 +419,21 @@ print("done.")
     <li>homo FRET between FPs on the bead surface</li>
     <li>free fluorophore that is not conjugated to the target of interest</li>
     <li>rotational motion of the protein on the bead surface</li>
-    <li>angular disagreement between the fluorescence emission and excitation dipoles</li>
+    <li>non-parallel excitation and emission dipoles</li>
   </ul></li>
 </ol>
+
+<h4 id="gated_detection">Detector requirements for triggered triplets</h4>
+
+<p>The process of generating triplets also generates a much larger amount of prompt fluorescence from the pump beam. In the pulse schemes described in <a href="./index.html#triplets_camera_figure">Figure 4</a> and <a href="./index.html#triplets_flow_figure">Figure 5</a>, the pump-generated signal does not contain tumbling information and will dominate the tumbling-relevant triggered triplet (probe) signal if they are not separated. Because we expect that the prompt singlet and triggered triplet signal are identical in spectrum and lifetime, the most straightforward way to disambiguate the two is in the time domain.</p>
+
+<p>There are a few ways one could implement the detector timing. One approach would be to use a time-resolved detector (e.g. a SPAD), but this is more time resolution than is necessary and would reduce the possible photon count rates dramatically. Another approach would be to use a gated camera, blocking out any photons from the pump pulse and only activating the sensor during the probe pulse. Although this discards the pump-generated photons (which could be used to make a fluorescence intensity image), it has the attractive feature of allowing multiple repetitions of pump and probe at ars given delay to be collected within a single camera exposure, which may be required in a photon-limited scenario. A double shutter camera allows collection of both the pump- and probe-generated photons, but the sensor would need to be read out after every pump-probe cycle.</p>
 
 <h4 id="photophysics_comparison">Comparison of rsFPs and triggered triplets</h4>
 
 <p> Reversibly switchable fluorescent proteins (rsFPs) and triggered triplets have different strengths and weaknesses as tumbling reporters. For <strong>rsFPs</strong>:
 <ul style="list-style-type:none">
-  <li>(+) rsFPs can provide many photons per molecule and can be switched many times, allowing for higher signal levels
+  <li>(+) rsFPs can provide many photons per molecule per switching cycle and can be switched many times, allowing for higher signal levels
 
     [<a class="citation" href="https://doi.org/10.7554/eLife.00248" title="OrsEGFP2 enables fast RESOLFT nanoscopy of living cells; T. Grotjohann, I. Testa, M. Reuss, T. Brakemann, C. Eggeling, S.W. Hell, S. Jakobs; eLife 1:e00248 (2012)">Grotjohann 2012</a>].</li>
   <li>(-) rsEGFP2
@@ -438,8 +446,8 @@ print("done.")
 
   <a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>]. 
 
-  As a result, their active states are largely unavailable during some of the most relevant tumbling times for cellular proteins.</li>
-  <li>(-) The absorption dipole of the photoswitching transition and the fluorescence excitation of the active form are rotated by approximately 30 degrees for the rsFP Dronpa
+  As a result, their active states are largely unavailable during some of the most <a href='#cellular_tumbling_times' target="_self">relevant tumbling times</a> for cellular proteins.</li>
+  <li>(-) The absorption dipole of the photoswitching transition is not parallel to the absorption dipole for fluorescence excitation of the active form of the rsFP. For the rsFP Dronpa, this angular offset is approximately 30 degrees
 
   [<a class="citation" href="https://doi.org/10.1021/jp507094f" title="Real-Time Monitoring of Chromophore Isomerization and Deprotonation during the Photoactivation of the Fluorescent Protein Dronpa; D. Yadav, F. Lacombat, N. Dozova, F. Rappaport, P. Plaza, A. Espagne; J. Phys. Chem. B, 119, 6, 2404-2414 (2015)">Yadav 2015</a>], 
 
@@ -449,21 +457,21 @@ print("done.")
 
 <p><strong>Triggered triplets</strong>, also known as optically activated delayed fluorescence, exhibit a nearly orthogonal set of pros and cons, with distinct advantages in biologically-relevant size scales:
 <ul style="list-style-type:none">
-  <li>(+) Triplets should be available as soon as the fluorescent excited state has fully decayed (5-10 fluorescence lifetimes).</li>
+  <li>(+) Triplets are available as soon as the fluorescent excited state has fully decayed (5-10 fluorescence lifetimes).</li>
   <li>(+) Even if the triplet absorption dipole is rotated with respect to the initial excitation, emission appears to be from the excited singlet
 
-  [<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>]; 
+  [<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>].
 
-  this rotation back to the initial state should negate any absorption dipole rotation between the singlet and triplet. We therefore (optimistically) expect a similar amount of dipole rotation here as time-resolved fluorescence anisotropy.</li>
+  Given that, we expect that the relevant dipoles are the singlet absorption and the singlet emission, which are close to parallel in many common fluorophores, allowing for high maximum polarization of the triggered triplet emission. If the triplet absorption dipole happens to align with the singlet emission dipole, controlling the polarization of the triggering light could further boost polarization dynamic range, e.g. through <a href="#crescent_selection" target="_self">crescent selection</a>.</li>
   <li>(+) Triplets "clean up after themselves;" they return to the ground state on their own in milliseconds, obviating the need for subsequent illumination to reduce background.</li>
-  <li>(+) Triplet triggering back to an emissive singlet state has been observed in commonly used fluorophores
+  <li>(+) Triplet triggering back to an emissive singlet state has been observed in commonly used fluorophores (<a href="./index.html#sp8_tumbling_figure">Figure 6</a> and
 
-  [<a class="citation" href="https://doi.org/10.1021/acs.jpca.9b11040" title="Triplet Shelving in Fluorescein and Its Derivatives Provides Delayed, Background-Free Fluorescence Detection; A. A. Demissie, R. M. Dickson; J Phys Chem A 124, 7, 1437-1443 (2020)">Demissie 2020</a>,
+  <a class="citation" href="https://doi.org/10.1021/acs.jpca.9b11040" title="Triplet Shelving in Fluorescein and Its Derivatives Provides Delayed, Background-Free Fluorescence Detection; A. A. Demissie, R. M. Dickson; J Phys Chem A 124, 7, 1437-1443 (2020)">Demissie 2020</a>,
 
-  <a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>], 
+  <a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>), 
 
   so re-tagging a given target protein may not be required.</li>
-  <li>(-) Critically, the signal for triplets with current fluorophores is very low. Intersystem crossing rates are &approx;1% for common fluorophores, so 100 initial excitation events are required for each triplet generation.</li>
+  <li>(-) The signal from triggered triplets with current fluorophores is very low relative to the number of singlets generated by the initial illumination. Approximately 100 prompt singlet photons are generated for each triggered triplet photon.</li>
   <li>(-) Even with optimized fluorophores, triplet triggering would produce at most one photon per two input photons (triplet generation and trigger).</li>
 </ul></p>
 
