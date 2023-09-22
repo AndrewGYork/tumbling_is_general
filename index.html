@@ -259,13 +259,13 @@ but the essence of this result does not depend on the details of the shelving me
 
 <h4 id="camera_section">Case Study 2: Can we measure tumbling at billions of voxels per second?</h4>
 
-<p>To study spatially heterogeneous samples (e.g. cells, tissues), we would like to map protein-protein interactions across the entire sample, ideally parallelized over a large field of view simultaneously. For live samples, we also want to reveal the temporal dynamics of these interactions. State-of-the-art lightsheet microscopes 
+<p>To study spatially heterogeneous samples (e.g. cells, tissues), we would like to map protein-protein interactions across the entire sample. For live samples, we also want to reveal the temporal dynamics of these interactions. State-of-the-art lightsheet microscopes 
 
 [<a class="citation" href="https://doi.org/10.5281/zenodo.3244420" title="High NA single-objective light-sheet; A. Millett-Sikking, K. M. Dean, R. Fiolka, A. Fardad, L. Whitehead, A. G. York; Zenodo. (2019)">Millett-Sikking 2019</a>]
 
 can measure fluorescence intensity in 3D at video rate. What would it take to incorporate tumbling as an additional channel of information on such a microscope?</p>
 
-<p>A critical component of fast imaging systems is camera-based detection, where signal from a 2D plane is recorded in parallel. A standard scientific camera can acquire an image on millisecond timescales, but tumbling involves nanosecond- or microsecond-scale dynamics. To access these shorter timescales, fluorescence anisotropy is typically recorded with a single pixel detector with that counts individual photons with picosecond time resolution
+<p>A critical component of fast imaging systems is camera-based detection, where signal from a 2D plane is recorded in parallel. A standard scientific camera can acquire an image on millisecond timescales, but tumbling involves nanosecond- or microsecond-scale dynamics. To access these shorter timescales, fluorescence anisotropy is typically recorded with a single pixel detector that counts individual photons with sub-nanosecond time resolution
 
 [<a class="citation" href="https://doi.org/10.1007/978-0-387-46312-4" title="Principles of Fluorescence Spectroscopy; J. R. Lakowicz; ISBN 978-0-387-31278-1 (2006)">Lakowicz 2006</a>,
 
@@ -279,13 +279,13 @@ Images are then (very slowly) formed by raster scanning a point through the samp
 
 but the photon count rates they support are orders of magnitude lower than modern cameras.</p>
 
-<p>With current camera technology, a “pump-probe” imaging scheme could allow imaging an entire field of view simultaneously.  Time resolution is encoded by a variable delay between pump and probe laser pulses. Each camera exposure records a single delay, and a modest number of points in the tumbling time course can be acquired as a series of exposures at varying delays (<a href="#triplets_camera_figure" target="_self">Figure 4</a>, left panel). The 7 delays we simulate yield excellent prediction of intermediate points, suggesting that dense sampling in time is not required to capture tumbling dynamics. Critically, such an approach would be compatible with both widefield and lightsheet microscopes.</p> 
+<p>With current camera technology, a “pump-probe” imaging scheme could allow imaging an entire field of view simultaneously.  Time resolution is encoded by a variable delay between pump and probe laser pulses; each camera exposure records a single delay (<a href="#triplets_camera_figure" target="_self">Figure 4</a>). The 7 delays we simulate yield excellent prediction of intermediate delays, suggesting that a modest number of delays is sufficient to capture tumbling dynamics. Critically, such an approach would be compatible with both widefield and lightsheet microscopes.</p> 
 
-<p>On the fluorophore side, we need a long-lived state that can be triggered to emit by a probe beam, such as an rsFP or a triggered triplet. Triggered triplets (also known as optically activated delayed fluorescence) refers to millisecond-lived triplet states that can emit prompt fluorescence when excited with far-red light
+<p>On the fluorophore side, we need a long-lived state (e.g. an rsFP or a triplet) that can be triggered to emit by a probe beam. "Triggered triplets" (also known as optically activated delayed fluorescence) refers to millisecond-lived triplet states that can emit prompt fluorescence when excited with far-red light
 
 [<a class="citation" href="https://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B, 125, 20, 5200-5209 (2021)">Peng 2021</a>]. 
 
-Triplets can be generated from the excited singlet, leading to a convenient pulse scheme where a pump pulse at the traditional absorption wavelength (e.g., 488 nm for fluorescein) is followed by a far-red probe pulse
+Triplets can be generated from the excited singlet, leading to a convenient pulse scheme where a pump pulse at the traditional absorption wavelength (e.g. 488 nm for fluorescein) is followed by a far-red probe pulse
 
 [<a class="citation" href="https://doi.org/10.1021/acs.jpca.9b11040" title="Triplet Shelving in Fluorescein and Its Derivatives Provides Delayed, Background-Free Fluorescence Detection; A. A. Demissie, R. M. Dickson; J Phys Chem A 124, 7, 1437-1443 (2020)">Demissie 2020</a>]. 
 
@@ -293,7 +293,7 @@ Recently, it was experimentally reported that the triggered triplet signal is co
 
 [<a class="citation" href="https://doi.org/10.1021/acs.jpcb.3c01236" title="Sequential Two-Photon Delayed Fluorescence Anisotropy for Macromolecular Size Determination; Y.-H. Lu, M. C. Jenkins, K. G. Richardson, S. Palui, M. S. Islam, J. Tripathy, M. G. Finn, R. M. Dickson; J. Phys. Chem. B, 127, 17, 3861–3869 (2023)">Lu 2023</a>]. 
 
-Here, we focus on triplets rather than rsFPs because they don't have a microsecond-lived intermediate state, allowing access to nanosecond timescales (see <a href="./appendix.html#photophysics_comparison">Appendix</a> for a comparison of rsFPs and triplets).</p>
+Here, we focus on <a href="./appendix.html#photophysics_comparison">triplets rather than rsFPs</a> because they don't have a microsecond-scale dead time following the pump beam, allowing access to nanosecond timescales.</p>
 
 <p> In our exploration of pump-probe triplet imaging, we simulate a linearly polarized pump pulse and an orthogonally polarized probe (trigger) pulse (<a href="#triplets_camera_figure" target="_self">Figure 4</a>). Two <a href="./appendix.html#gated_detection">gated</a> but otherwise standard cameras record fluorescence following a polarizing beamsplitter. We simulate a sample of labeled protein with three binding states: unbound, bound to a small partner, or bound to a large partner. Our results show distinguishable tumbling curves for all three binding states. Importantly, the tumbling curve of a mixture of the unbound and large states is also distinguishable from that of a binding partner of intermediate mass; we anticipate such mixtures will be the norm in a real sample. One could imagine applying this architecture to many biological systems, e.g.:<ul>
   <li>Assembly of multipart protein machines, e.g. the V-ATPase [<a class="citation" href="https://doi.org/10.1016/S0014-5793(98)01425-2" title="Structure, function and regulation of the vacuolar (H+)-ATPases; M. Forgac; FEBS Letters, 440, 3, 258-263 (1998)">Forgac 1998</a>]</li>
@@ -315,8 +315,8 @@ Here, we focus on triplets rather than rsFPs because they don't have a microseco
 </tr>
 </table>
  <figcaption><strong>Figure 4. Pump-probe measurements with triggered emitters allow massively parallel tumbling measurements.</strong><br>
-  <strong>(A)</strong> Schematic of a pump-probe measurement with triggered triplets. The pump pulse (blue) generates fluorescence (green) in the sample. Some of these fluorescent molecules convert to triplets (faint pink), which, after a variable delay, are triggered to fluoresce (green) by the probe beam (pink). A fast shutter separates signal from the pump and probe pulses. A polarizing beamsplitter followed by two cameras records the polarized fluorescence at all points in the image. A sequence of delays is captured by successive images. Inset from sample shows a cartoon representation of how tumbling times could correspond to spatially compartmentalized binding events within a cell. 
-  <strong>(B)</strong> Intensities in the X and Y detector channels (I<sub>X</sub>, I<sub>Y</sub>) and resulting polarization for tumbling times of 450 ("unbound"), 900 ("small complex"), and 3000 ns ("large complex"), as well as an equal part mixture of 450 and 3000 ns tumbling times. Simulated pump and probe pulses were 50 ns in duration with saturation <a href="./appendix.html#intensity_vs_fluence">intensity</a> 0.25. Points indicate means of 6 replicates, with shaded areas indicating &plusmn; standard deviation.
+  <strong>(A)</strong> Schematic of a pump-probe simulation with triggered triplets. The pump pulse (blue) generates fluorescence (green) in the sample. Some of these fluorescent molecules convert to triplets (faint pink), which, after a variable delay, are triggered to fluoresce (green) by the probe beam (pink). A fast shutter separates signal from the pump and probe pulses. A polarizing beamsplitter followed by two cameras records the polarized fluorescence at all points in the image. A sequence of delays is captured by successive images. Inset from sample shows a cartoon representation of how tumbling times could correspond to spatially compartmentalized binding events within a cell. 
+  <strong>(B)</strong> Intensities in the X and Y detector channels (I<sub>X</sub>, I<sub>Y</sub>) and resulting polarization for tumbling times of 450 ("unbound"), 900 ("small complex"), and 3000 ns ("large complex"), as well as an equal part mixture of 450 and 3000 ns tumbling times. Pump and probe pulses were 50 ns in duration with <a href="./appendix.html#intensity_vs_fluence">intensity</a> 0.25 saturation units. Points indicate means of 6 replicate simulations, with shaded areas indicating &plusmn; standard deviation.
  </figcaption>
 </figure><p></p>
 
@@ -352,15 +352,17 @@ two 10 &mu;m wide laser spots separated by 50 &mu;m would produce a 5 &mu;s dela
  <figcaption><strong>Figure 5. Pump-probe based tumbling measurements are compatible with flow cytometry.</strong><br>
   <strong>Top:</strong> Cartoon of a cell in a flow cytometer, interrogated at different tumbling delays as it proceeds through the flow cell. Triggered triplet photophysics are illustrated (green=singlet, pink=triplet), generated by a linearly polarized pump beam (blue) and a circularly (XY plane) or linearly (X) polarized probe beam (pink). A short delay with pulsed pump and probe in one location is shown on the left, with two spatially generated delays with continuous pump and probe illumination in the middle and right.
   <strong>Bottom left:</strong> Cartoon of how binding states could correspond to rotational diffusion times.
-  <strong>Bottom right:</strong> Evolution of the polarization signal over time for samples of different tumbling times. Points are means of 12 replicate simulations, each with 10<sup>6</sup> molecules and 1% triplet yield. Shaded areas are &plusmn; standard deviation. The pink box highlights the decay that the cartoon would be currently measuring.
+  <strong>Bottom right:</strong> Evolution of the polarization signal versus delay for samples of different tumbling times. Points are means of 12 replicate simulations, each with 10<sup>6</sup> molecules and 1% triplet yield. Shaded areas are &plusmn; standard deviation. The pink box highlights the delay that the cartoon would be currently measuring.
  </figcaption>
 </figure><p></p>
 
 <h4 id="experimental_section">Case Study 4: Can we measure tumbling on an existing commercial instrument?</h4>
 
-<p>To demonstrate the accessibility and robustness of pump probe pulse schemes with triggered triplets, we simulated and measured tumbling on our commercial confocal microscope. Although the functionality is not unmasked in software, the necessary hardware exists on certain commercial systems (in this case, Leica SP8, <a href="./appendix.html#SP8_schematic_figure">Figure S1</a>). We used linearly polarized illumination to pump fluorophores into the triplet state and orthogonally polarized 775 nm light to <a href="./appendix.html#crescent_selection">confine the triplet population</a> and to trigger triplets to emit. We used successive sweeps of the resonant scanner to interrogate the sample at 60 &mu;s intervals.</p>
+<p>Most biologists buy microscope systems rather than building them, relying on vendors and distributors to get the next generation of microscopy technology into their labs. As a result, the impact of new techniques is often delayed, as the commercialization process can take years. The systems we described above would all require some amount of custom build. Nevertheless, although the functionality is not unmasked in software, the necessary hardware for a tumbling measurement exists on many commercial confocal systems. To motivate vendors to support this use case, we used our unmodified Leica SP8 confocal microscope to make a tumbling measurement.</p>
 
-<p>To generate fluorescent protein labeled samples at a variety of known sizes, we adsorbed the fluorescent protein mVenus 
+<p>On our SP8 (<a href="./appendix.html#SP8_schematic_figure">Figure S1</a>), we generated triplets with the white light laser and triggered them with the 775 nm laser (originally intended for STED). We used successive sweeps of the resonant scanner to interrogate the sample at 60 &mu;s intervals; more flexible software control over the AOTF would have allowed microsecond control over the lasers without this hack. We used a polarizing beamsplitter and two detectors to resolve the emission polarization, but these measurements could also be made with the built-in detectors and polarizer.</p>
+
+<p>To generate fluorescent protein-labeled samples at a variety of known sizes, we adsorbed the fluorescent protein mVenus 
 
 [<a class="citation" href="http://doi.org/10.1021/bi0516273" title="Cyan and Yellow Super Fluorescent Proteins with Improved Brightness, Protein Folding, and FRET Förster Radius; G.-J. Kremers, J. Goedhart, E. B. van Munster, T. W. J. Gadella; Biochemistry, 45, 21, 6570-6580 (2006)">Kremers 2006</a>]
 
@@ -380,11 +382,11 @@ we found that low-intensity 775 nm illumination produced fluorescence only if th
 
 we replicate this and observe a similar triplet lifetime for mScarlet (<a href="./appendix.html#triplet_lifetimes_figure">Figure S4</a>). Following far-red excitation, the triggered fluorescence itself is short-lived, with a lifetime similar to that of the prompt fluorescence from the singlet (&approx;2 ns, <a href="./appendix.html#triplet_tcspc_figure">Figure S5</a>, <a href="./appendix.html#triplet_tcspc_overlaid_figure">Figure S6</a>). These characteristics are consistent with triggered fluorescence from the triplet state, which we were pleased to find in mScarlet.</p>
 
-<p>Most importantly, we then evaluated whether the triggered triplet emission could report bead size (<a href="#sp8_tumbling_figure" target="_self">Figure 6</a>). We observe distinct tumbling decays from the 4 bead diameters we explored; these results indicate that the triplet state indeed preserves some alignment information, consistent with
+<p>Most importantly, we then evaluated whether the triggered triplet emission could report bead size (<a href="#sp8_tumbling_figure" target="_self">Figure 6</a>). We observe distinct tumbling decays from the 4 bead diameters we explored; these results indicate that the tumbling of the triplet state indeed reveals alignment, consistent with
 
 [<a class="citation" href="https://doi.org/10.1021/acs.jpcb.3c01236" title="Sequential Two-Photon Delayed Fluorescence Anisotropy for Macromolecular Size Determination; Y.-H. Lu, M. C. Jenkins, K. G. Richardson, S. Palui, M. S. Islam, J. Tripathy, M. G. Finn, R. M. Dickson; J. Phys. Chem. B, 127, 17, 3861–3869 (2023)">Lu 2023</a>].
 
-Our experimental results also qualitatively match simulations, with similar time dynamics but a reduction in the magnitude of the polarization changes (see <a href="./appendix.html#polarization_ratio_reduction">Appendix</a> for further discussion). </p>
+Our experimental results also qualitatively match simulations, with similar time dynamics but a <a href="./appendix.html#polarization_ratio_reduction">reduction in the magnitude</a> of the polarization changes. </p>
 
 <figure id="sp8_tumbling_figure">
 <img src="./figures/06_triplets_SP8_confocal/simulation_expt_beads_mScarlet.png" alt="Experimental data showing tumbling of fluorescent-protein labeled beads" id="sp8_tumbling">
@@ -399,17 +401,17 @@ Our experimental results also qualitatively match simulations, with similar time
 </table>
  <figcaption><strong>Figure 6. Tumbling of nanometer-scale beads can be measured on a commercially available microscope with triplet triggering.</strong><br>
   <strong>(A)</strong> Cartoon representation of bead samples used in this experiment and simulation. Sample generation is described in the <a href="./appendix.html#bead_labeling">Appendix</a>. 
-  <strong>(B)</strong> Photograph of microscope used. Instrumentation scheme is described further in <a href="./appendix.html#SP8_schematic_figure">Figure S1</a>.
-  <strong>(C)</strong> Experimental tumbling data acquired on fluorescent-protein labeled beads. Drop-down menu toggles between mScarlet and mVenus recordings.
+  <strong>(B)</strong> Photograph of microscope used. 
+  <strong>(C)</strong> Experimental tumbling data acquired on fluorescent-protein labeled beads. Drop-down menu toggles between mScarlet and mVenus recordings. Instrumentation scheme is described further in <a href="./appendix.html#SP8_schematic_figure">Figure S1</a>.
   <strong>(D)</strong> Simulation of C with 1e6 molecules and saturating pump (16 pulses of intensity 2) and probe (16 pulses of intensity 0.25) illumination, matching the 200 ns dwell time and 80 MHz repetition rate of the experimental laser. Crescent power was matched to experiment as described in the <a href="./appendix.html#crescent_selection">Appendix</a>. In (C) and (D), points are means, with shaded areas indicating &plusmn; standard deviation of n=3 (experiment) or n=6 (simulation) replicates.
  </figcaption>
 </figure><p></p>
 
 <h4>Outlook</h4>
 
-<p>Determinations of size&mdash;and therefore binding&mdash;with tumbling are a straightforward and generalizable way to address ubiquitous questions about protein-protein interactions. As <a href="./appendix.html#technology_comparison">discussed in the Appendix</a>, tumbling in principle outperforms existing optical methods for measuring interactions. By tracking rotational diffusion in bulk rather than the translation of single molecules, tumbling measurements are faster and more sensitive than FCS or SPT. By allowing single label measurements without prior structural information, tumbling measurements are a richer and more generalizable binding assay than FRET.</p>
+<p>Determinations of size&mdash;and therefore binding&mdash;with tumbling are a straightforward and generalizable way to address ubiquitous questions about protein-protein interactions. Tumbling in principle outperforms <a href="./appendix.html#technology_comparison">existing methods</a> for measuring these interactions in real time in their native context. By tracking rotational diffusion in bulk rather than the translation of single molecules, tumbling measurements are faster and more sensitive than FCS or SPT. By allowing single label measurements without prior structural information, tumbling measurements are a richer and more generalizable binding assay than FRET.</p>
 
-<p>Tumbling can be measured with diverse hardware, ranging from a cheap, handheld device to a high-resolution imaging system. We have demonstrated that tumbling measurements on microsecond timescales with commercially available microscope systems; with software modifications, these measurements could be easy. In addition to a more standard confocal setup, we proposed and simulated tumbling measurements in cheap handheld, camera-based, and flow cytometry format, each optimized towards protein-protein interaction measurements in a distinct application area. To the best of our knowledge, these systems have not been previously described but would be possible to construct, and our team plans to build in this space in the future.</p>
+<p>Our simulations show that tumbling can be measured with diverse hardware, ranging from a cheap, handheld device to a high-resolution imaging system. If these instruments were available to biologists, we believe they would become the platform of choice for measuring protein-protein interactions. In addition, we have demonstrated that tumbling measurements are possible on microsecond timescales with existing commercial microscope systems; with software modifications, these measurements could be easy for a large user base to access.</p>
 
 <p>On the sample side, recent discoveries around "triggerable emitters" or long-lived states with photons on demand 
 
@@ -417,7 +419,7 @@ Our experimental results also qualitatively match simulations, with similar time
 
 <a class="citation" href="https://doi.org/10.1021/acs.jpcb.3c01236" title="Sequential Two-Photon Delayed Fluorescence Anisotropy for Macromolecular Size Determination; Y.-H. Lu, M. C. Jenkins, K. G. Richardson, S. Palui, M. S. Islam, J. Tripathy, M. G. Finn, R. M. Dickson; J. Phys. Chem. B, 127, 17, 3861–3869 (2023)">Lu 2023</a>]
 
-have dramatically expanded the accessible size range and possible signal-to-noise of tumbling measurements. Existing rsFPs and triggerable triplets are an existence proof of triggerable emitters; we anticipate that protein engineering can improve their properties for tumbling applications. For example, high value engineering goals would be fluorescent proteins with higher triplet quantum yields and photoswitchable proteins without <a href="./appendix.html#photophysics_comparison">intermediate states and dipole rotation</a>
+have dramatically expanded the accessible size range and possible signal-to-noise of tumbling measurements. These rsFPs and triggerable triplets are an existence proof of triggerable emitters; we anticipate that protein engineering can improve their properties for tumbling applications. For example, high value engineering goals would be fluorescent proteins with higher triplet quantum yields and photoswitchable proteins without <a href="./appendix.html#photophysics_comparison">intermediate states and dipole rotation</a>
 
 [<a class="citation" href="https://doi.org/10.1038/s41587-022-01489-7" title="Extending fluorescence anisotropy to large complexes using reversibly switchable proteins; A. Volpato, D. Ollech, J. Alvelid, M. Damenti, B. Müller, A. G. York, M. Ingaramo, I. Testa; Nature Biotechnology, 41, 552–559 (2023)">Volpato 2023</a>].
 

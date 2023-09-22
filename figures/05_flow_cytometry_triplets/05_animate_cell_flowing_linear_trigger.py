@@ -88,10 +88,11 @@ for i, x in enumerate(range(0, 900, 5)):
                          color=diff2color[name], alpha=0.2)
     ax3.legend(title='Tumbling Time (ns)', loc='upper right',
                fontsize=12, title_fontsize=12)
-    ax3.set_ylabel('Polarization, (Y-X) / (Y+X)', fontsize=16)
+    ax3.set_ylabel(r'Polarization, (I$_Y$ - I$_X$) / (I$_Y$ + I$_X$)', fontsize=16)
     ax3.set_xlabel('Probe Delay (ns)', fontsize=16)
     ax3.spines[:].set_linewidth(1.5)
     ax3.tick_params(axis='both', which='major', labelsize=14, width=1)
+    ax3.set_yticks(np.linspace(-0.4, 0, 5))
     # generate a rectangle that highlights where we are measuring
     if 25 < x <= 95: # delay 1
         box = plt.Rectangle((185, -0.35), 30, 0.2, fill=False,

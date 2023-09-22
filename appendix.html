@@ -403,31 +403,27 @@ print("done.")
 
 <h4 id="polarization_ratio_reduction">Dynamic range of polarization ratios: theory and experiment</h4>
 
-<p>An unaligned but immobile population of fluorophores has a theoretical polarization of 0.5 when excited with linearly polarized light, equivalent to a 3:1 ratio of signal in the parallel and perpendicular channels. However, this is rarely observed. Experimentally determined polarization values often show reduced dynamic ranges relative to those in theory and in simulation. A combination of factors contribute to this
+<p>An unaligned but immobile population of fluorophores should fluoresce with a polarization of 0.5 when excited with unsaturated, linearly polarized light. However, this is rarely observed, as many experimental details can reduce the measured polarization
 
-[<a class="citation" href="http://doi.org/10.1201/9781420078916" title="Chapter 10: Time Resolved Fluorescence Anisotropy, in FLIM Microscopy in Biology and Medicine; S. S. Vogel, C. Thaler, P. S. Blank, S. V. Koushik; FLIM Microscopy in Biology and Medicine (2009)">Vogel 2009</a>]
+[<a class="citation" href="http://doi.org/10.1201/9781420078916" title="Chapter 10: Time Resolved Fluorescence Anisotropy, in FLIM Microscopy in Biology and Medicine; S. S. Vogel, C. Thaler, P. S. Blank, S. V. Koushik; FLIM Microscopy in Biology and Medicine (2009)">Vogel 2009</a>], 
 
-, namely: </p>
+namely: </p>
 <ol type="1">
-  <li>Numerical aperture (NA) of the collection objective
-
-    [<a class="citation" href="http://doi.org/10.1016/S0006-3495(79)85271-6" title="Carbocyanine dye orientation in red cell membrane studied by microscopic fluorescence polarization.; D. Axelrod; Biophys. J., 26, 3, 557-573 (1979)">Axelrod 1979</a>]. 
-
-    The data in this paper were collected with a 100x 1.4 NA oil immersion objective lens, which corresponds to a collection angle of 67 degrees. When high angle light comes to a focus, the polarization is scrambled, reducing the maximum measured polarization ratio. Indeed, when we look at the time-resolved polarization decays of the prompt singlets (<a href="#singlet_polarization_figure" target="_self">Figure S2</a>), we find that the maximum polarization corresponds to a ~2:1 parallel:perpendicular ratio. Of course, the benefit of using a higher NA objective is collection of a higher percentage of the emitted light, which is particularly valuable for dim signals like that of the triggered triplets. </li>
-  <li>Saturation in any of the linearly polarized laser pulses will cause deviation from the theoretical excitation photoselection. Once the parallel channel is saturating, increased excitation power will disproportionately excite molecules in the perpendicular channel. However, working in a somewhat saturating regime may be advantageous to obtain higher total photon counts.</li>
-  <li>Fast depolarization in the sample (i.e. rotation other than that due to rotational diffusion). Some possible sources of this include:<ul> 
-    <li>homo FRET between FPs on the bead surface</li>
+  <li>The data in this paper were collected with a 100x 1.4 NA oil immersion objective lens. The mapping between polarization in the sample and at the back focal plane of a high NA objective is complicated, but the net result is a reduction in the maximum measured polarization ratio [<a class="citation" href="http://doi.org/10.1016/S0006-3495(79)85271-6" title="Carbocyanine dye orientation in red cell membrane studied by microscopic fluorescence polarization.; D. Axelrod; Biophys. J., 26, 3, 557-573 (1979)">Axelrod 1979</a>]. Indeed, in the time-resolved polarization decays of the prompt singlets (<a href="#singlet_polarization_figure" target="_self">Figure S2</a>), we observe that the maximum polarization of &approx;0.4.</li>
+  <li>Saturation in any of the linearly polarized laser pulses will excite a different distribution of fluorophore orientations. Once the parallel channel is saturating, increased excitation power will disproportionately excite molecules in the perpendicular channel. However, working in a somewhat saturating regime, as we do here, may be advantageous to obtain higher total photon counts.</li>
+  <li>Fast depolarization in the sample can occur independent of rotational diffusion. Some possible sources of this include:<ul> 
+    <li>homo-FRET between fluorophores</li>
     <li>free fluorophore that is not conjugated to the target of interest</li>
-    <li>rotational motion of the protein on the bead surface</li>
+    <li>motion of the fluorophore label independently from the target ("floppy linkers")</li>
     <li>non-parallel excitation and emission dipoles</li>
   </ul></li>
 </ol>
 
 <h4 id="gated_detection">Detector requirements for triggered triplets</h4>
 
-<p>The process of generating triplets also generates a much larger amount of prompt fluorescence from the pump beam. In the pulse schemes described in <a href="./index.html#triplets_camera_figure">Figure 4</a> and <a href="./index.html#triplets_flow_figure">Figure 5</a>, the pump-generated signal does not contain tumbling information and will dominate the tumbling-relevant triggered triplet (probe) signal if they are not separated. Because we expect that the prompt singlet and triggered triplet signal are identical in spectrum and lifetime, the most straightforward way to disambiguate the two is in the time domain.</p>
+<p>The process of generating triplets also generates a much larger amount of prompt fluorescence from the pump beam. In the pulse schemes described in <a href="./index.html#triplets_camera_figure">Figure 4</a> and <a href="./index.html#triplets_flow_figure">Figure 5</a>, the pump-generated signal does not contain protein-protein interaction information and will dominate the triggered triplet (probe) signal if they are not separated. Because we expect that the prompt singlet and triggered triplet signal are identical in spectrum and lifetime, the most straightforward way to disambiguate the two is in the time domain.</p>
 
-<p>There are a few ways one could implement the detector timing. One approach would be to use a time-resolved detector (e.g. a SPAD), but this is more time resolution than is necessary and would reduce the possible photon count rates dramatically. Another approach would be to use a gated camera, blocking out any photons from the pump pulse and only activating the sensor during the probe pulse. Although this discards the pump-generated photons (which could be used to make a fluorescence intensity image), it has the attractive feature of allowing multiple repetitions of pump and probe at ars given delay to be collected within a single camera exposure, which may be required in a photon-limited scenario. A double shutter camera allows collection of both the pump- and probe-generated photons, but the sensor would need to be read out after every pump-probe cycle.</p>
+<p>There are a few ways one could implement the detector timing. One approach would be to use a time-resolved detector (e.g. a SPAD), but this is more time resolution than is necessary and would reduce the possible photon count rates dramatically. Another approach would be to use a gated camera, blocking out any photons from the pump pulse and only activating the sensor during the probe pulse. Although this discards the pump-generated photons (which could be used to make a fluorescence intensity image), it has the attractive feature of allowing multiple repetitions of pump and probe within a single camera exposure, which could increase total signal by several orders of magnitude. A double shutter camera allows collection of both the pump- and probe-generated photons, but the sensor would need to be read out after every pump-probe cycle.</p>
 
 <h4 id="photophysics_comparison">Comparison of rsFPs and triggered triplets</h4>
 
@@ -457,20 +453,20 @@ print("done.")
 
 <p><strong>Triggered triplets</strong>, also known as optically activated delayed fluorescence, exhibit a nearly orthogonal set of pros and cons, with distinct advantages in biologically-relevant size scales:
 <ul style="list-style-type:none">
-  <li>(+) Triplets are available as soon as the fluorescent excited state has fully decayed (5-10 fluorescence lifetimes).</li>
+  <li>(+) Triplets are available immediately and are effectively background-free once the fluorescent excited state has fully decayed (>5 fluorescence lifetimes).</li>
   <li>(+) Even if the triplet absorption dipole is rotated with respect to the initial excitation, emission appears to be from the excited singlet
 
   [<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>].
 
-  Given that, we expect that the relevant dipoles are the singlet absorption and the singlet emission, which are close to parallel in many common fluorophores, allowing for high maximum polarization of the triggered triplet emission. If the triplet absorption dipole happens to align with the singlet emission dipole, controlling the polarization of the triggering light could further boost polarization dynamic range, e.g. through <a href="#crescent_selection" target="_self">crescent selection</a>.</li>
+  Given that, we expect that the relevant dipoles are the singlet absorption and the singlet emission, which are close to parallel in many common fluorophores, allowing for high maximum polarization of the triggered triplet emission. If the triplet absorption dipole aligns with the singlet emission dipole, controlling the polarization of the triggering light boosts polarization dynamic range, e.g. through <a href="#crescent_selection" target="_self">crescent selection</a>.</li>
   <li>(+) Triplets "clean up after themselves;" they return to the ground state on their own in milliseconds, obviating the need for subsequent illumination to reduce background.</li>
-  <li>(+) Triplet triggering back to an emissive singlet state has been observed in commonly used fluorophores (<a href="./index.html#sp8_tumbling_figure">Figure 6</a> and
+  <li>(+) Triplet triggering back to an emissive singlet state has been observed in commonly used fluorophores, such as GFP, mVenus, mScarlet, and fluorescein (<a href="./index.html#sp8_tumbling_figure">Figure 6</a> and
 
   <a class="citation" href="https://doi.org/10.1021/acs.jpca.9b11040" title="Triplet Shelving in Fluorescein and Its Derivatives Provides Delayed, Background-Free Fluorescence Detection; A. A. Demissie, R. M. Dickson; J Phys Chem A 124, 7, 1437-1443 (2020)">Demissie 2020</a>,
 
-  <a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>), 
+  <a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>). 
 
-  so re-tagging a given target protein may not be required.</li>
+  Labeled protein constructs that were originally designed for fluorescence imaging can in principle be used for tumbling if the linkers are sufficiently rigid.</li>
   <li>(-) The signal from triggered triplets with current fluorophores is very low relative to the number of singlets generated by the initial illumination. Approximately 100 prompt singlet photons are generated for each triggered triplet photon.</li>
   <li>(-) Even with optimized fluorophores, triplet triggering would produce at most one photon per two input photons (triplet generation and trigger).</li>
 </ul></p>
