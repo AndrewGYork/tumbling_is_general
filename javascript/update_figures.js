@@ -55,7 +55,7 @@ function update_triplets_flow_figure() {
   }      
 
 function update_sp8_tumbling_figure() {
-  var filename = "./figures/06_triplets_SP8_confocal/simulation_expt_beads_" + document.getElementById("sp8_tumbling_selector").value + ".png";
+  var filename = "./figures/06_triplets_SP8_confocal/" + document.getElementById("sp8_tumbling_selector").value + "_SP8.png";
   var image = document.getElementById("sp8_tumbling");
   image.src = filename;
   }    

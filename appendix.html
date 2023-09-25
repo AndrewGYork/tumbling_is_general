@@ -64,12 +64,32 @@ The real text begins here.
 <h3>This appendix contains:</h3>
 
 <p>
-<a href="#materials_and_methods" target="_self">Materials and Methods</a><br>
-<a href="#supplementary_text" target="_self">Supplementary Text and Figures</a><br>
+<ul></ul>
+<a href="#materials_and_methods" target="_self">Materials and Methods</a>
+<ul>
+  <li><a href="#protein_purification" target="_self">Fluorescent Protein Purification</a></li>
+  <li><a href="#imaging_settings" target="_self">Imaging Settings</a></li>
+  <li><a href="#bead_labeling" target="_self">Adsorption of Fluorescent Protein to Beads</a></li>
+</ul>
+<a href="#supplementary_text" target="_self">Supplementary Text and Figures</a>
+<ul>
+  <li><a href="#technology_comparison" target="_self">Tumbling versus other approaches to measuring interaction <em>in situ</em></a></li>
+  <li><a href="#tumbling_time_particle_size" target="_self">Relationship between tumbling time and particle size</a></li>
+  <li><a href="#cellular_tumbling_times" target="_self">Expected tumbling times in the cell</a></li>
+  <li><a href="#definition_tumbling_terms" target="_self">Quantifying alignment of a population of molecules</a></li>
+  <li><a href="#intensity_vs_fluence" target="_self">Intensity versus fluence</a></li>
+  <li><a href="#code_usage_examples" target="_self">Usage examples for the tumbling simulation code</a></li>
+  <li><a href="#polarization_ratio_reduction" target="_self">Experimental factors that reduce polarization ratio</a></li>
+  <li><a href="#gated_detection" target="_self">Detector requirements for triggered triplets</a></li>
+  <li><a href="#photophysics_comparison" target="_self">Comparison of rsFPs and triggered triplets</a></li>
+  <li><a href="#triplet_lifetimes" target="_self">Triggerable state lifetimes in FPs</a></li>
+  <li><a href="#tcspc_analysis" target="_self">Nanosecond-time decay of prompt and triggered FP fluorescence</a></li>
+  <li><a href="#crescent_selection" target="_self">Increasing alignment with 'crescent' selection</a></li>
+</ul>
 <a href="#sequences" target="_self">Sequences for all constructs used</a>
 </p>
 
-<p>TODO: More hyperlinks in table of contents!</p>
+<p>Back to the <a href="./index.html">main text</a></p>
 
 <h3 id="materials_and_methods">Materials and Methods</h3>
 
@@ -94,21 +114,23 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
 
 <h5 id="general_imaging">General</h5>
 
-<p>We collected fluorescence data with an SP8 point scanning confocal microscope (Leica) equipped with an LSM FLIM/FCS upgrade kit for time-correlated single photon counting (TCSPC, PicoQuant GmbH). Visible (488 or 561 nm) excitation was provided with the system’s white light laser, and 775 nm excitation was provided by the STED laser. A repetition rate of 80 MHz was used. We removed the quarter-wave plate from the beampath to enable polarization measurements, giving us orthogonally linearly polarized visible and 775 nm beams. Because we were repurposing the STED line with the &lambda;/4 plate removed, we anticipate that the point-spread function of the 775 nm spot is substantially larger than the 488 nm spot and non-optimally shaped. The 8 kHz resonant scanner was used to raster scan the image.</p>
+<p>We collected fluorescence data with an SP8 point scanning confocal microscope (Leica) equipped with an LSM FLIM/FCS upgrade kit for time-correlated single photon counting (TCSPC, PicoQuant GmbH). Visible (488 or 561 nm) excitation was provided with the system’s white light laser, and 775 nm excitation was provided by the STED laser. A repetition rate of 80 MHz was used. We removed the quarter-wave plate from the beampath to enable polarization measurements, giving us orthogonally linearly polarized visible and 775 nm beams. Because we were repurposing the STED line with the &lambda;/4 plate removed, we anticipate that the point-spread function of the 775 nm spot is substantially larger than the 488 nm spot and non-optimally shaped. The image was raster scanned with a resonant galvo at 8 kHz.</p>
 
 <p>Fluorescence emission was collected through a 100x/1.4 NA oil immersion objective (HC PL APO CS2, Leica) and passed through notch filters blocking 488/561/633 and 775 nm laser lines in the primary and secondary dichroic positions. Emitted light passed through a polarizing beam splitter at the back (X1) port to two fiber-coupled SPAD detectors (PicoQuant). Bandpass emission filters (Semrock, mVenus: 531/40 nm; mScarlet 630/92 nm) were placed in front of each SPAD to block any remaining excitation light. Photon timing was performed with a PicoHarp 300 TCSPC module (PicoQuant).</p>
 
 <p>The confocal pinhole was set to 1 AU, and data was collected from a focal plane &approx;2 &mu;m above the coverglass. This plane was selected to minimize spherical aberrations and scattering from the bead sample and to eliminate signal from any beads or protein adsorbed to the coverglass.</p>
 
+<p>Because our pulse schemes were typically not supported by the software, we used a custom parser of the raw time-tagged photon stream to parse the data. This parser code is available with the source data or on <a href="https://github.com/AndrewGYork/tools/blob/master/picoquant_tttr.py">GitHub</a>.</p>
+
 <h5 id="time_resolved_anisotropy_imaging">Time-Resolved Fluorescence Anisotropy</h5>
 
-<p>The correction for optical transmission of the two polarization channels ("g factor") was measured daily with a solution of either 10 &mu;M fluorescein in 0.1 M NaOH or 2 &mu;M sulforhodamine 101 in PBS. The g factor was determined as the correction factor that resulted in equal signal in the two detector channels after any initial rapid relaxation in these dye samples (> 1 ns into the recording); it ranged from 0.89 - 0.91 for these experiments. We incorporate this g factor into the polarization calculation for all experimental data.</p>
+<p>The correction for optical transmission of the two polarization channels ("\(G\) factor") was measured daily with a solution of either 10 &mu;M fluorescein in 0.1 M NaOH or 2 &mu;M sulforhodamine 101 in PBS. \(G\) was determined as the correction factor that resulted in equal signal in the two detector channels after any initial rapid relaxation in these dye samples (> 1 ns into the recording); it ranged from 0.89 - 0.91 for these experiments. We incorporate \(G\) into the polarization calculation for all experimental data.</p>
 
-<p>To record the fluorescence anisotropy of the bead samples from the prompt singlets, we used a 15 second integration time (64 sweeps) over a 5.8 &mu;m x 5.8 &mu;m area. Typical power (488 or 561 nm) for fluorescence anisotropy recordings was approximately 0.3 &mu;W measured at the sample.</p>
+<p>To record the fluorescence anisotropy of the bead samples from the prompt singlets, we used a 15 second integration time over a 5.8 &mu;m x 5.8 &mu;m area. Typical power (488 or 561 nm) for fluorescence anisotropy recordings was approximately 0.3 &mu;W measured at the sample.</p>
 
 <h5 id="triplet_triggering_imaging">Triplet Triggering</h5>
 
-<p>To achieve microsecond control over the laser pulse sequence, we programmed successive line sweeps of the resonant scanner to have different lasers active (or no laser to produce a delay). With an image size of 5.81 &mu;m x 609.71 nm (144x16 pixels) and a zoom factor of 20, this approach allowed us to access each point in the image at 60 &mu;s intervals. (This ‘hack’ was necessary because the instrument hardware did not give us direct access to arbitrary programming of the lasers’ AOTFs.) We set up either 8 or 16 sweeps, with the white light laser (pump) active on the first sweep. One of the subsequent sweeps contained the 775 nm probe pulse, and the other sweeps involved no laser illumination. For the ‘crescent’ selection, we also included 775 nm excitation during the first sweep with the white light laser with a 2 ns delay after every visible light pulse.</p>
+<p>To achieve microsecond control over the laser pulse sequence, we programmed successive line sweeps of the resonant scanner to have different lasers active (or no laser to produce a delay). With an image size of 5.81 &mu;m x 609.71 nm (144x16 pixels) and a zoom factor of 20, this approach allowed us to access each point in the image at 60 &mu;s intervals. (This ‘hack’ was necessary because the instrument hardware did not give us direct access to arbitrary programming of the lasers’ AOTFs.) We set up either 8 or 16 sweeps, with the white light laser (pump) active on the first sweep. One of the subsequent sweeps contained the 775 nm probe pulse, and the other sweeps involved no laser illumination. For the <a href="#crescent_selection" target="_self">‘crescent’ selection</a>, we also included 775 nm excitation during the first sweep with the white light laser with a 2 ns delay after every visible light pulse.</p>
 
 <p>Average pump power (visible, 488 or 561 nm) was approximately 5 &mu;W at the sample, and average probe power was approximately 400 &mu;W. Both pump and probe lasers were pulsed at 80 MHz with a 200 ns pixel dwell time for a total of 16 pulses in each position. The crescent selection power for the tumbling traces in <a href="./index.html#sp8_tumbling_figure">Figure 6</a> was 100 &mu;W for mVenus and 400 &mu;W for mScarlet.</p>
 
@@ -169,10 +191,10 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
   </tr>
   <tr>
     <td>100 &mu;M protein stock in PBS</td>
-    <td>4.44(mVenus), 2.96(mScarlet)</td>
-    <td>2.91(mVenus), 0.97(mScarlet)</td>
-    <td>1.51(mVenus), 1.01(mScarlet)</td>
-    <td>0.42(mVenus), 0.28(mScarlet)</td>
+    <td>4.44 (mVenus), 2.96 (mScarlet)</td>
+    <td>2.91 (mVenus), 0.97 (mScarlet)</td>
+    <td>1.51 (mVenus), 1.01 (mScarlet)</td>
+    <td>0.42 (mVenus), 0.28 (mScarlet)</td>
   </tr>
   <tr>
     <td>1% Tween in 0.1 M MES pH 6.3</td>
@@ -401,7 +423,7 @@ print("done.")
 
 <p>The above example is also available within <code>fluorophore_rotational_diffusion.py</code> in <code>_test_fluorophores_anisotropy_decay_plot()</code>. Further documentation of the fluorophore rotational diffusion API is available in docstrings for each function. The scripts that generate each of the simulation figures are available on <a href="https://github.com/AndrewGYork/tumbling_is_general">GitHub</a> with this manuscript.</p>
 
-<h4 id="polarization_ratio_reduction">Dynamic range of polarization ratios: theory and experiment</h4>
+<h4 id="polarization_ratio_reduction">Experimental factors that reduce polarization ratio</h4>
 
 <p>An unaligned but immobile population of fluorophores should fluoresce with a polarization of 0.5 when excited with unsaturated, linearly polarized light. However, this is rarely observed, as many experimental details can reduce the measured polarization
 
@@ -479,7 +501,7 @@ namely: </p>
 
 Encapsulation of the chromophore putatively enables these long-lived triplets by protecting them from solvent and dissolved oxygen.</p>
 
-<p>The lifetime of the triggerable fluorescence is interesting for two reasons. Mechanistically, it can provide evidence in support of the triplet hypothesis. More practically, the lifetime determines the maximum possible particle size that can be resolved with tumbling. From a technological standpoint, we’d like a very long-lived state that we can trigger to emit whenever is relevant for the size scale we are working with.</p>
+<p>The lifetime of the triggerable fluorescence determines the maximum possible particle size that can be resolved with tumbling. From a technological standpoint, we’d like a very long-lived state that we can trigger to emit whenever is relevant for the size scale we are working with.</p>
 
 <p>We estimated the lifetime of the triplet state by measuring how the total triggered signal (parallel + perpendicular channels) decays over time (<a href="#triplet_lifetimes_figure" target="_self">Figure S4</a>). To deconvolve the effects of translational diffusion and triplet state decay, we analyzed results from 40, 60, 100, and 200 nm diameter beads. All samples give roughly the same lifetime, suggesting that most of the signal loss is independent of translational diffusion. We find that the half-life of the triplet signal in mScarlet and mVenus is on the order of 1 ms, with mVenus’s lifetime slightly exceeding mScarlet’s. This >1 millisecond time window allowed us to record the tumbling of beads at least 200 nm in diameter (<a href="./index.html#sp8_tumbling_figure">Figure 6</a>), which is roughly the size of a small lysosome. Therefore, FPs as triggered emitters should be able to report on sizes corresponding to most of the proteome.</p>
 
@@ -541,7 +563,7 @@ to match the lifetime of the prompt singlet emission, consistent with a model wh
  </figcaption>
 </figure>
 
-<h4 id="crescent_selection">Increasing initial alignment with ‘crescent’ selection</h4>
+<h4 id="crescent_selection">Increasing alignment with ‘crescent’ selection</h4>
 
 <p>If we can increase the alignment of the initial distribution of photoselected molecules, we can increase the dynamic range of polarization change observed. Some of the authors here previously patented this approach
 
