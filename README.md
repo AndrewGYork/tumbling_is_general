@@ -1,8 +1,8 @@
-## TUMBLING
+## From cameras to confocal to cytometry: measuring tumbling rates is a general way to reveal protein binding
 
 Permanent version (cite as): TODO
 
-TODO: DESCRIPTION
+A scientific publication that describes new approaches to measuring protein-protein interactions via molecular tumbling. We explore these 'case studies' primarily with simulation but also include experimental validation for one case. This repository hosts everything you need to reproduce our results. Read the publication here: TODO LINK
 
 This repository is intended to hold a (mostly) self-contained scientific publication. It contains:
 
