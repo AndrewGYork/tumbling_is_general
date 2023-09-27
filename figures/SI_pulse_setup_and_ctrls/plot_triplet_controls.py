@@ -13,7 +13,11 @@ from mpl_toolkits.axes_grid1 import Divider, Size
 # Read in the relevant source file
 cwd = Path(__file__).parents[0]
 source = cwd.parents[2]/'tumbling_temp'/'source_data'/'2023-05-08_controls.sptw'
-df = pd.read_csv(source / 'analysis' / 'output_8f_triplet_tumbling.csv')
+df1 = pd.read_csv(source / 'analysis' / 'output_8f_triplet_tumbling.csv')
+source2 = cwd.parents[2]/'tumbling_temp'/'source_data'/'2023-09-26_EGFP'
+df2 = pd.read_csv(source2 / 'analysis' / 'output_8f_triplet_tumbling.csv')
+df = pd.concat([df1, df2], ignore_index=True)
+df.to_csv('test.csv')
 
 # Do some formatting and setup
 df['time_us'] = (df['frame'] - 1) * 60
@@ -66,5 +70,30 @@ axs2.tick_params(width=0.75)
 plt.title(r'mVenus, Probe Delay 240 $\mu$s', fontsize=8)
 plt.savefig('02_mVenus_probeDelay240us.pdf', transparent=True,
             bbox_inches='tight')
+
+# Make a plot of the EGFP traces
+EGFP = df.loc[df['fluorophore'] == 'EGFP']
+fig3 = plt.figure(figsize=(4,4))
+h = [Size.Fixed(1.0), Size.Fixed(2)]
+v = [Size.Fixed(0.7), Size.Fixed(2)]
+divider = Divider(fig2, (0, 0, 1, 1), h, v, aspect=False)
+axs3 = fig3.add_axes(divider.get_position(),
+                     axes_locator=divider.new_locator(nx=1, ny=1))
+powers2label = {(50, 2): 'Pump+Probe', (0, 2): 'Probe Only', (50, 0): 'Pump Only'}
+for name, group in EGFP.groupby(['WLL_power', 'trigger_power']):
+    axs3.plot(group['time_us'][1:],
+              group['detectorA'][1:] + group['detectorB'][1:], '.-',
+              markersize=3, label=powers2label[name], linewidth=0.75)
+axs3.grid(alpha=0.3)
+l = axs3.legend(loc='upper right', bbox_to_anchor=(1.15,1))
+l.get_frame().set_linewidth(0.75)
+axs3.set_ylabel(r'Total Counts ($\parallel+\perp$)')
+axs3.set_xlabel(r'Delay Time ($\mu$s)')
+axs3.spines[:].set_linewidth(0.75)
+axs3.tick_params(width=0.75)
+plt.title(r'mEGFP, Probe Delay 240 $\mu$s', fontsize=8)
+plt.savefig('03_mEGFP_probeDelay240us.pdf', transparent=True,
+            bbox_inches='tight')
+
 
 plt.show()

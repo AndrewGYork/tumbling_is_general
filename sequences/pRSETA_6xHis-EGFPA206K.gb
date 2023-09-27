@@ -1,0 +1,128 @@
+LOCUS       pRSETA_EGFPA206K        3576 bp DNA     circular SYN 27-SEP-2023
+DEFINITION  synthetic circular DNA
+ACCESSION   .
+VERSION     .
+KEYWORDS    .
+SOURCE      synthetic DNA construct
+  ORGANISM  synthetic DNA construct
+REFERENCE   1  (bases 1 to 3576)
+  AUTHORS   .
+  TITLE     Direct Submission
+  JOURNAL   Exported Sep 27, 2023 from SnapGene 7.0.2
+            https://www.snapgene.com
+FEATURES             Location/Qualifiers
+     source          1..3576
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     promoter        19..37
+                     /label=T7 promoter
+                     /note="promoter for bacteriophage T7 RNA polymerase"
+     RBS             68..90
+                     /note="efficient ribosome binding site from bacteriophage 
+                     T7 gene 10 (Olins and Rangwala, 1989)"
+     CDS             98..859
+                     /codon_start=1
+                     /label=full ORF
+                     /translation="MRGSHHHHHHGMASMVSKGEELFTGVVPILVELDGDVNGHKFSVS
+                     GEGEGDATYGKLTLKFICTTGKLPVPWPTLVTTLTYGVQCFSRYPDHMKQHDFFKSAMP
+                     EGYVQERTIFFKDDGNYKTRAEVKFEGDTLVNRIELKGIDFKEDGNILGHKLEYNYNSH
+                     NVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSKL
+                     SKDPNEKRDHMVLLEFVTAAGITLGMDELYK"
+     CDS             110..127
+                     /codon_start=1
+                     /product="6xHis affinity tag"
+                     /label=6xHis
+                     /translation="HHHHHH"
+     CDS             131..142
+                     /codon_start=1
+                     /product="leader peptide from bacteriophage T7 gene 10"
+                     /label=T7 tag (gene 10 leader)
+                     /note="promotes efficient translation in E. coli"
+                     /translation="MASM"
+     CDS             143..859
+                     /codon_start=1
+                     /label=egfp
+                     /translation="VSKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLK
+                     FICTTGKLPVPWPTLVTTLTYGVQCFSRYPDHMKQHDFFKSAMPEGYVQERTIFFKDDG
+                     NYKTRAEVKFEGDTLVNRIELKGIDFKEDGNILGHKLEYNYNSHNVYIMADKQKNGIKV
+                     NFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSKLSKDPNEKRDHMVLLE
+                     FVTAAGITLGMDELYK"
+     terminator      936..983
+                     /label=T7 terminator
+                     /note="transcription terminator for bacteriophage T7 RNA 
+                     polymerase"
+     rep_origin      1080..1535
+                     /direction=RIGHT
+                     /label=f1 ori
+                     /note="f1 bacteriophage origin of replication; arrow 
+                     indicates direction of (+) strand synthesis"
+     promoter        1616..1720
+                     /gene="bla"
+                     /label=AmpR promoter
+     rep_origin      2752..3340
+                     /direction=RIGHT
+                     /label=ori
+                     /note="high-copy-number ColE1/pMB1/pBR322/pUC origin of 
+                     replication"
+ORIGIN
+        1 atctcgatcc cgcgaaatta atacgactca ctatagggag accacaacgg tttccctcta
+       61 gaataatttt gtttaacttt aagaaggaga tatacatatg cggggttctc atcatcatca
+      121 tcatcatggt atggctagca tggtgagcaa gggcgaggag ctgttcaccg gggtggtgcc
+      181 catcctggtc gagctggacg gcgacgtaaa cggccacaag ttcagcgtgt ccggcgaggg
+      241 cgagggcgat gccacctacg gcaagctgac cctgaagttc atctgcacca ccggcaagct
+      301 gcccgtgccc tggcccaccc tcgtgaccac cctgacctac ggcgtgcagt gcttcagccg
+      361 ctaccccgac cacatgaagc agcacgactt cttcaagtcc gccatgcccg aaggctacgt
+      421 ccaggagcgc accatcttct tcaaggacga cggcaactac aagacccgcg ccgaggtgaa
+      481 gttcgagggc gacaccctgg tgaaccgcat cgagctgaag ggcatcgact tcaaggagga
+      541 cggcaacatc ctggggcaca agctggagta caactacaac agccacaacg tctatatcat
+      601 ggccgacaag cagaagaacg gcatcaaggt gaacttcaag atccgccaca acatcgagga
+      661 cggcagcgtg cagctcgccg accactacca gcagaacacc cccatcggcg acggccccgt
+      721 gctgctgccc gacaaccact acctgagcac ccagtccaag ctgagcaaag accccaacga
+      781 gaagcgcgat cacatggtcc tgctggagtt cgtgaccgcc gccgggatca ctctcggcat
+      841 ggacgagctg tacaagtaag aattcgaagc ttgatccggc tgctaacaaa gcccgaaagg
+      901 aagctgagtt ggctgctgcc accgctgagc aataactagc ataacccctt ggggcctcta
+      961 aacgggtctt gaggggtttt ttgctgaaag gaggaactat atccggatct ggcgtaatag
+     1021 cgaagaggcc cgcaccgatc gcccttccca acagttgcgc agcctgaatg gcgaatggga
+     1081 cgcgccctgt agcggcgcat taagcgcggc gggtgtggtg gttacgcgca gcgtgaccgc
+     1141 tacacttgcc agcgccctag cgcccgctcc tttcgctttc ttcccttcct ttctcgccac
+     1201 gttcgccggc tttccccgtc aagctctaaa tcgggggctc cctttagggt tccgatttag
+     1261 agctttacgg cacctcgacc gcaaaaaact tgatttgggt gatggttcac gtagtgggcc
+     1321 atcgccctga tagacggttt ttcgcccttt gacgttggag tccacgttct ttaatagtgg
+     1381 actcttgttc caaactggaa caacactcaa ccctatcgcg gtctattctt ttgatttata
+     1441 agggattttg ccgatttcgg cctattggtt aaaaaatgag ctgatttaac aaatatttaa
+     1501 cgcgaatttt aacaaaatat taacgtttac aatttcgcct gatgcggtat tttctcctta
+     1561 cgcatctgtg cggtatttca caccgcatac aggtggcact tttcggggaa atgtgcgcgg
+     1621 aacccctatt tgtttatttt tctaaataca ttcaaatatg tatccgctca tgagacaata
+     1681 accctgataa atgcttcaat aatattgaaa aaggaagagt atgagtattc aacatttccg
+     1741 tgtcgccctt attccctttt ttgcggcatt ttgccttcct gtttttgctc acccagaaac
+     1801 gctggtgaaa gtaaaagatg ctgaagatca gttgggtgca cgagtgggtt acatcgaact
+     1861 ggatctcaac agcggtaaga tccttgagag ttttcgcccc gaagaacgtt ttccaatgat
+     1921 gagcactttt aaagttctgc tatgtgatac actattatcc cgtattgacg ccgggcaaga
+     1981 gcaactcggt cgccccccgc ggtattctca gaatgacttg gttgagtact caccagtcac
+     2041 agaaaagcat cttacggatg gcatgacagt aagagaatta tgcagtgctg ccataaccat
+     2101 gagtgataac actgcggcca acttacttct gacaacgatc ggaggaccga aggagctaac
+     2161 cgcttttttg cacaacatgg gggatcatgt aactcgcctt gatcgttggg aaccggagct
+     2221 gaatgaagcc ataccaaacg acgagagtga caccacgatg cctgtagcaa tgccaacaac
+     2281 gttgcgcaaa ctattaactg gcgaactact tactctagct tcccggcaac aattaataga
+     2341 ctgaatggag gcggataaag ttgcaggacc acttctgcgc tcggcccttc cggctggctg
+     2401 gtttattgct gataaatctg gagccggtga gcgtgggtct cgcggtatca ttgcagcact
+     2461 ggggccagat ggtaagcgct cccgtatcgt agttatctac acgacgggga gtcaggcaac
+     2521 tatggatgaa cgaaatagac agatcgctga gataggtgcc tcactgatta agcattggta
+     2581 actgtcagac caagtttact catatatact ttagattgat ttaaaacttc atttttaatt
+     2641 taaaaggatc taggtgaaga tcctttttga taatctcatg accaaaatcc cttaacgtga
+     2701 gttttcgttc cactgagcgt cagaccccgt agaaaagatc aaaggatctt cttgagatcc
+     2761 tttttttctg cgcgtaatct gctgcttgca aacaaaaaaa ccaccgctac cagcggtggt
+     2821 ttgtttgccg gatcaagagc taccaactct ttttccgaag gtaactggct tcagcagagc
+     2881 gcagatacca aatactgtcc ttctagtgta gccgtagtta ggccaccact tcaagaactc
+     2941 tgtagcaccg cctacatacc tcgctctgct aatcctgtta ccagtggctg ctgccagtgg
+     3001 cgataagtcg tgtcttaccg ggttggactc aagacgatag ttaccggata aggcgcagcg
+     3061 gtcgggctga acggggggtt cgtgcacaca gcccagcttg gagcgaacga cctacaccga
+     3121 actgagatac ctacagcgtg agctatgaga aagcgccacg cttcccgaag ggagaaaggc
+     3181 ggacaggtat ccggtaagcg gcagggtcgg aacaggagag cgcacgaggg agcttccagg
+     3241 gggaaacgcc tggtatcttt atagtcctgt cgggtttcgc cacctctgac ttgagcgtcg
+     3301 atttttgtga tgctcgtcag gggggcggag cctatggaaa aacgccagca acgcggcctt
+     3361 tttacggttc ctgggctttt gctggccttt tgctcacatg ttctttcctg cgttatcccc
+     3421 tgattctgtg gataaccgta ttaccgcctt tgagtgagct gataccgctc gccgcagccg
+     3481 aacgaccgag cgcagcgagt cagtgagcga ggaagcggaa gagcgcccaa tacgcaaacc
+     3541 gcctctcccc gcgcgttggc cgattcatta atgcag
+//
