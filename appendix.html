@@ -517,23 +517,41 @@ Encapsulation of the chromophore putatively enables these long-lived triplets by
 
 <h4 id="tcspc_analysis">Nanosecond-time decay of prompt and triggered FP fluorescence</h4>
 
+<p>TODO: recheck all numbers from fits. Decide to compile? say Carmody was also a 2 exponential fit
+consider not fitting? i think the overlay data is more compelling given the model changing.
+Say tailfits because we don't really have an IRF. Put in the captions that all data is from HyDs. Update Figure S5 caption.
+Make it clear in S6 caption that powers weren't kept consistent and can't be compared. Also probably put more asterisks on pH 5 because the low signal makes it difficult to interpret.</p>
+
 <p>The fluorescence lifetime of the triggered emission signal from triplet states was previously reported 
 
 [<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>]
 
-to match the lifetime of the prompt singlet emission, consistent with a model where the triggering beam regenerates an excited singlet state, which then emits.</p>
+to match the lifetime of the prompt singlet emission, consistent with a model where the triggering beam regenerates an excited singlet state, which then emits. To corroborate this, we analyzed the fluorescence lifetimes of the prompt and triggered signals from mVenus and mScarlet in PBS (<a href="#triplet_tcspc_figure" target="_self">Figure S5</a> and <a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S6</a> with condition <code>PBS pH 7</code> selected). We observe good agreement between the prompt and triggered lifetimes. This agreement between the lifetimes persists in the buffer used to adsorb protein to beads (condition <code>0.1 M MES pH 6.3</code>).</p>
 
-<p>To corroborate this, we analyzed the fluorescence lifetimes of the prompt and triggered photons in our triplet data (<a href="#triplet_tcspc_figure" target="_self">Figure S5</a>, <a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S6</a>). We find similar but not identical lifetimes for the two, with the triggered lifetime (~0.5 ns) longer than the prompt lifetime. Furthermore, the triggered lifetime is well-described by a single exponential fit, whereas the prompt fluorescence lifetime for both mScarlet and mVenus requires a sum of at least two exponential components to describe it. Code to perform these fits can be found with <a href="https://github.com/AndrewGYork/tumbling_is_general">figure generation code</a>. We note that the slightly acidic conditions of the measurement (pH 6.3) likely adds some biexponential character and decreases the lifetime of these FPs from their reported values of 3.9 and 2.7 ns for mScarlet and mVenus respectively 
+<p>Curiously, when we compared the prompt and triggered lifetimes for protein adsorbed to beads, we find a shortening of the prompt lifetime, whereas the triggered lifetime appears less affected (<a href="#triplet_tcspc_figure" target="_self">Figure S5</a>, <a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S6</a> with condition <code>40 nm beads</code>). Furthermore, the triggered lifetime is well-described by a single exponential fit, whereas the prompt fluorescence lifetime for both mScarlet and mVenus requires a sum of at least two exponential components to describe it. Tail-fitting the results yields a lifetime (mean &plusmn; standard deviation from fit, not experimental replicates) of 3.034 &plusmn; 0.002 ns for triggered mScarlet and a prompt lifetime of 2.34 ns (weighted average of t<sub>1</sub> 1.67 &plusmn; 0.01 ns and t<sub>2</sub> 3.970 &plusmn; 0.006 ns). For mVenus, we obtain a triggered lifetime of 2.879 &plusmn; 0.002 ns and a prompt lifetime of 1.80 ns (weighted average of t<sub>1</sub> 1.10 &plusmn; 0.02 ns and t<sub>2</sub> 2.895 &plusmn; 0.003 ns). The acidic nature of both the buffer for bead adsorption (0.1 mM MES pH 6.3) and the carboxylate surface of the beads likely adds some biexponential character and decreases the lifetime of these FPs from their reported values of 3.9 and 2.7 ns for mScarlet and mVenus respectively 
 
 [<a class="citation" href="http://doi.org/10.1038/nmeth.4074" title="mScarlet: a bright monomeric red fluorescent protein for cellular imaging; D. S. Bindels, L. Haarbosch, L. van Weeren, M. Postma, K. E. Wiese, M. Mastop, S. Aumonier, G. Gotthard, A. Royant, M. A. Hink, T. W. J. Gadella Jr; Nature Methods 14, 53-56 (2017)">Bindels 2017</a>,
-<a class="citation" href="http://doi.org/10.1021/bi0516273" title="Cyan and Yellow Super Fluorescent Proteins with Improved Brightness, Protein Folding, and FRET Förster Radius; G.-J. Kremers, J. Goedhart, E. B. van Munster, T. W. J. Gadella; Biochemistry, 45, 21, 6570-6580 (2006)">Kremers 2006</a>].</p>
+<a class="citation" href="http://doi.org/10.1021/bi0516273" title="Cyan and Yellow Super Fluorescent Proteins with Improved Brightness, Protein Folding, and FRET Förster Radius; G.-J. Kremers, J. Goedhart, E. B. van Munster, T. W. J. Gadella; Biochemistry, 45, 21, 6570-6580 (2006)">Kremers 2006</a>]. 
 
-<p>It’s plausible that the lifetimes of the triggered signal would be slightly longer than the prompt signal, since they are hypothesized to go through some intermediate state with a finite lifetime. Zooming out from the nuances of the fit, a nanosecond-lived emission is far more consistent with emission from a singlet state (i.e. fluorescence) than emission from a triplet state (i.e. phosphorescence), supporting previous reports of the OADF phenomenon 
+However, decreasing the pH further with the protein in solution did not fully recapitulate this difference between the prompt and triggered lifetimes (<a href="#triplet_tcspc_figure" target="_self">Figure S5</a>, <a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S6</a> with condition <code>Carmody IB pH 5</code>).</p>
+
+<p>We don't understand why adsorbing these FPs to beads seems to shorten their prompt lifetime but not their triggered triplet lifetime, but we suspect there may be some interesting mechanistic insights about triplet triggering contained here. It’s plausible that the lifetimes of the triggered signal would be slightly longer than the prompt signal, since they are hypothesized to go through some intermediate state with a finite lifetime.</p>
+
+<p>Zooming out from the nuances of this experiment, a nanosecond-lived emission is far more consistent with emission from a singlet state (i.e. fluorescence) than emission from a triplet state (i.e. phosphorescence), supporting previous reports of the OADF phenomenon 
 
 [<a class="citation" href="http://doi.org/10.1021/acs.jpcb.1c00649" title="Optically Modulated and Optically Activated Delayed Fluorescent Proteins through Dark State Engineering; B. Peng, R. Dikdan, S. E. Hill, A. C. Patterson-Orazem, R. L. Lieberman, C. J. Fahrni, R. M. Dickson; J Phys Chem B 125, 20, 5200-5209 (2021)">Peng 2021</a>].</p>
 
+<figure id="triplet_tcspc_overlaid_figure">
+<img src="./figures/SI_tcspc_of_OADF_signal/02_overlaid_unique.png" alt="Overlays of prompt and triggered lifetime curves under different conditions" id="tcspc_overlaid">
+ <figcaption><strong>Figure S5. Overlay of normalized time-resolved fluorescence decays for prompt and triggered emission.</strong><br>
+  The triggered signal is shifted in time such that it peaked at the same bin as the prompt signal, despite being 2 ns delayed in the experiment.
+ </figcaption>
+</figure>
+
+<p></p><p></p>
+
 <figure id="triplet_tcspc_figure">
-<img src="./figures/SI_tcspc_of_OADF_signal/mScarlet_triplet_tcspc/08_prompt_triggered_decays_with_fits.png" alt="mScarlet TCSPC triggered and prompt" id="tcspc_fit">
+<img src="./figures/SI_tcspc_of_OADF_signal/mScarlet_PBS_pH7_fits.png" alt="TCSPC of triggered and prompt signals with fits" id="tcspc_fit">
 <table class="figure_controls">
   <tr>
   <td>Fluorescent protein: </td><td><select id="FP_tcspc_selector" onchange="update_tcspc_figure()">
@@ -541,28 +559,22 @@ to match the lifetime of the prompt singlet emission, consistent with a model wh
     <option value="mVenus">mVenus</option>
   </select>
 </td>
-</tr>
-</table>
- <figcaption><strong>Figure S5. Time-resolved fluorescence decays of prompt and triggered emission of mScarlet and mVenus.</strong><br>
-  Data were aggregated from the 3 replicates of 40 nm diameter beads measured for the tumbling curves (<a href="./index.html#sp8_tumbling_figure">Figure 6</a>). Tail-fitting the results yields a lifetime (mean &plusmn; standard deviation from fit, not experimental replicates) of 3.034 &plusmn; 0.002 ns for triggered mScarlet and a prompt lifetime of 2.34 ns (weighted average of t1: 1.67 &plusmn; 0.01 ns, t2: 3.970 &plusmn; 0.006 ns). For mVenus, we obtain a triggered lifetime of 2.879 &plusmn; 0.002 ns and a prompt lifetime of 1.80 ns (weighted average of t1: 1.10 &plusmn; 0.02 ns, t2: 2.895 &plusmn; 0.003 ns).
- </figcaption>
-</figure>
-
-<p></p><p></p>
-
-<figure id="triplet_tcspc_overlaid_figure">
-<img src="./figures/SI_tcspc_of_OADF_signal/mScarlet_triplet_tcspc/07_prompt_triggered_tcspc_overlaid.png" alt="mScarlet TCSPC triggered and prompt overlaid" id="tcspc_overlaid">
-<table class="figure_controls">
-  <tr>
-  <td>Fluorescent protein: </td><td><select id="FP_tcspc_overlaid_selector" onchange="update_tcspc_overlay_figure()">
-    <option value="mScarlet" selected="selected">mScarlet</option> 
-    <option value="mVenus">mVenus</option>
+  <td>Condition: </td><td><select id="condition_tcspc_selector" onchange="update_tcspc_figure()">
+    <option value="PBS_pH7" selected="selected">PBS pH 7</option> 
+    <option value="MES_pH6p3">0.1 M MES pH 6.3</option>
+    <option value="40nmbeads">40 nm beads</option>
+    <option value="Carmody_IB_pH5">Carmody IB pH 5</option>
   </select>
 </td>
 </tr>
 </table>
- <figcaption><strong>Figure S6. Overlay of normalized time-resolved fluorescence decays for prompt and triggered emission.</strong><br>
-  The triggered signal is shifted in time such that it peaked at the same bin as the prompt signal, despite being 2 ns delayed in the experiment. These data are replotted from <a href="#triplet_tcspc_figure" target="_self">Figure S5</a>.
+ <figcaption><strong>Figure S6. Time-resolved fluorescence decays of prompt and triggered emission of mScarlet and mVenus.</strong><br>
+  TODO: ALL DATA FROM HYDS
+  Triggered data were aggregated from the 3 replicates of 40 nm diameter beads measured for the tumbling curves (<a href="./index.html#sp8_tumbling_figure">Figure 6</a>) for the bead data; in solution measurements were made with comparable settings. Prompt lifetimes were measured under powers described for time-resolved anisotropy (<a href="#singlet_polarization_figure" target="_self">Figure S2</a>), with some power increase to compensate for dimmer fluorescence in acidic solutions. Protein in solution measurements contained &approx;5-10 &mu;M FP. Fits shown are tail fits to single exponential model, with the exception of the prompt signal on beads (2 exponential components). "Carmody IB" refers to an imaging buffer with the following composition in mM: 140 KCl, 1 CaCl<sub>2</sub>, 1 MgCl<sub>2</sub>, 5 glucose, as well as 10% Carmody’s buffer (phosphate-citrate-borate universal buffer
+
+  [<a class="citation" href="http://doi.org/10.1021/ed038p559" title=" An Easily Prepared Wide Range Buffer Series; Walter R. Carmody; Journal of Chemical Education 38, 11, 559-560 (1961)">Carmody 1961</a>]).
+
+  These data are replotted from <a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S5</a>.
  </figcaption>
 </figure>
 

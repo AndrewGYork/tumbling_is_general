@@ -61,16 +61,10 @@ function update_sp8_tumbling_figure() {
   }    
 
 function update_tcspc_figure() {
-  var filename = "./figures/SI_tcspc_of_OADF_signal/" + document.getElementById("FP_tcspc_selector").value + "_triplet_tcspc/08_prompt_triggered_decays_with_fits.png"; 
+  var filename = "./figures/SI_tcspc_of_OADF_signal/" + document.getElementById("FP_tcspc_selector").value + "_" + document.getElementById("condition_tcspc_selector").value + "_fits.png"; 
   var image = document.getElementById("tcspc_fit");
   image.src = filename;
   }  
-
-function update_tcspc_overlay_figure() {
-  var filename = "./figures/SI_tcspc_of_OADF_signal/" + document.getElementById("FP_tcspc_overlaid_selector").value + "_triplet_tcspc/07_prompt_triggered_tcspc_overlaid.png"; 
-  var image = document.getElementById("tcspc_overlaid");
-  image.src = filename;
-  } 
 
 function update_SP8_schematic_figure() {
   var filename = "./figures/SI_pulse_setup_and_ctrls/" + document.getElementById("SP8_schematic_selector").value + "_pulse_setup.png"; 

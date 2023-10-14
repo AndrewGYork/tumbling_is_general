@@ -255,6 +255,22 @@ As_tot = sdf.groupby('time_ns')['detectorA'].sum().values[:nb]
 Bs_tot = sdf.groupby('time_ns')['detectorB'].sum().values[:nb]
 sing_tot = As_tot + Bs_tot
 
+# let's save out the combined signals for other analyses
+singlets = pd.DataFrame({'time_ns': time_ns[:nb],
+                         'counts_singlet': sing_tot,
+                         'counts_singlet_norm': sing_tot / np.max(sing_tot),
+                         'fluorophore': 'mScarlet',
+                         'condition': '40nmbeads',
+                         'intended_signal': 'singlet'})
+triplets = pd.DataFrame({'time_ns': time_ns[:nb],
+                         'counts_triplet': trip_tot,
+                         'counts_triplet_norm': trip_tot / np.max(trip_tot),
+                         'fluorophore': 'mScarlet',
+                         'condition': '40nmbeads',
+                         'intended_signal': 'triplet'})
+to_save = pd.concat([singlets, triplets], ignore_index=True)
+to_save.to_csv('mScarlet_40nmbead_traces.csv')
+
 # Let's normalize and overlay the signals from the prompt and the
 # triggered emission so we can visually compare them. First, we'll
 # determine the mean arrival time.
@@ -291,10 +307,8 @@ for ax in fig5.axes:
     ax.legend()
     ax.set_xlabel('Relative Time (ns)')
     ax.set_ylabel('Norm. Counts')
-plt.title('mScarlet')
-plt.savefig('07_prompt_triggered_tcspc_overlaid.pdf', transparent=True,
-            bbox_inches='tight')
-plt.savefig('07_prompt_triggered_tcspc_overlaid.png', bbox_inches='tight')
+plt.title('mScarlet, 40 nm beads')
+plt.savefig('mScarlet_40nmbeads_overlaid.png', bbox_inches='tight')
 
 # Let's do a little bit of curve fitting to get at the differences
 # between these signals a bit more precisely.
@@ -363,10 +377,8 @@ for ax in fig6.axes:
 fig6.axes[0].set_ylabel('Counts')
 fig6.axes[0].legend()
 fig6.axes[1].set_ylabel('Residuals')
-fig6.axes[0].set_title('mScarlet')
-plt.savefig('08_prompt_triggered_decays_with_fits.pdf', transparent=True,
-            bbox_inches='tight')
-plt.savefig('08_prompt_triggered_decays_with_fits.png', bbox_inches='tight')
+fig6.axes[0].set_title('mScarlet, 40 nm beads')
+plt.savefig('mScarlet_40nmbeads_fits.png', bbox_inches='tight')
 
 
 plt.show()
