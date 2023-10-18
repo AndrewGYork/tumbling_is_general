@@ -63,7 +63,7 @@ for ds, rs, label in zip(diff_list, replicate_list, label_list):
                           index=range(len(x_sum)))
         mixed_list.append(df)
 mixed = pd.concat(mixed_list, ignore_index=True)
-mixed['polarization'] = (mixed['x']-mixed['y']) / (mixed['x'] + mixed['y'])
+mixed['polarization'] = (mixed['y']-mixed['x']) / (mixed['x'] + mixed['y'])
 # cosmetic - change to a + instead of a dash
 mixed.loc[mixed['diff_time_ns'] == '450-3000', 'diff_time_ns'] = '450+3000'
 mixed.to_csv('03_simulated_mixtures.csv')
@@ -87,7 +87,7 @@ for i in range(120):
     grid.update(left=0, right=1, bottom=0, top=1, hspace=0, wspace=0)
     ax1.axis('off')
     ax2.set_position([0.065, 0.07, 1.55/6, 1.55/5.5])
-    ax3.set_position([0.405, 0.07, 1.55/6, 1.55/5.5])
+    ax3.set_position([0.39, 0.07, 1.55/6, 1.55/5.5])
     ax4.set_position([0.74, 0.07, 1.55/6, 1.55/5.5])
     # subpanel labels
     ax1.text(5, 40, 'A', fontsize=12, weight='bold', clip_on=False)
@@ -132,14 +132,14 @@ for i in range(120):
         ax.set_xlabel('Pump-Probe Delay (ns)', labelpad=1)
         ax.tick_params(axis='both', which='major', width=1)
         ax.spines[:].set_linewidth(1)
-    ax2.set_ylabel(r'I$_X$ ($\parallel$ to probe)', labelpad=1)
-    ax3.set_ylabel(r'I$_Y$ ($\perp$ to probe)', labelpad=1)
-    ax4.set_ylabel(r'Polarization, (I$_X$ - I$_Y$) / (I$_X$ + I$_Y$)', labelpad=1)
-    ax4.set_ylim(0.05, 0.5)
+    ax2.set_ylabel(r'I$_X$ ($\perp$ to pump)', labelpad=1)
+    ax3.set_ylabel(r'I$_Y$ ($\parallel$ to pump)', labelpad=1)
+    ax4.set_ylabel(r'Polarization, (I$_Y$ - I$_X$) / (I$_Y$ + I$_X$)', labelpad=1)
+    ax4.set_ylim(-0.5, 0)
     ax2.set_yticks(np.linspace(2e3, 6e3, 5))
     ax2.set_ylim(1.6e3, 6e3)
     ax2.ticklabel_format(axis="y", style='sci', scilimits=(0,0))
-    ax4.set_yticks(np.linspace(0, 0.5, 6))
+    ax4.set_yticks(np.linspace(0, -0.5, 6))
 
     # indicate which simulation this is
     n = results['n_fluorophores'].values[0]*2 # should be the same for all

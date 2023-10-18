@@ -71,14 +71,15 @@ for name, group in df.groupby('bead_diam_nm'):
                      ratio_mean + ratio_std, alpha=0.2,
                      color=diam2color[name])
 ax3.set_title('Experiment: mVenus')
-ax3.set_ylim(-0.05, 0.35)
+ax3.set_ylim(-0.35, 0.05)
+ax3.set_yticks(np.linspace(-0.35, 0.05, 5))
 ax3.legend(title='Diameter (nm)', ncol=2, fontsize=8, columnspacing=1.3,
            handlelength=1.3, title_fontsize=8, framealpha=1,
-           handletextpad=0.7, borderpad=0.5, loc='lower right')
+           handletextpad=0.7, borderpad=0.5, loc='upper right')
 # import the simulation results and plot on axes 4
 cres = pd.read_csv('confocal_pump_probe_crescentFactorsOf5_pump2_probe0p25.csv')
-cres['polarization'] = (cres['counts_y']-cres['counts_x'])/(
-    cres['counts_y']+cres['counts_x'])
+cres['polarization'] = (cres['counts_x']-cres['counts_y'])/(
+    cres['counts_x']+cres['counts_y'])
 cresV = cres.loc[cres['crescent_saturation'] == 0.25]
 for name, group in cresV.groupby('diffusion_time_ns'):
     pol_means = group.groupby('delay_us')['polarization'].mean()
@@ -90,7 +91,7 @@ for name, group in cresV.groupby('diffusion_time_ns'):
                      pol_means + pol_stds,
                      color=diff2color[name], alpha=0.2)
 ax4.set_title('Simulation')
-ax4.set_ylim(-0.35, 0.45)
+ax4.set_ylim(-0.45, 0.35)
 # format both experiment and simulation axes
 for ax in [ax3, ax4]:
     ax.grid('on', alpha=0.3)

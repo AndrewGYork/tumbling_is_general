@@ -67,10 +67,10 @@ for ax in fig1.axes:
     ax.grid('on')
     ax.legend(title='Crescent Power (%)', fontsize=8, columnspacing=1.3,
               handlelength=1.3, title_fontsize=8, framealpha=1,
-              handletextpad=0.7, borderpad=0.5, loc='lower right')
+              handletextpad=0.7, borderpad=0.5, loc='upper right')
     ax.set_xlabel(r'Pump-Probe Delay Time ($\mu$s)')
     ax.set_ylabel('Polarization')
-    ax.set_ylim(0, 0.3)
+    ax.set_ylim(-0.30, 0)
 plt.savefig('01_mScarlet_crescent_pol.pdf', bbox_inches='tight',
             transparent=True)
 

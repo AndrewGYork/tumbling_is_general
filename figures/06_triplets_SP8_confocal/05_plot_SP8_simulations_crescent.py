@@ -18,8 +18,8 @@ plt.style.use(cwd.parents[0] / 'default.mplstyle')
 # results. This is equivalent to running the script once with nrep=12.
 cap = pd.read_csv('sp8_simulation_pump2_probe0p25.csv')
 cres = pd.read_csv('confocal_pump_probe_crescentFactorsOf5_pump2_probe0p25.csv')
-cap['polarization'] = (cap['counts_y']-cap['counts_x'])/(cap['counts_y']+cap['counts_x'])
-cres['polarization'] = (cres['counts_y']-cres['counts_x'])/(cres['counts_y']+cres['counts_x'])
+cap['polarization'] = (cap['counts_x']-cap['counts_y'])/(cap['counts_y']+cap['counts_x'])
+cres['polarization'] = (cres['counts_x']-cres['counts_y'])/(cres['counts_y']+cres['counts_x'])
 
 # EFFECT OF CRESCENT SELECTION ON THE DYNAMIC RANGE
 # We only ran 6 replicates at each crescent condition, so let's just
