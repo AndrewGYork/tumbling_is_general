@@ -61,11 +61,10 @@ The real text begins here.
 
 <p></p>
 <p><strong>Pre-print published: TODO</strong></p>
-<p><strong>Please cite as:</strong> TODO</a></p>
+<p><strong>Please cite as: TODO</strong></p>
 
 <h3>This appendix contains:</h3>
 
-<p>
 <ul></ul>
 <a href="#materials_and_methods" target="_self">Materials and Methods</a>
 <ul>
@@ -81,7 +80,7 @@ The real text begins here.
   <li><a href="#definition_tumbling_terms" target="_self">Quantifying alignment of a population of molecules</a></li>
   <li><a href="#intensity_vs_fluence" target="_self">Intensity versus fluence</a></li>
   <li><a href="#code_usage_examples" target="_self">Usage examples for the tumbling simulation code</a></li>
-  <li><a href="#polarization_ratio_reduction" target="_self">Experimental factors that reduce polarization ratio</a></li>
+  <li><a href="#polarization_reduction" target="_self">Experimental factors that reduce measured polarization</a></li>
   <li><a href="#gated_detection" target="_self">Detector requirements for triggered triplets</a></li>
   <li><a href="#photophysics_comparison" target="_self">Comparison of rsFPs and triggered triplets</a></li>
   <li><a href="#triplet_lifetimes" target="_self">Triggerable state lifetimes in FPs</a></li>
@@ -89,7 +88,6 @@ The real text begins here.
   <li><a href="#crescent_selection" target="_self">Increasing alignment with 'crescent' selection</a></li>
 </ul>
 <a href="#sequences" target="_self">Sequences for all constructs used</a>
-</p>
 
 <p>Back to the <a href="./index.html">main text</a></p>
 
@@ -139,7 +137,7 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
 <p>We summed this triggered triplet signal across all pixels of this image for 1000 frames to obtain the triggered triplet signal. For most analysis, we also summed the fluorescence lifetime information from each trigger pulse, resulting in a single value for each detector at a given delay. <a href="#SP8_schematic_figure" target="_self">Figure S1</a> shows representative traces obtained with this pulse scheme.</p>
 
 <figure id="SP8_schematic_figure">
-<img src="./figures/SI_pulse_setup_and_ctrls/mScarlet_pulse_setup.png" alt="Schematic of SP8 Instrument and Control Traces" id="SP8_schematic"><table class="figure_controls">
+<img src="./figures/SI_pulse_setup_and_ctrls/mScarlet_pulse_setup.png" alt="Schematic of SP8 Instrument and Control Traces" id="SP8_schematic">
 <table class="figure_controls">
   <tr>
   <td>Fluorescent Protein: </td><td><select id="SP8_schematic_selector" onchange="update_SP8_schematic_figure()">
@@ -178,6 +176,8 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
 <p>We performed a scan of buffers and pH to identify optimal binding conditions, settling on 50 mM MES pH 6.3. To reduce aggregation, 0.025-0.05% Tween was added to each sample. Recipes for the bead solutions are listed in <a href="#bead_recipe_table" target="_self">Table S1</a> below. Samples were mixed and imaged in 384 well glass-bottom plates (Cellvis LLC). Where relevant, stock solutions were diluted to avoid pipetting volumes smaller than 0.5 &mu;L.</p>
 
 <table id="bead_recipe_table">
+<caption><strong>Table S1. Composition of bead samples.</strong><br>
+The protein, MES buffer, and Tween were mixed thoroughly by pipetting before addition of the beads. All volumes are in &mu;L. Limitations in the accuracy of the protein concentration measurements could account for the apparent differences in loading between mScarlet and mVenus. With any new protein or fresh preparation, we would recommend running a test and using the highest loading values that don’t result in substantial remaining free protein.</caption>
   <tr>
     <th>Ingredient</th>
     <th>40 nm bead</th>
@@ -212,9 +212,7 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
     <td>10</td>
     <td>10</td>
     <td>10</td>
-  </tr>
-  <caption><strong>Table S1. Composition of bead samples.</strong><br> 
-  The protein, MES buffer, and Tween were mixed thoroughly by pipetting before addition of the beads. All volumes are in &mu;L. Limitations in the accuracy of the protein concentration measurements could account for the apparent differences in loading between mScarlet and mVenus. With any new protein or fresh preparation, we would recommend running a test and using the highest loading values that don’t result in substantial remaining free protein.</caption>
+  </tr> 
 </table>
 
 <p>The samples were checked for aggregation by dynamic light scattering (Prometheus Panta). A small percentage of the beads in each sample were aggregated (not enough to affect the distribution in DLS); these aggregates were visible as bright fluorescent chunks on the bottom of the well and they were avoided during imaging.</p>
@@ -231,7 +229,7 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
 
 <h4 id="technology_comparison">Tumbling versus other approaches to measuring interaction <em>in situ</em></h4>
 
-<p>Given the importance of molecular interactions, it is no surprise that an array of techniques has been developed to investigate them. Many of these approaches operate only out of the molecule's native context and/or destroy the sample (e.g. isothermal titration calorimetry, yeast 2-hybrid assays, crosslinking assays, immunoprecipitation). We focus here only on techniques that allow real-time monitoring of protein-protein interactions in their native context. Three principal approaches exist, namely:
+<p>Given the importance of molecular interactions, it is no surprise that an array of techniques has been developed to investigate them. Many of these approaches operate only out of the molecule's native context and/or destroy the sample (e.g. isothermal titration calorimetry, yeast 2-hybrid assays, crosslinking assays, immunoprecipitation). We focus here only on techniques that allow real-time monitoring of protein-protein interactions in their native context. Three principal approaches exist, namely:</p>
 <ul>
   <li>F&ouml;rster resonance energy transfer (<strong>FRET</strong>) is often used to determine if two fluorophores are within 10 nm of each other, suggesting that the proteins they label are binding. However, improper label positioning can lead to false negatives where the fluorophores are >10 nm apart even in the bound complex. Correct implementation of this double labeling typically requires detailed structural information and experimental trial-and-error
 
@@ -250,7 +248,7 @@ Proteins in PBS were kept at 4&deg;C for short-term storage and -80&deg;C for lo
   [<a class="citation" href="http://doi.org/10.1103/PhysRevLett.29.705" title="Thermodynamic Fluctuations in a Reacting System—Measurement by Fluorescence Correlation Spectroscopy; D. Magde, E. Elson, W. W. Webb; Phys. Rev. Lett. 29, 705 (1972)">Magde 1972</a>]
 
   measures translational diffusion time by brightness fluctuations as fluorophores pass through a focal volume, and therefore FCS suffers from many of the downsides of SPT. Although it can tolerate up to a few fluorophores in the focal volume at one time, it produces less information per particle. FCS is implemented on a point scanning instrument, interrogating only one point at a time. Building an image requires raster scanning of the point through the sample, further decreasing speed.</li>
-</ul></p>
+</ul>
 
 <p> In principle, tumbling measurements outperform these other technologies. Sensitive measurements of size can be made for a labeled protein of interest with acquistions that are only &approx;1 order of magnitude slower than a fluorescence intensity image. Historically, the key downside to tumbling measurements was the size limit of approximately 30 kDa, which is eliminated by the recent incorporation of longer-lived states
 
@@ -379,8 +377,8 @@ for i in range(10):
 x, y, z, t = a.get_xyzt_at_transitions('excited', 'ground')
 p_x, p_y = x**2, y**2 # Probabilities of landing in channel x or y
 r = uniform(0, 1, size=len(t))
-in_channel_x = (r < p_x)
-in_channel_y = (p_x <= r) & (r < p_x + p_y)
+in_channel_x = (r &lt; p_x)
+in_channel_y = (p_x &lt;= r) & (r &lt; p_x + p_y)
 total_x = sum(in_channel_x)
 total_y = sum(in_channel_y)
 polarization = (total_x - total_y) / (total_x + total_y)
@@ -421,12 +419,12 @@ print("done.")
 <p></p>
 
 <figure id="tutorial_output">
-<img src="./figures/SI_tutorial/test_classic_anisotropy_decay.png" alt="Output of tutorial showing fluorescence anisotropy" id="triplet_lifetime_image">
+<img src="./figures/SI_tutorial/test_classic_anisotropy_decay.png" alt="Output of tutorial showing fluorescence anisotropy" id="tutorial_output_image">
 </figure>
 
 <p>The above example is also available within <code>fluorophore_rotational_diffusion.py</code> in <code>_test_fluorophores_anisotropy_decay_plot()</code>. Further documentation of the fluorophore rotational diffusion API is available in docstrings for each function. The scripts that generate each of the simulation figures are available on <a href="https://github.com/AndrewGYork/tumbling_is_general">GitHub</a> with this manuscript.</p>
 
-<h4 id="polarization_ratio_reduction">Experimental factors that reduce polarization ratio</h4>
+<h4 id="polarization_reduction">Experimental factors that reduce measured polarization</h4>
 
 <p>An unaligned but immobile population of fluorophores should fluoresce with a polarization of 0.5 when excited with unsaturated, linearly polarized light. However, this is rarely observed, as many experimental details can reduce the measured polarization
 
@@ -434,12 +432,12 @@ print("done.")
 
 namely: </p>
 <ol type="1">
-  <li>The data in this paper were collected with a 100x 1.4 NA oil immersion objective lens. The mapping between polarization in the sample and at the back focal plane of a high NA objective is complicated, but the net result is a reduction in the maximum measured polarization ratio [<a class="citation" href="http://doi.org/10.1016/S0006-3495(79)85271-6" title="Carbocyanine dye orientation in red cell membrane studied by microscopic fluorescence polarization.; D. Axelrod; Biophys. J., 26, 3, 557-573 (1979)">Axelrod 1979</a>]. Indeed, in the time-resolved polarization decays of the prompt singlets (<a href="#singlet_polarization_figure" target="_self">Figure S2</a>), we observe that the maximum polarization of &approx;0.4.</li>
+  <li>The data in this paper were collected with a 100x 1.4 NA oil immersion objective lens. The mapping between polarization in the sample and at the back focal plane of a high NA objective is complicated, but the net result is a reduction in the maximum measured polarization [<a class="citation" href="http://doi.org/10.1016/S0006-3495(79)85271-6" title="Carbocyanine dye orientation in red cell membrane studied by microscopic fluorescence polarization.; D. Axelrod; Biophys. J., 26, 3, 557-573 (1979)">Axelrod 1979</a>]. Indeed, in the time-resolved polarization decays of the prompt singlets (<a href="#singlet_polarization_figure" target="_self">Figure S2</a>), we observe a maximum polarization of &approx;0.4.</li>
   <li>Saturation in any of the linearly polarized laser pulses will excite a different distribution of fluorophore orientations. Once the parallel channel is saturating, increased excitation power will disproportionately excite molecules in the perpendicular channel. However, working in a somewhat saturating regime, as we do here, may be advantageous to obtain higher total photon counts.</li>
   <li>Fast depolarization in the sample can occur independent of rotational diffusion. Some possible sources of this include:<ul> 
     <li>homo-FRET between fluorophores</li>
     <li>free fluorophore that is not conjugated to the target of interest</li>
-    <li>motion of the fluorophore label independently from the target ("floppy linkers")</li>
+    <li>independent movement of the fluorophore label with respect to the target ("floppy linkers")</li>
     <li>non-parallel excitation and emission dipoles</li>
   </ul></li>
 </ol>
@@ -474,9 +472,9 @@ namely: </p>
 
   reducing the accessible dynamic range of polarization.</li>
   <li>(-) Many rsFPs remain on for hours after switching unless they are actively switched off, producing accumulating background. Full off-switching requires additional light doses and time, and it is hampered by molecular rotation out of plane.</li>
-</ul></p>
+</ul>
 
-<p><strong>Triggered triplets</strong>, also known as optically activated delayed fluorescence, exhibit a nearly orthogonal set of pros and cons, with distinct advantages in biologically-relevant size scales:
+<p><strong>Triggered triplets</strong>, also known as optically activated delayed fluorescence, exhibit a nearly orthogonal set of pros and cons, with distinct advantages in biologically-relevant size scales:</p>
 <ul style="list-style-type:none">
   <li>(+) Triplets are available immediately and are effectively background-free once the fluorescent excited state has fully decayed (>5 fluorescence lifetimes).</li>
   <li>(+) Even if the triplet absorption dipole is rotated with respect to the initial excitation, emission appears to be from the excited singlet
@@ -494,7 +492,7 @@ namely: </p>
   Labeled protein constructs that were originally designed for fluorescence imaging can in principle be used for tumbling if the linkers are sufficiently rigid.</li>
   <li>(-) The signal from triggered triplets with current fluorophores is very low relative to the number of singlets generated by the initial illumination. Approximately 100 prompt singlet photons are generated for each triggered triplet photon.</li>
   <li>(-) Even with optimized fluorophores, triplet triggering would produce at most one photon per two input photons (triplet generation and trigger).</li>
-</ul></p>
+</ul>
 
 <h4 id="triplet_lifetimes">Triggerable state lifetimes in FPs</h4>
 
@@ -530,9 +528,7 @@ This observation supports a mechanistic model in which the triggering beam regen
 
 However, decreasing the pH further with the protein in solution did not fully recapitulate this difference between the prompt and triggered lifetimes (<a href="#triplet_tcspc_overlaid_figure" target="_self">Figure S5</a>, <a href="#triplet_tcspc_figure" target="_self">Figure S6</a> with condition <code>Carmody IB pH 5</code>).</p>
 
-<p>We don't understand why adsorbing these FPs to beads seems to shorten their prompt lifetime but not their triggered triplet lifetime, but we suspect there may be some interesting mechanistic insights about triplet triggering contained here. It’s plausible that the lifetime of the triggered signal could be slightly longer than the prompt signal, since they are hypothesized to go through some intermediate state with a finite lifetime.</p>
-
-<p>Zooming out from the nuances of this experiment, a nanosecond-lived emission is far more consistent with emission from a singlet state (i.e. fluorescence) than emission from a triplet state (i.e. phosphorescence), supporting a model in which the trigger beam returns the fluorophores to a singlet state.</p>
+<p>We don't understand why adsorbing these FPs to beads seems to shorten their prompt lifetime but not their triggered triplet lifetime, but we suspect there may be some interesting mechanistic insights about triplet triggering contained here. Zooming out from the nuances of this experiment, a nanosecond-lived emission is far more consistent with emission from a singlet state (i.e. fluorescence) than emission from a triplet state (i.e. phosphorescence), supporting a model in which the trigger beam returns the fluorophores to a singlet state.</p>
 
 <figure id="triplet_tcspc_overlaid_figure">
 <img src="./figures/SI_tcspc_of_OADF_signal/02_overlaid_unique.png" alt="Overlays of prompt and triggered lifetime curves under different conditions" id="tcspc_overlaid">
@@ -594,17 +590,17 @@ in which an orthogonally polarized STED beam immediately follows a linearly pola
 <figure id="crescent_experiment_figure">
 <img src="./figures/SI_orthogonal_depletion_beam/expt_crescent_power.png" alt="Experimental results from increasing crescent intensity with triplets" id="crescent_experiment_image">
  <figcaption><strong>Figure S8. Experimentally determined effects of crescent selection on polarization dynamic range.</strong><br>
-  Tumbling of 100 nm beads labeled with (A) mScarlet or (B) mVenus was examined with varying powers of ‘crescent’ selection, using the pulse scheme in <a href="#sp8_schematic_figure" target="_self">Figure S1</a>. Because the crescent beam here was fired 2 ns after the pump beam, excited singlets were still present and some contribution from STED is possible, especially in mScarlet. For mVenus, the spectral separation is such that the 775 nm triggering beam should primarily interact with the triplet state rather than the excited singlet state. Laser powers are provided in percent of the total power in the microscope software. 0.5% power is approximately 100 &mu;W and 2% power is approximately 400 &mu;W average power at the sample.
+  Tumbling of 100 nm beads labeled with (A) mScarlet or (B) mVenus was examined with varying powers of ‘crescent’ selection, using the pulse scheme in <a href="#SP8_schematic_figure" target="_self">Figure S1</a>. Because the crescent beam here was fired 2 ns after the pump beam, excited singlets were still present and some contribution from STED is possible, especially in mScarlet. For mVenus, the spectral separation is such that the 775 nm triggering beam should primarily interact with the triplet state rather than the excited singlet state. Laser powers are provided in percent of the total power in the microscope software. 0.5% power is approximately 100 &mu;W and 2% power is approximately 400 &mu;W average power at the sample.
  </figcaption>
 </figure>
 <p></p>
 
-<p>A trivial explanation for this discrepancy between simulation and experiment would be that we are not saturating the triplet triggering enough to change the distribution of triplet orientations. To evaluate this, we need to calibrate our experimental intensity with respect to the saturation units used in the simulation. We estimate saturation of the crescent beam based on the loss of triggered triplet counts when the crescent beam is introduced (<a href="#crescent_expt_vs_sim_figure">Figure S9</a>). In mVenus, 0.5% nominal laser power (&approx;100 &mu;W average power at the sample) in the crescent beam and a simulated intensity of 2 saturation units both produce a &approx;30% loss in the total counts. In mScarlet, 2% nominal power (&approx;400 &mu;W) crescent selection and a simulated intensity of 4 both produce an &approx;50% loss in total counts. We selected these two conditions for side-by-side comparison here and in <a href="./index.html#sp8_tumbling_figure">Figure 6</a>. Based on this loss in signal, we believe that we are using a sufficiently powerful crescent beam that we would expect to see some enhancement of polarization dynamic range.</p>
+<p>A trivial explanation for this discrepancy between simulation and experiment would be that we are not saturating the triplet triggering enough to change the distribution of triplet orientations. To evaluate this, we need to calibrate our experimental intensity with respect to the saturation units used in the simulation. We estimate saturation of the crescent beam based on the loss of triggered triplet counts when the crescent beam is introduced (<a href="#crescent_expt_vs_sim_figure" target="_self">Figure S9</a>). In mVenus, 0.5% nominal laser power (&approx;100 &mu;W average power at the sample) in the crescent beam and a simulated intensity of 2 saturation units both produce a &approx;30% loss in the total counts. In mScarlet, 2% nominal power (&approx;400 &mu;W) crescent selection and a simulated intensity of 4 both produce an &approx;50% loss in total counts. We selected these two conditions for side-by-side comparison here and in <a href="./index.html#sp8_tumbling_figure">Figure 6</a>. Based on this loss in signal, we believe that we are using a sufficiently powerful crescent beam that we would expect to see some enhancement of polarization dynamic range.</p>
 
 <figure id="crescent_expt_vs_sim_figure">
 <img src="./figures/SI_orthogonal_depletion_beam/total_cts_expt_vs_simulation.png" alt="Relating crescent experiment and simulation" id="crescent_expt_vs_sim_image">
  <figcaption><strong>Figure S9. Change in total triggered triplets resulting from crescent selection.</strong><br>
-  (A) Simulation of total counts (parallel + perpendicular channels) at 360 &mu;s using a ‘crescent’ selection pulse scheme as described in <a href="#sp8_schematic_figure" target="_self">Figure S1</a>. (B) Experimental results for 100 nm beads coated with mScarlet and interrogated with a crescent pulse scheme. (C) Experimental results for 100 nm beads coated with mVenus and interrogated with a crescent pulse scheme. Units of laser power in (B) and (C) are nominal power in the instrument software (2% &approx; 400 &mu;W average power at the sample).
+  (A) Simulation of total counts (parallel + perpendicular channels) at 360 &mu;s using a ‘crescent’ selection pulse scheme as described in <a href="#SP8_schematic_figure" target="_self">Figure S1</a>. (B) Experimental results for 100 nm beads coated with mScarlet and interrogated with a crescent pulse scheme. (C) Experimental results for 100 nm beads coated with mVenus and interrogated with a crescent pulse scheme. Units of laser power in (B) and (C) are nominal power in the instrument software (2% &approx; 400 &mu;W average power at the sample).
  </figcaption>
 </figure>
 <p></p>
