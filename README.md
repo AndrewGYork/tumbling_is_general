@@ -2,13 +2,13 @@
 
 Permanent version (cite as): <a href="https://doi.org/10.5281/zenodo.10028432"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10028432.svg" alt="DOI"></a>
 
-A scientific publication that describes new approaches to measuring protein-protein interactions via molecular tumbling. We explore these 'case studies' primarily with simulation but also include experimental validation for one case. This repository hosts everything you need to reproduce our results. Read the publication here: TODO LINK
+A scientific publication that describes new approaches to measuring protein-protein interactions via molecular tumbling. We explore four case studies, primarily with simulation but also include experimental validation for one case. This repository hosts everything you need to reproduce our results. Read the publication here: https://andrewgyork.github.io/tumbling_is_general
 
 This repository is intended to hold a (mostly) self-contained scientific publication. It contains:
 
 * HTML, javascript, CSS, and small images (`index.html`, `appendix.html`, and the `javascript`, `stylesheets`, `figures` and `images` directories)
 * A (limited) PDF version of the publication; note that this does not include animated/interactive figures.
-* Code which produces figures (in the `figures` directory). You can run and modify this code to verify and explore our results. See `figure_generation/README.txt` for instructions how to run the figure generation code.
+* Code which produces figures (in the `figures` directory). You can run and modify this code to verify and explore our results. See `figures/README.txt` for instructions how to run the figure generation code.
 
 Some files aren't suitable for version control, (e.g. raw data, minimally pre-processed data, etc). These are stored in a dedicated repository.
 * Source data: https://doi.org/10.5281/zenodo.10028240
