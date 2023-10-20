@@ -2,7 +2,7 @@
 
 Permanent version (cite as): <a href="https://doi.org/10.5281/zenodo.10028432"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10028432.svg" alt="DOI"></a>
 
-A scientific publication that describes new approaches to measuring protein-protein interactions via molecular tumbling. We explore four case studies, primarily with simulation but also include experimental validation for one case. This repository hosts everything you need to reproduce our results. Read the publication here: https://andrewgyork.github.io/tumbling_is_general
+A scientific publication that describes new approaches to measuring protein-protein interactions via molecular tumbling. This repository hosts everything you need to reproduce our results. Read the publication here: https://andrewgyork.github.io/tumbling_is_general
 
 This repository is intended to hold a (mostly) self-contained scientific publication. It contains:
 
