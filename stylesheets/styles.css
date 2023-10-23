@@ -201,8 +201,6 @@ p img {
 
 video {
   position: relative;
-  margin: 0 auto;
-  height: 50%;
   max-width: 100%;
   padding: 0px;
   margin: 0px 0 0px 0;
